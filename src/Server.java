@@ -7,6 +7,7 @@ public class Server {
     public Server()  {
 
         try(ServerSocket socket = new ServerSocket(1234)) {
+            System.out.println("Server start");
 
             while (true) {
 
