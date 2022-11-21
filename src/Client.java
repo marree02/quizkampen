@@ -10,28 +10,38 @@ public class Client extends Thread {
 
     String userName;
 
-
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
         // TODO: sätt titel userInput
+        Welcome welcome = new Welcome();
+        welcome.setWelcomeLabel("VÄLKOMMEN " + userName);
 
         this.start();
-
-
+        
     }
 
     public void run() {
 
 
         try (
-                Socket socket = new Socket("127.0.0.1", 41994);
+                Socket socket = new Socket("127.0.0.1", 1234);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
-            System.out.println("Klienttråd startad");
 
+            System.out.println("Klienttråd startad");
             out.println(userName);
+
+            if (in.readLine().equals("1")) {
+                System.out.println("spelare 1");
+                Category category = new Category();
+
+            } else {
+                System.out.println("spelare 2");
+                Welcome welcome = new Welcome();
+                welcome.setWaitingLabel("väntar på att spelare väljer kategori");
+            }
 
             while(true) {
 
