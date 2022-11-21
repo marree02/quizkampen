@@ -6,7 +6,7 @@ public class Server {
 
     public Server()  {
 
-        try(ServerSocket socket = new ServerSocket(41994)) {
+        try(ServerSocket socket = new ServerSocket(1234)) {
 
             while (true) {
 
