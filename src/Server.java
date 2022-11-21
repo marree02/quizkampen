@@ -12,9 +12,9 @@ public class Server {
 
                 GameRoom game = new GameRoom();
 
-                ServerPlayer player1 = new ServerPlayer(socket.accept(),game);
+                ServerPlayer player1 = new ServerPlayer(socket.accept(),game,"1");
 
-                ServerPlayer player2 = new ServerPlayer(socket.accept(),game);
+                ServerPlayer player2 = new ServerPlayer(socket.accept(),game,"2");
 
                 player1.setOpponent(player2);
 

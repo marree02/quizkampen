@@ -10,7 +10,6 @@ public class Client extends Thread {
 
     String userName;
 
-
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
@@ -19,8 +18,7 @@ public class Client extends Thread {
         welcome.setWelcomeLabel("VÄLKOMMEN " + userName);
 
         this.start();
-
-
+        
     }
 
     public void run() {
@@ -31,6 +29,7 @@ public class Client extends Thread {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
+
             System.out.println("Klienttråd startad");
             out.println(userName);
 
@@ -43,8 +42,6 @@ public class Client extends Thread {
                 Welcome welcome = new Welcome();
                 welcome.setWaitingLabel("väntar på att spelare väljer kategori");
             }
-
-            out.println(userName);
 
             while(true) {
 

@@ -12,11 +12,13 @@ public class ServerPlayer extends Thread {
     PrintWriter out;
     BufferedReader in;
     String userName;
+    String playerOneOrTwo;
 
 
-    public ServerPlayer(Socket accept, GameRoom game) {
+    public ServerPlayer(Socket accept, GameRoom game, String playerOneOrTwo) {
         this.socket = accept;
         this.game = game;
+        this.playerOneOrTwo = playerOneOrTwo;
         try {
             this.out = new PrintWriter(socket.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -30,7 +32,7 @@ public class ServerPlayer extends Thread {
             e.printStackTrace();
         }
 
-        out.println("Väntar på motståndare");
+        // out.println("Väntar på motståndare");
 
     }
 
@@ -46,6 +48,9 @@ public class ServerPlayer extends Thread {
     public void run() {
 
         try {
+
+            System.out.println(playerOneOrTwo);
+            out.println(playerOneOrTwo);
 
             System.out.println("Tråd startad");
 
