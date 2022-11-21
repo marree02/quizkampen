@@ -35,8 +35,6 @@ public class Client extends Thread {
 
             while(true) {
 
-
-
             }
 
 
