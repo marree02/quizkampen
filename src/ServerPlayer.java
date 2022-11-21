@@ -49,7 +49,7 @@ public class ServerPlayer extends Thread {
 
             System.out.println("Tråd startad");
 
-            System.out.println("Du spelar mot" + opponent.userName);
+            System.out.println("Du spelar mot " + opponent.userName);
 
 
 

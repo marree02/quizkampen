@@ -16,13 +16,12 @@ public class Server {
 
                 ServerPlayer player2 = new ServerPlayer(socket.accept(),game);
 
-                player1.start();
-
-                player2.start();
-
                 player1.setOpponent(player2);
 
                 player2.setOpponent(player1);
+
+                player1.start();
+                player2.start();
 
             }
 
