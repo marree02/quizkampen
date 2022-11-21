@@ -8,10 +8,12 @@ import java.net.UnknownHostException;
 
 public class Client extends Thread {
 
+    String userName;
+
 
     public Client() {
 
-        String userInput = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
+        userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
         // TODO: sätt titel userInput
 
         this.start();
@@ -23,10 +25,20 @@ public class Client extends Thread {
 
 
         try (
-                Socket socket = new Socket("127.0.0.1", 10667);
-                PrintWriter out = new PrintWriter(socket.getOutputStream());
+                Socket socket = new Socket("127.0.0.1", 41994);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
+            System.out.println("Klienttråd startad");
+
+            out.println(userName);
+
+            while(true) {
+
+
+
+            }
+
 
 
         } catch (
