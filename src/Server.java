@@ -20,6 +20,9 @@ public class Server {
 
                 player2.setOpponent(player1);
 
+                player1.start();
+                player2.start();
+
             }
 
         } catch (IOException e) {
