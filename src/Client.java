@@ -8,18 +8,17 @@ import java.net.UnknownHostException;
 
 public class Client extends Thread {
 
+
     String userName;
 
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
-
-        // TODO: sätt titel userInput
         Welcome welcome = new Welcome();
-        welcome.setWelcomeLabel("VÄLKOMMEN " + userName);
+        welcome.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
+        welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
         this.start();
-
 
     }
 
@@ -38,11 +37,14 @@ public class Client extends Thread {
             if (in.readLine().equals("1")) {
                 System.out.println("spelare 1");
                 Category category = new Category();
+                category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
             } else {
                 System.out.println("spelare 2");
                 Welcome welcome = new Welcome();
+                welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                 welcome.setWaitingLabel("väntar på att spelare väljer kategori");
+
             }
 
             while(true) {
