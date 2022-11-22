@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.Properties;
 
@@ -14,8 +15,10 @@ public class CategoryUI extends JFrame {
     protected JButton category3;
     private JButton button1;
     private JLabel chooseCategoryLabel;
+    PrintWriter out;
 
-    public CategoryUI() {
+    public CategoryUI(PrintWriter out) {
+        this.out = out;
         setContentPane(panel1);
         setVisible(true);
         setSize(450,500);
@@ -31,6 +34,11 @@ public class CategoryUI extends JFrame {
         category1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                JButton button = (JButton) e.getSource();
+
+                out.println(button.getText() + "\n");
+
                 int question = Integer.parseInt(p.getProperty("questions"));
                 int rounds = Integer.parseInt(p.getProperty("rounds"));
                 /*
@@ -38,6 +46,7 @@ public class CategoryUI extends JFrame {
                 nya jbutton knappar
                 true/false sats
                  */
+                out.close();
             }
         });
     }

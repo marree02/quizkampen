@@ -49,36 +49,39 @@ public class ServerPlayer extends Thread {
 
         try {
 
-            System.out.println(playerOneOrTwo);
-            out.println(playerOneOrTwo);
+                System.out.println(playerOneOrTwo);
+                out.println(playerOneOrTwo);
 
-            System.out.println("Tråd startad");
+                System.out.println("Tråd startad");
 
-            System.out.println("Du spelar mot " + opponent.userName);
+                System.out.println("Du spelar mot " + opponent.userName);
 
-            if (playerOneOrTwo.equals("1")) {
-                System.out.println("skickar kategories");
-                String[] categories = game.q.getCategoriesAsArray(3);
-                out.write(categories[0] + "\n");
-                out.write(categories[1] + "\n");
-                out.write(categories[2] + "\n");
+                if (playerOneOrTwo.equals("1")) {
+                    System.out.println("skickar kategories");
+                    String[] categories = game.q.getCategoriesAsArray(3);
+                    out.write(categories[0] + "\n");
+                    out.write(categories[1] + "\n");
+                    out.write(categories[2] + "\n");
+                }
+
+                String chosenCategory = in.readLine();
+
+                System.out.println(chosenCategory);
                 out.close(); //Kanske hitta annan lösning istället för denna
+
+               /*
+                while((fromClient = in.readLine()) != null){
+                    System.out.println("server" + fromClient);
+                }
+                */
+
+
+
+                while(true) {
+
+
+
             }
-
-
-           /*
-            while((fromClient = in.readLine()) != null){
-                System.out.println("server" + fromClient);
-            }
-            */
-
-
-
-            while(true) {
-
-
-
-        }
 
         } catch (Exception e) {
         e.printStackTrace();

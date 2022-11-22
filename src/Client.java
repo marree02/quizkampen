@@ -48,7 +48,7 @@ public class Client extends Thread {
             if (playerTurn) {
                 welcome.setVisible(false);
                 System.out.println("spelare 1");
-                category = new CategoryUI();
+                category = new CategoryUI(out);
                 category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
 
@@ -69,8 +69,9 @@ public class Client extends Thread {
                 categoryString = in.readLine();
                 System.out.println(categoryString);
                 category.category3.setText(categoryString);
-
             }
+
+
 
             while(true) {
 
