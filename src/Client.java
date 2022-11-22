@@ -8,6 +8,8 @@ import java.net.UnknownHostException;
 
 public class Client extends Thread {
 
+    Welcome welcome;
+    Category category;
 
     String userName;
 
@@ -31,7 +33,9 @@ public class Client extends Thread {
                 Socket socket = new Socket("127.0.0.1", 1234);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
+
         ) {
+
 
             System.out.println("Klienttråd startad");
             out.println(userName);
@@ -42,15 +46,15 @@ public class Client extends Thread {
                 playerTurn = false;
             }
 
-            if (in.readLine().equals("1")) {
+            if (playerTurn) {
+                welcome.setVisible(false);
                 System.out.println("spelare 1");
-                Category category = new Category();
+                category = new Category();
                 category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
 
             } else {
                 System.out.println("spelare 2");
-                Welcome welcome = new Welcome();
                 welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                 welcome.setWaitingLabel("väntar på att spelare väljer kategori");
 
@@ -71,6 +75,9 @@ public class Client extends Thread {
             while(true) {
 
             }
+
+
+
 
 
 
