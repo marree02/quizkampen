@@ -23,7 +23,6 @@ public class Client extends Thread {
         welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
         this.start();
-
     }
 
     public void run() {
