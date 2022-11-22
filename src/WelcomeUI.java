@@ -1,13 +1,13 @@
 import javax.swing.*;
 
-public class Welcome extends JFrame {
+public class WelcomeUI extends JFrame {
 
     private JLabel welcomeLabel;
     private JLabel waitingLabel;
     private JPanel welcomePanel;
     private JButton button1;
 
-    public Welcome() {
+    public WelcomeUI() {
 
         setContentPane(welcomePanel);
         setVisible(true);

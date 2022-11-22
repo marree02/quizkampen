@@ -8,8 +8,8 @@ import java.net.UnknownHostException;
 
 public class Client extends Thread {
 
-    Welcome welcome;
-    Category category;
+    WelcomeUI welcome;
+    CategoryUI category;
 
     String userName;
 
@@ -18,7 +18,7 @@ public class Client extends Thread {
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
-        welcome = new Welcome();
+        welcome = new WelcomeUI();
         welcome.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
@@ -49,7 +49,7 @@ public class Client extends Thread {
             if (playerTurn) {
                 welcome.setVisible(false);
                 System.out.println("spelare 1");
-                category = new Category();
+                category = new CategoryUI();
                 category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
 
