@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.rmi.ServerError;
+
 
 public class Server {
 

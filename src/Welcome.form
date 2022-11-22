@@ -36,7 +36,7 @@
           <enabled value="true"/>
           <foreground color="-11686923"/>
           <hideActionText value="false"/>
-          <icon value="pngegg (4).png"/>
+          <icon value="Pictures/pngegg (4).png"/>
           <inheritsPopupMenu value="false"/>
           <opaque value="false"/>
           <requestFocusEnabled value="true"/>
