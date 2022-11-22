@@ -67,6 +67,16 @@ public class Client extends Thread {
                 welcome.setWaitingLabel("väntar på att spelare väljer kategori");
 
             }
+            if(in.readLine().equals("Spelare 1 har valt kategori")){
+                if (!playerTurn) {
+                    out.println("Spelare 1 har valt kategori");
+                }
+                GameGui gameGui = new GameGui();
+                welcome.setVisible(false);
+            }
+
+
+            System.out.println("Spelare redo för fråga");
 
 
             while(true) {

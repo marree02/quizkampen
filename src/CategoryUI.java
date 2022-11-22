@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.Properties;
 
-public class CategoryUI extends JFrame {
+public class CategoryUI extends JFrame implements ActionListener {
 
     protected JButton category1;
     private JPanel panel1;
@@ -16,13 +16,19 @@ public class CategoryUI extends JFrame {
     private JButton button1;
     private JLabel chooseCategoryLabel;
     PrintWriter out;
+    GameGui gameGui;
+    Properties p;
 
     public CategoryUI(PrintWriter out) {
         this.out = out;
         setContentPane(panel1);
         setVisible(true);
-        setSize(450,500);
+        setSize(450, 500);
         setLocationRelativeTo(null);
+
+        category1.addActionListener(this);
+        category2.addActionListener(this);
+        category3.addActionListener(this);
 
 
     }
@@ -30,7 +36,7 @@ public class CategoryUI extends JFrame {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-                JButton button = (JButton) e.getSource();
+        JButton button = (JButton) e.getSource();
 
         out.println(button.getText());
         out.println("Spelare 1 har valt kategori");
@@ -56,10 +62,10 @@ public class CategoryUI extends JFrame {
                 nya jbutton knappar
                 true/false sats
                  */
-                out.close();
-            }
-        });
+        out.close();
     }
-
-
 }
+
+
+
+
