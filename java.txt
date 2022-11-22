@@ -1,0 +1,20 @@
+Programmeringsspråket Java
+---
+Vad heter företaget som står bakom Java idag?
+*Oracle
+Sun microsystems
+Google
+Amazon
+---
+Vilken filändelse har en fil med java bytecode?
+*.class
+.byte
+.java
+.com
+---
+När behövs Java Runtime Environment (JRE)?
+När man ska skriva javaprogram
+*När man ska köra javaprogram
+När man ska kompilera javaprogram
+När man ska debugga javaprogram
+---

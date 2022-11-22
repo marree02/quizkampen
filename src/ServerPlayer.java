@@ -6,8 +6,8 @@ import java.net.Socket;
 
 public class ServerPlayer extends Thread {
 
-    Socket socket = new Socket();
-    GameRoom game = new GameRoom();
+    Socket socket;
+    GameRoom game;
     ServerPlayer opponent;
     PrintWriter out;
     BufferedReader in;
@@ -58,9 +58,10 @@ public class ServerPlayer extends Thread {
 
             if (playerOneOrTwo.equals("1")) {
                 System.out.println("skickar kategories");
-                out.write("hej 1 \n");
-                out.write("hej 2 \n");
-                out.write("hej 3 \n");
+                String[] categories = game.q.getCategoriesAsArray(3);
+                out.write(categories[0] + "\n");
+                out.write(categories[1] + "\n");
+                out.write(categories[2] + "\n");
                 out.close(); //Kanske hitta annan lösning istället för denna
             }
 
