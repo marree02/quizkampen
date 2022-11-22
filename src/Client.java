@@ -69,8 +69,9 @@ public class Client extends Thread {
                 categoryString = in.readLine();
                 System.out.println(categoryString);
                 category.category3.setText(categoryString);
-
             }
+
+
 
             while(true) {
 
