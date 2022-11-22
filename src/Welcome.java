@@ -2,16 +2,16 @@ import javax.swing.*;
 
 public class Welcome extends JFrame {
 
-    private JLabel titelLabel;
     private JLabel welcomeLabel;
     private JLabel waitingLabel;
     private JPanel welcomePanel;
+    private JButton button1;
 
     public Welcome() {
 
         setContentPane(welcomePanel);
         setVisible(true);
-        setSize(300,500);
+        setSize(400,500);
         setLocationRelativeTo(null);
 
     }
