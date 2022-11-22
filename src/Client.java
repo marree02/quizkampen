@@ -11,10 +11,12 @@ public class Client extends Thread {
 
     String userName;
 
+    boolean playerTurn;
+
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
-        Welcome welcome = new Welcome();
+        welcome = new Welcome();
         welcome.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
@@ -35,9 +37,16 @@ public class Client extends Thread {
             out.println(userName);
 
             if (in.readLine().equals("1")) {
+                playerTurn = true;
+            } else {
+                playerTurn = false;
+            }
+
+            if (in.readLine().equals("1")) {
                 System.out.println("spelare 1");
                 Category category = new Category();
                 category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+
 
             } else {
                 System.out.println("spelare 2");
@@ -45,6 +54,18 @@ public class Client extends Thread {
                 welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                 welcome.setWaitingLabel("väntar på att spelare väljer kategori");
 
+            }
+
+            if (playerTurn) {
+                String categoryString = in.readLine();
+                System.out.println(categoryString);
+                category.category1.setText(categoryString);
+                categoryString = in.readLine();
+                System.out.println(categoryString);
+                category.category2.setText(categoryString);
+                categoryString = in.readLine();
+                System.out.println(categoryString);
+                category.category3.setText(categoryString);
             }
 
             while(true) {

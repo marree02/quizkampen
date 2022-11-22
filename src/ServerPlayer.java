@@ -56,6 +56,12 @@ public class ServerPlayer extends Thread {
 
             System.out.println("Du spelar mot " + opponent.userName);
 
+            if (playerOneOrTwo.equals("1")) {
+                System.out.println("skickar kategories");
+                out.write("hej 1");
+                out.write("hej 2");
+                out.write("hej 3");
+            }
 
 
            /*
