@@ -58,9 +58,10 @@ public class ServerPlayer extends Thread {
 
             if (playerOneOrTwo.equals("1")) {
                 System.out.println("skickar kategories");
-                out.write("hej 1");
-                out.write("hej 2");
-                out.write("hej 3");
+                out.write("hej 1 \n");
+                out.write("hej 2 \n");
+                out.write("hej 3 \n");
+                out.close(); //Kanske hitta annan lösning istället för denna
             }
 
 
