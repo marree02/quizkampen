@@ -13,12 +13,14 @@ public class Client extends Thread {
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
+
         // TODO: sätt titel userInput
         Welcome welcome = new Welcome();
         welcome.setWelcomeLabel("VÄLKOMMEN " + userName);
 
         this.start();
-        
+
+
     }
 
     public void run() {
