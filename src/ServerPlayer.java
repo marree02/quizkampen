@@ -59,14 +59,40 @@ public class ServerPlayer extends Thread {
                 if (playerOneOrTwo.equals("1")) {
                     System.out.println("skickar kategories");
                     String[] categories = game.q.getCategoriesAsArray(3);
-                    out.write(categories[0] + "\n");
-                    out.write(categories[1] + "\n");
-                    out.write(categories[2] + "\n");
+                    out.println(categories[0]);
+                    out.println(categories[1]);
+                    out.println(categories[2]);
+                    out.flush();
+                    String chosenCategory = in.readLine();
+                    System.out.println(chosenCategory);
+                    game.q.setCategory(chosenCategory);
+
                 }
 
-                String chosenCategory = in.readLine();
+            if(in.readLine().equals("Spelare 1 har valt kategori")){
+                opponent.out.println("Spelare 1 har valt kategori");
+                out.println("Spelare 1 har valt kategori");
+            }
 
-                System.out.println(chosenCategory);
+
+
+                System.out.println(game.q.getCurrentCategory());
+                System.out.println("Redo att skicka frågor");
+
+                Question question = game.q.getCurrentQuestion();
+
+            System.out.println(question.getQuestion());
+            List<String> choices = question.getChoices();
+            System.out.println("Rätt svar:" + question.getCorrectAnswer());
+
+
+
+            for (String s : choices) {
+                System.out.println(s);
+            }
+
+
+
                 out.close(); //Kanske hitta annan lösning istället för denna
 
                /*

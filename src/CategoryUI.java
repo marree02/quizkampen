@@ -24,23 +24,33 @@ public class CategoryUI extends JFrame {
         setSize(450,500);
         setLocationRelativeTo(null);
 
-        Properties p = new Properties();
 
-        try{
-            p.load(new FileInputStream("src/Settings.properties"));
-        }catch(Exception e){
-            System.out.println("Filen kunde inte hittas");
-        }
-        category1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
                 JButton button = (JButton) e.getSource();
 
-                out.println(button.getText() + "\n");
+        out.println(button.getText());
+        out.println("Spelare 1 har valt kategori");
+        out.flush();
 
-                int question = Integer.parseInt(p.getProperty("questions"));
-                int rounds = Integer.parseInt(p.getProperty("rounds"));
+        p = new Properties();
+
+        try {
+            p.load(new FileInputStream("src/Settings.properties"));
+        } catch (Exception ex) {
+            System.out.println("Filen kunde inte hittas");
+        }
+
+        int question = Integer.parseInt(p.getProperty("questions"));
+        int rounds = Integer.parseInt(p.getProperty("rounds"));
+
+
+        setVisible(false);
+
+
                 /*
                 hämta txt frågor
                 nya jbutton knappar
