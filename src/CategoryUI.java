@@ -38,6 +38,7 @@ public class CategoryUI extends JFrame {
                 nya jbutton knappar
                 true/false sats
                  */
+                out.close();
             }
         });
     }
