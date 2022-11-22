@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.Properties;
 
-public class CategoryUI extends JFrame {
+public class CategoryUI extends JFrame implements ActionListener {
 
     protected JButton category1;
     private JPanel panel1;
@@ -16,40 +16,56 @@ public class CategoryUI extends JFrame {
     private JButton button1;
     private JLabel chooseCategoryLabel;
     PrintWriter out;
+    GameGui gameGui;
+    Properties p;
 
     public CategoryUI(PrintWriter out) {
         this.out = out;
         setContentPane(panel1);
         setVisible(true);
-        setSize(450,500);
+        setSize(450, 500);
         setLocationRelativeTo(null);
 
-        Properties p = new Properties();
+        category1.addActionListener(this);
+        category2.addActionListener(this);
+        category3.addActionListener(this);
 
-        try{
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        JButton button = (JButton) e.getSource();
+
+        out.println(button.getText());
+        out.println("Spelare 1 har valt kategori");
+        out.flush();
+
+        p = new Properties();
+
+        try {
             p.load(new FileInputStream("src/Settings.properties"));
-        }catch(Exception e){
+        } catch (Exception ex) {
             System.out.println("Filen kunde inte hittas");
         }
-        category1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                JButton button = (JButton) e.getSource();
+        int question = Integer.parseInt(p.getProperty("questions"));
+        int rounds = Integer.parseInt(p.getProperty("rounds"));
 
-                out.println(button.getText() + "\n");
 
-                int question = Integer.parseInt(p.getProperty("questions"));
-                int rounds = Integer.parseInt(p.getProperty("rounds"));
+        setVisible(false);
+
+
                 /*
                 hämta txt frågor
                 nya jbutton knappar
                 true/false sats
                  */
-                out.close();
-            }
-        });
+        out.close();
     }
-
-
 }
+
+
+
+
