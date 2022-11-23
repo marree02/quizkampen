@@ -1,15 +1,15 @@
 public class GameRoom {
 
-    Quiz q;
+    Quiz questionGenerator;
 
 
     public GameRoom(){
 
         String[] filenames = {"java.txt", "golf.txt", "svamp.txt"};
 
-        this.q = new QuestionGenerator(filenames);
+        this.questionGenerator = new QuestionGenerator(filenames);
 
-        q.shuffleQuestions();
+        questionGenerator.shuffleQuestions();
 
     }
 

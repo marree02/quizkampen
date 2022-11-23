@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.List;
 
 public class ServerPlayer extends Thread {
 
@@ -24,16 +22,14 @@ public class ServerPlayer extends Thread {
             this.out = new PrintWriter(socket.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            //Det första som händer - ställer sig och väntar på att få användarnamnet
             userName = in.readLine();
 
             System.out.println("Välkommen " + userName);
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // out.println("Väntar på motståndare");
 
     }
 
@@ -41,7 +37,7 @@ public class ServerPlayer extends Thread {
         this.opponent = opponent;
     }
 
-    public ServerPlayer getOpponent(){
+    public ServerPlayer getOpponent() {
         return opponent;
     }
 
@@ -50,44 +46,45 @@ public class ServerPlayer extends Thread {
 
         try {
 
-                System.out.println(playerOneOrTwo);
-                out.println(playerOneOrTwo);
+            //Steg 2: Varje servertråd skickar till sin klient om klienten är spelare 1 eller 2
+            out.println(playerOneOrTwo);
 
-                System.out.println("Tråd startad");
+            if (playerOneOrTwo.equals("1")) {
 
-                System.out.println("Du spelar mot " + opponent.userName);
+                String[] categories = game.questionGenerator.getCategoriesAsArray(3);
 
-                if (playerOneOrTwo.equals("1")) {
-                    System.out.println("skickar kategories");
-                    String[] categories = game.q.getCategoriesAsArray(3);
-                    out.println(categories[0]);
-                    out.println(categories[1]);
-                    out.println(categories[2]);
-                    out.flush();
-                    String chosenCategory = in.readLine();
-                    System.out.println(chosenCategory);
-                    game.q.setCategory(chosenCategory);
+                //Steg 3: en sträng för varje kategori som kan väljas skickas till klienten vars tur det är att välja
+                out.println(categories[0]);
+                out.println(categories[1]);
+                out.println(categories[2]);
 
-                }
+                out.flush();
 
-            if(in.readLine().equals("Spelare 1 har valt kategori")){
-                opponent.out.println("Spelare 1 har valt kategori");
-                out.println("Spelare 1 har valt kategori");
+                //Steg 4: väntar på att få vald kategori från klienten
+                String chosenCategory = in.readLine();
+
+                System.out.println(chosenCategory);
+                game.questionGenerator.setCategory(chosenCategory);
+
+            }
+
+            if (in.readLine().equals("KATEGORI VALD")) {
+                opponent.out.println("KATEGORI VALD");
+                out.println("KATEGORI VALD");
             }
 
 
-
-                System.out.println(game.q.getCurrentCategory());
-                System.out.println("Redo att skicka frågor");
-
-            System.out.println(game.q.getCurrentCategory());
+            System.out.println(game.questionGenerator.getCurrentCategory());
             System.out.println("Redo att skicka frågor");
 
-            System.out.println(game.q.getCurrentQuestion());
-            System.out.println(game.q.getCorrectAnswer());
+            System.out.println(game.questionGenerator.getCurrentCategory());
+            System.out.println("Redo att skicka frågor");
+
+            System.out.println(game.questionGenerator.getCurrentQuestion());
+            System.out.println(game.questionGenerator.getCorrectAnswer());
 
 
-                out.close(); //Kanske hitta annan lösning istället för denna
+            out.close(); //Kanske hitta annan lösning istället för denna
 
                /*
                 while((fromClient = in.readLine()) != null){
@@ -96,15 +93,13 @@ public class ServerPlayer extends Thread {
                 */
 
 
-
-                while(true) {
-
+            while (true) {
 
 
             }
 
         } catch (Exception e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
 
     }
