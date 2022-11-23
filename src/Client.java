@@ -62,7 +62,7 @@ public class Client extends Thread {
                 playerTurn = false;
             }
 
-            if (playerTurn) { // Spelare 1
+            if (playerTurn) { // Spelare vars tur det är att välja kategori
 
                 welcomeGui.setVisible(false);
 
@@ -71,39 +71,33 @@ public class Client extends Thread {
                 categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
                 // Steg 3: klienten tar emot 3 strängar med de kategorier som ska visas
-                String categoryString = in.readLine();
 
-                categoryGui.category1.setText(categoryString);
+                categoryGui.category1.setText(in.readLine());
 
-                categoryString = in.readLine();
+                categoryGui.category2.setText(in.readLine());
 
-                categoryGui.category2.setText(categoryString);
+                categoryGui.category3.setText(in.readLine());
 
-                categoryString = in.readLine();
+            } else { // Spelare som väntar på att den andra ska välja kategori
 
-                categoryGui.category3.setText(categoryString);
+                in.readLine(); in.readLine(); in.readLine();
 
-            } else { // Spelare 2
+                welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
 
-                welcomeGui.setWaitingLabel("väntar på att spelare väljer kategori");
-
-            }
-
-            if (in.readLine().equals("KATEGORI VALD")) {
-                if (!playerTurn) {
-                    out.println("KATEGORI VALD");
-                    out.flush();
-                }
-
-
-            }
-
-            // OBS Fullösning, läser av sträng som skickats i onödan TODO
-            if (!playerTurn) {
+                //Väntar på att motståndaren valt kategori
                 in.readLine();
+
+                out.println("INGEN KATEGORI");
+
+
             }
+
+            //Väntar på meddelande från servern om att kategori är vald och första ronden kan starta
+            in.readLine();
+
 
             // fönstret görs osynligt 2ggr för spelare 1, TODO bör fixas
+
             welcomeGui.setVisible(false);
 
             while (questionCounter < numberOfQuestionsPerRound) {
