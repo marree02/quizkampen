@@ -14,6 +14,9 @@ public class Client extends Thread {
     String userName;
 
     boolean playerTurn;
+    GameRoom game;
+
+    GameGui gameGui;
 
     public Client() {
 
@@ -59,21 +62,20 @@ public class Client extends Thread {
                 categoryString = in.readLine();
                 System.out.println(categoryString);
                 category.category3.setText(categoryString);
-
-
             } else {
                 System.out.println("spelare 2");
                 welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                 welcome.setWaitingLabel("väntar på att spelare väljer kategori");
-
             }
             if(in.readLine().equals("Spelare 1 har valt kategori")){
                 if (!playerTurn) {
                     out.println("Spelare 1 har valt kategori");
                 }
-                GameGui gameGui = new GameGui();
+
+                gameGui = new GameGui();
                 welcome.setVisible(false);
             }
+
 
 
             System.out.println("Spelare redo för fråga");

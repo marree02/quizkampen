@@ -26,10 +26,10 @@ public class CategoryUI extends JFrame implements ActionListener {
         setSize(450, 500);
         setLocationRelativeTo(null);
 
+
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);
-
 
     }
 
