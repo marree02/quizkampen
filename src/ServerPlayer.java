@@ -80,17 +80,14 @@ public class ServerPlayer extends Thread {
                 System.out.println(game.q.getCurrentCategory());
                 System.out.println("Redo att skicka frågor");
 
-                Question question = game.q.getCurrentQuestion();
-
-            System.out.println(question.getQuestion());
-            List<String> choices = question.getChoices();
-            System.out.println("Rätt svar:" + question.getCorrectAnswer());
+            System.out.println(game.q.getCurrentQuestion());
+            System.out.println(game.q.getCorrectAnswer());
 
 
 
-            for (String s : choices) {
-                System.out.println(s);
-            }
+
+
+
 
 
 
