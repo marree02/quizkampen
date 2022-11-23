@@ -86,11 +86,6 @@ public class ServerPlayer extends Thread {
 
             out.close();
 
-               /*
-                while((fromClient = in.readLine()) != null){
-                    System.out.println("server" + fromClient);
-                }
-                */
 
 
             while (true) {

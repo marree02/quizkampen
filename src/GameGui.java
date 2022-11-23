@@ -22,6 +22,7 @@ public class GameGui extends JFrame {
         setLocationRelativeTo(null);
 
 
+
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,5 +70,19 @@ public class GameGui extends JFrame {
 
             }
         });
+    }
+    public void setCorrectButton(){
+        if(button1.getText().equals(correctAnswer))
+            button1.setBackground(Color.green);
+        else if (button2.getText().equals(correctAnswer)) {
+            button2.setBackground(Color.green);
+        }
+        else if (button3.getText().equals(correctAnswer)) {
+            button3.setBackground(Color.green);
+        }
+        else if (button4.getText().equals(correctAnswer)) {
+            button4.setBackground(Color.green);
+        }
+
     }
 }

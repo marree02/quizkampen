@@ -82,6 +82,7 @@ public class Client extends Thread {
             if(in.readLine().equals("KATEGORI VALD")){
                 if (!playerTurn) {
                     out.println("KATEGORI VALD");
+                    out.flush();
                 }
 
                 gameGui = new GameGui();
@@ -92,10 +93,6 @@ public class Client extends Thread {
 
             System.out.println("Spelare redo för fråga");
 
-
-            while(true) {
-
-            }
 
 
         } catch (UnknownHostException e) {
