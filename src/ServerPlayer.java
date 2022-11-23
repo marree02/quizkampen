@@ -71,6 +71,7 @@ public class ServerPlayer extends Thread {
             if (in.readLine().equals("KATEGORI VALD")) {
                 opponent.out.println("KATEGORI VALD");
                 out.println("KATEGORI VALD");
+                out.flush();
             }
 
 
@@ -83,8 +84,7 @@ public class ServerPlayer extends Thread {
             System.out.println(game.questionGenerator.getCurrentQuestion());
             System.out.println(game.questionGenerator.getCorrectAnswer());
 
-
-            out.close(); //Kanske hitta annan lösning istället för denna
+            out.close();
 
                /*
                 while((fromClient = in.readLine()) != null){

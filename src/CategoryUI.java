@@ -40,7 +40,7 @@ public class CategoryUI extends JFrame implements ActionListener {
 
         // Steg 4: klienten skickar texten på den knapp som valdes
         out.println(button.getText());
-       // out.println("KATEGORI VALD");
+        out.println("KATEGORI VALD");
         out.flush();
 
         p = new Properties();
