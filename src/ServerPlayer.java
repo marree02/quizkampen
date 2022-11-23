@@ -49,8 +49,6 @@ public class ServerPlayer extends Thread {
             //Steg 2: Varje servertråd skickar till sin klient om klienten är spelare 1 eller 2
             out.println(playerOneOrTwo);
 
-
-
             String[] categories = game.questionGenerator.getCategoriesAsArray(3);
 
             //Steg 3: en sträng för varje kategori som kan väljas skickas till båda klienterna
@@ -61,12 +59,14 @@ public class ServerPlayer extends Thread {
             //Steg 4: väntar på att få vald kategori från klienten
             String chosenCategory = in.readLine();
 
+            //If blir true om kategorin kommer från den spelare som ska välja kategori
+            //Då meddelas den andre spelaren att kategori är vald
             if(!chosenCategory.equals("INGEN KATEGORI")) {
                 game.questionGenerator.setCategory(chosenCategory);
-                opponent.out.println("KATEGORI VALD");
+                opponent.out.println();
             }
 
-            out.println("start");
+            out.println();
 
             while (true) {
 
