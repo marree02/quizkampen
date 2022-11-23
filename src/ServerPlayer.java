@@ -33,8 +33,6 @@ public class ServerPlayer extends Thread {
             e.printStackTrace();
         }
 
-        // out.println("Väntar på motståndare");
-
     }
 
     public void setOpponent(ServerPlayer opponent) {

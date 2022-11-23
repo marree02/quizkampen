@@ -39,7 +39,7 @@ public class CategoryUI extends JFrame implements ActionListener {
         JButton button = (JButton) e.getSource();
 
         out.println(button.getText());
-        out.println("Spelare 1 har valt kategori");
+       // out.println("KATEGORI VALD");
         out.flush();
 
         p = new Properties();

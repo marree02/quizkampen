@@ -71,7 +71,7 @@ public class Client extends Thread {
             }
             if(in.readLine().equals("Spelare 1 har valt kategori")){
                 if (!playerTurn) {
-                    out.println("Spelare 1 har valt kategori");
+                    out.println("KATEGORI VALD");
                 }
 
                 gameGui = new GameGui();
