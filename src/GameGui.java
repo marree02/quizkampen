@@ -23,6 +23,7 @@ public class GameGui extends JFrame {
         setVisible(true);
         setSize(700,700);
         setLocationRelativeTo(null);
+        continueButton.setVisible(false);
 
 
 
@@ -110,7 +111,9 @@ public class GameGui extends JFrame {
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-        continueButton.setEnabled(true);
+       // continueButton.setEnabled(true);
+        continueButton.setVisible(true);
+
 
     }
 }
