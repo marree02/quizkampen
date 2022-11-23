@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GameGui">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="7" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="680" height="546"/>
@@ -167,6 +167,19 @@
         <properties>
           <icon value="Pictures/monster.png"/>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="95b79" class="javax.swing.JButton" binding="continueButton">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+          <enabled value="false"/>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <hideActionText value="false"/>
+          <text value="FORTSÄTT"/>
         </properties>
       </component>
     </children>
