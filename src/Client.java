@@ -108,7 +108,7 @@ public class Client extends Thread {
 
             while (questionCounter < numberOfQuestionsPerRound) {
 
-                gameGui = new GameGui();
+                gameGui = new GameGui(out);
 
                 // Läser in från servern
                 gameGui.thisPLayerUserNameLabel.setText(userName);
@@ -123,9 +123,9 @@ public class Client extends Thread {
 
                 System.out.println("Spelare redo för fråga");
 
-                while(!gameGui.userClickedContinue) {
-
-                }
+                //Väntar på nästa fråga från servern
+                System.out.println(in.readLine());
+                System.out.println("nästa fråga");
 
                 gameGui.setVisible(false);
 

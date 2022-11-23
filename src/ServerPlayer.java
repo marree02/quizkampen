@@ -74,28 +74,34 @@ public class ServerPlayer extends Thread {
                 out.flush();
             }
 
-            out.println(opponent.userName);
-            out.println(game.questionGenerator.getCurrentCategory());
-            out.println(game.questionGenerator.getCurrentQuestion());
-
-            String[] choices = game.questionGenerator.getChoicesAsArray();
-            for (String s : choices) {
-                out.println(s);
-            }
-
-            out.println(game.questionGenerator.getCorrectAnswer());
-
-            System.out.println(game.questionGenerator.getCurrentQuestion());
-            System.out.println(game.questionGenerator.getCorrectAnswer());
-
-            out.close();
-
-
-
             while (true) {
 
 
+                out.flush();
+
+                out.println(opponent.userName);
+                out.println(game.questionGenerator.getCurrentCategory());
+                out.println(game.questionGenerator.getCurrentQuestion());
+
+                String[] choices = game.questionGenerator.getChoicesAsArray();
+                for (String s : choices) {
+                    out.println(s);
+                }
+
+                out.println(game.questionGenerator.getCorrectAnswer());
+
+                // Väntar på att klienten ska svara på frågan
+                in.readLine();
+
+                // skickar sträng så klienten vet att den ska starta nytt gameGui
+                out.println("fortsätt");
+
+                game.questionGenerator.nextQuestion();
+
+
             }
+
+            // out.close();
 
         } catch (Exception e) {
             e.printStackTrace();

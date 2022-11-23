@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 
 public class GameGui extends JFrame {
     private JPanel panel1;
@@ -16,23 +17,22 @@ public class GameGui extends JFrame {
     private JButton continueButton;
     protected String correctAnswer;
 
-    protected boolean userClickedContinue = false;
+    PrintWriter out;
 
-    public GameGui() {
+    public GameGui(PrintWriter out) {
         setContentPane(panel1);
         setVisible(true);
-        setSize(700,700);
+        setSize(700, 700);
         setLocationRelativeTo(null);
-
+        this.out = out;
 
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(button1.getText().equals(correctAnswer)) {
+                if (button1.getText().equals(correctAnswer)) {
                     button1.setBackground(Color.green);
-                }
-                else {
+                } else {
                     button1.setBackground(Color.red);
                     setCorrectButton();
                 }
@@ -42,7 +42,7 @@ public class GameGui extends JFrame {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(button2.getText().equals(correctAnswer))
+                if (button2.getText().equals(correctAnswer))
                     button2.setBackground(Color.green);
 
                 else {
@@ -55,11 +55,10 @@ public class GameGui extends JFrame {
         button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(button3.getText().equals(correctAnswer)) {
+                if (button3.getText().equals(correctAnswer)) {
                     button3.setBackground(Color.green);
 
-                }
-                else {
+                } else {
                     button3.setBackground(Color.red);
                     setCorrectButton();
                 }
@@ -70,10 +69,9 @@ public class GameGui extends JFrame {
         button4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(button4.getText().equals(correctAnswer)) {
+                if (button4.getText().equals(correctAnswer)) {
                     button4.setBackground(Color.green);
-                }
-                else {
+                } else {
                     button4.setBackground(Color.red);
                     setCorrectButton();
                 }
@@ -84,28 +82,27 @@ public class GameGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                userClickedContinue = true;
+                out.println("fråga besvarad");
 
             }
         });
     }
-    public void setCorrectButton(){
-        if(button1.getText().equals(correctAnswer))
+
+    public void setCorrectButton() {
+        if (button1.getText().equals(correctAnswer))
             button1.setBackground(Color.green);
         else if (button2.getText().equals(correctAnswer)) {
             button2.setBackground(Color.green);
-        }
-        else if (button3.getText().equals(correctAnswer)) {
+        } else if (button3.getText().equals(correctAnswer)) {
             button3.setBackground(Color.green);
-        }
-        else if (button4.getText().equals(correctAnswer)) {
+        } else if (button4.getText().equals(correctAnswer)) {
             button4.setBackground(Color.green);
         }
 
 
-
     }
-    public void setButtonDefault(){
+
+    public void setButtonDefault() {
         button1.setEnabled(false);
         button2.setEnabled(false);
         button3.setEnabled(false);
