@@ -48,18 +48,8 @@ public class Client extends Thread {
             if (playerTurn) {
                 welcome.setVisible(false);
                 System.out.println("spelare 1");
-                category = new CategoryUI();
+                category = new CategoryUI(out);
                 category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
-
-
-            } else {
-                System.out.println("spelare 2");
-                welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
-                welcome.setWaitingLabel("väntar på att spelare väljer kategori");
-
-            }
-
-            if (playerTurn) {
                 String categoryString = in.readLine();
                 System.out.println(categoryString);
                 category.category1.setText(categoryString);
@@ -70,7 +60,24 @@ public class Client extends Thread {
                 System.out.println(categoryString);
                 category.category3.setText(categoryString);
 
+
+            } else {
+                System.out.println("spelare 2");
+                welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+                welcome.setWaitingLabel("väntar på att spelare väljer kategori");
+
             }
+            if(in.readLine().equals("Spelare 1 har valt kategori")){
+                if (!playerTurn) {
+                    out.println("Spelare 1 har valt kategori");
+                }
+                GameGui gameGui = new GameGui();
+                welcome.setVisible(false);
+            }
+
+
+            System.out.println("Spelare redo för fråga");
+
 
             while(true) {
 

@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 
 public class ServerPlayer extends Thread {
 
@@ -49,36 +50,65 @@ public class ServerPlayer extends Thread {
 
         try {
 
-            System.out.println(playerOneOrTwo);
-            out.println(playerOneOrTwo);
+                System.out.println(playerOneOrTwo);
+                out.println(playerOneOrTwo);
 
-            System.out.println("Tråd startad");
+                System.out.println("Tråd startad");
 
-            System.out.println("Du spelar mot " + opponent.userName);
+                System.out.println("Du spelar mot " + opponent.userName);
 
-            if (playerOneOrTwo.equals("1")) {
-                System.out.println("skickar kategories");
-                String[] categories = game.q.getCategoriesAsArray(3);
-                out.write(categories[0] + "\n");
-                out.write(categories[1] + "\n");
-                out.write(categories[2] + "\n");
+                if (playerOneOrTwo.equals("1")) {
+                    System.out.println("skickar kategories");
+                    String[] categories = game.q.getCategoriesAsArray(3);
+                    out.println(categories[0]);
+                    out.println(categories[1]);
+                    out.println(categories[2]);
+                    out.flush();
+                    String chosenCategory = in.readLine();
+                    System.out.println(chosenCategory);
+                    game.q.setCategory(chosenCategory);
+
+                }
+
+            if(in.readLine().equals("Spelare 1 har valt kategori")){
+                opponent.out.println("Spelare 1 har valt kategori");
+                out.println("Spelare 1 har valt kategori");
+            }
+
+
+
+                System.out.println(game.q.getCurrentCategory());
+                System.out.println("Redo att skicka frågor");
+
+                Question question = game.q.getCurrentQuestion();
+
+            System.out.println(question.getQuestion());
+            List<String> choices = question.getChoices();
+            System.out.println("Rätt svar:" + question.getCorrectAnswer());
+
+
+
+            for (String s : choices) {
+                System.out.println(s);
+            }
+
+
+
                 out.close(); //Kanske hitta annan lösning istället för denna
+
+               /*
+                while((fromClient = in.readLine()) != null){
+                    System.out.println("server" + fromClient);
+                }
+                */
+
+
+
+                while(true) {
+
+
+
             }
-
-
-           /*
-            while((fromClient = in.readLine()) != null){
-                System.out.println("server" + fromClient);
-            }
-            */
-
-
-
-            while(true) {
-
-
-
-        }
 
         } catch (Exception e) {
         e.printStackTrace();
