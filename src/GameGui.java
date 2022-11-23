@@ -6,12 +6,14 @@ public class GameGui extends JFrame {
     private JButton button2;
     private JButton button3;
     private JButton button4;
+    protected JLabel categorylabel;
 
     public GameGui() {
         setContentPane(panel1);
         setVisible(true);
-        setSize(450,500);
+        setSize(700,700);
         setLocationRelativeTo(null);
+
 
     }
 }

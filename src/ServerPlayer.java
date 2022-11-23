@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -14,6 +13,7 @@ public class ServerPlayer extends Thread {
     BufferedReader in;
     String userName;
     String playerOneOrTwo;
+    String chosenCategory;
 
 
     public ServerPlayer(Socket accept, GameRoom game, String playerOneOrTwo) {
@@ -64,10 +64,9 @@ public class ServerPlayer extends Thread {
                     out.println(categories[1]);
                     out.println(categories[2]);
                     out.flush();
-                    String chosenCategory = in.readLine();
+                    chosenCategory = in.readLine();
                     System.out.println(chosenCategory);
                     game.q.setCategory(chosenCategory);
-
                 }
 
             if(in.readLine().equals("Spelare 1 har valt kategori")){
@@ -78,15 +77,16 @@ public class ServerPlayer extends Thread {
 
 
                 System.out.println(game.q.getCurrentCategory());
+
                 System.out.println("Redo att skicka frågor");
 
                 Question question = game.q.getCurrentQuestion();
 
+
+
             System.out.println(question.getQuestion());
             List<String> choices = question.getChoices();
             System.out.println("Rätt svar:" + question.getCorrectAnswer());
-
-
 
             for (String s : choices) {
                 System.out.println(s);
@@ -113,6 +113,8 @@ public class ServerPlayer extends Thread {
         } catch (Exception e) {
         e.printStackTrace();
         }
+
+        out.println(chosenCategory);
 
     }
 }
