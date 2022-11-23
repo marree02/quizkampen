@@ -40,6 +40,8 @@ public class Client extends Thread {
 
 
             System.out.println("Klienttråd startad");
+
+            //Det första som händer - skickar userName till servern
             out.println(userName);
 
             if (in.readLine().equals("1")) {
