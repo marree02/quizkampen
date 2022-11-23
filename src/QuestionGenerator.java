@@ -26,16 +26,21 @@ public class QuestionGenerator implements Quiz {
     }
 
     @Override
-    public Question getCurrentQuestion() {
-        return categoryList.get(currentCategory).getCurrentQuestion();
+    public String getCurrentQuestion() {
+        return categoryList.get(currentCategory).getCurrentQuestion().getQuestion();
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return categoryList.get(currentCategory).getCurrentQuestion().getCorrectAnswer();
     }
 
     @Override
     public String[] getChoicesAsArray() {
-        String[] choices = new String[getCurrentQuestion().getChoices().size()];
+        String[] choices = new String[categoryList.get(currentCategory).getCurrentQuestion().getChoices().size()];
 
         for (int i = 0; i < choices.length; i++) {
-            choices[i] = getCurrentQuestion().getChoices().get(i);
+            choices[i] = categoryList.get(currentCategory).getCurrentQuestion().getChoices().get(i);
         }
 
 
@@ -46,11 +51,6 @@ public class QuestionGenerator implements Quiz {
     public void nextQuestion() {
         categoryList.get(currentCategory).currentQuestion++;
 
-    }
-
-    @Override
-    public void setCategory(int n) {
-        currentCategory = n;
     }
 
     @Override
@@ -126,3 +126,80 @@ public class QuestionGenerator implements Quiz {
 
 
 }
+
+class Category {
+
+    private String categoryName;
+
+    private List<Question> questionList = new ArrayList<>();
+
+    public int currentQuestion;
+
+
+    public void setCategoryName(String name) {
+        this.categoryName = name;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void addQuestion(String text) {
+        this.questionList.add(new Question(text));
+        currentQuestion = this.questionList.size()-1;
+    }
+
+    public Question getCurrentQuestion() {
+        return questionList.get(currentQuestion);
+    }
+
+    public void shuffleQuestions() {
+        Collections.shuffle(this.questionList);
+
+        for (Question q : this.questionList) {
+            q.shuffleChoices();
+        }
+
+    }
+}
+
+class Question {
+
+    private String question;
+    private String correctAnswer;
+    private List<String> choices = new ArrayList<>();
+    private Category category;
+
+    public Question(String question) {
+        this.question = question;
+    }
+
+    public List<String> getChoices() {
+        return choices;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void addChoice(String choice) {
+        this.choices.add(choice);
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public void shuffleChoices() {
+        Collections.shuffle(choices);
+    }
+}
+

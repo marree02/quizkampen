@@ -1,7 +1,5 @@
 public interface Quiz {
 
-    public void setCategory(int n);
-
     public String getCurrentCategory();
 
     public void shuffleQuestions();
@@ -10,7 +8,9 @@ public interface Quiz {
 
     public String[] getCategoriesAsArray(int n);
 
-    public Question getCurrentQuestion();
+    public String getCurrentQuestion();
+
+    public String getCorrectAnswer();
 
     public String[] getChoicesAsArray();
 
