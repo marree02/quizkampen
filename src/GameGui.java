@@ -13,7 +13,10 @@ public class GameGui extends JFrame {
     protected JLabel questionLabel;
     protected JLabel thisPLayerUserNameLabel;
     protected JLabel opponentUserNameLabel;
+    private JButton continueButton;
     protected String correctAnswer;
+
+    protected boolean userClickedContinue = false;
 
     public GameGui() {
         setContentPane(panel1);
@@ -67,6 +70,14 @@ public class GameGui extends JFrame {
                     button4.setBackground(Color.red);
                     setCorrectButton();
                 }
+
+            }
+        });
+        continueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                userClickedContinue = true;
 
             }
         });

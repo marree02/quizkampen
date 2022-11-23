@@ -9,16 +9,24 @@ import java.net.UnknownHostException;
 public class Client extends Thread {
 
     WelcomeUI welcomeGui;
+
     CategoryUI categoryGui;
 
     String userName;
 
     boolean playerTurn;
+
     GameRoom game;
 
     GameGui gameGui;
 
     String correctAnswer;
+
+    int numberOfQuestionsPerRound = 2;
+
+    int questionCounter = 0;
+
+    int numberOfRounds = 2;
 
     public Client() {
 
@@ -32,12 +40,10 @@ public class Client extends Thread {
 
     public void run() {
 
-
         try (
                 Socket socket = new Socket("127.0.0.1", 1234);
-                PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
-
         ) {
 
 
@@ -81,35 +87,47 @@ public class Client extends Thread {
 
             }
 
-            if(in.readLine().equals("KATEGORI VALD")){
+            if (in.readLine().equals("KATEGORI VALD")) {
                 if (!playerTurn) {
                     out.println("KATEGORI VALD");
                     out.flush();
                 }
 
-                gameGui = new GameGui();
-                welcomeGui.setVisible(false);
+
             }
 
-            // OBS Fullösning, läser av sträng som skickats i onödan
-            if(!playerTurn) {
+            // OBS Fullösning, läser av sträng som skickats i onödan TODO
+            if (!playerTurn) {
                 in.readLine();
             }
-            // Läser in från servern
-            gameGui.thisPLayerUserNameLabel.setText(userName);
-            gameGui.opponentUserNameLabel.setText(in.readLine());
-            gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
-            gameGui.questionLabel.setText(in.readLine());
-            gameGui.button1.setText(in.readLine());
-            gameGui.button2.setText(in.readLine());
-            gameGui.button3.setText(in.readLine());
-            gameGui.button4.setText(in.readLine());
-            gameGui.correctAnswer = in.readLine();
 
+            // fönstret görs osynligt 2ggr för spelare 1, TODO bör fixas
+            welcomeGui.setVisible(false);
 
+            while (questionCounter < numberOfQuestionsPerRound) {
 
-            System.out.println("Spelare redo för fråga");
+                gameGui = new GameGui();
 
+                // Läser in från servern
+                gameGui.thisPLayerUserNameLabel.setText(userName);
+                gameGui.opponentUserNameLabel.setText(in.readLine());
+                gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
+                gameGui.questionLabel.setText(in.readLine());
+                gameGui.button1.setText(in.readLine());
+                gameGui.button2.setText(in.readLine());
+                gameGui.button3.setText(in.readLine());
+                gameGui.button4.setText(in.readLine());
+                gameGui.correctAnswer = in.readLine();
+
+                System.out.println("Spelare redo för fråga");
+
+                while(!gameGui.userClickedContinue) {
+
+                }
+
+                gameGui.setVisible(false);
+
+            }
 
 
         } catch (UnknownHostException e) {
@@ -118,10 +136,12 @@ public class Client extends Thread {
             throw new RuntimeException(e);
         }
     }
-        public static void main (String[]args){
-            Client c = new Client();
-        }
+
+    public static void main(String[] args) {
+        Client c = new Client();
+        
     }
+}
 
 
 
