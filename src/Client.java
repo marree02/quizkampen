@@ -8,8 +8,8 @@ import java.net.UnknownHostException;
 
 public class Client extends Thread {
 
-    WelcomeUI welcome;
-    CategoryUI category;
+    WelcomeUI welcomeGui;
+    CategoryUI categoryGui;
 
     String userName;
 
@@ -21,9 +21,9 @@ public class Client extends Thread {
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
-        welcome = new WelcomeUI();
-        welcome.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
-        welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+        welcomeGui = new WelcomeUI();
+        welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
+        welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
         this.start();
     }
@@ -44,38 +44,48 @@ public class Client extends Thread {
             //Det första som händer - skickar userName till servern
             out.println(userName);
 
+
+            //Steg 2: klienten tar emot om den är spelare ett eller två
             if (in.readLine().equals("1")) {
                 playerTurn = true;
             } else {
                 playerTurn = false;
             }
 
-            if (playerTurn) {
-                welcome.setVisible(false);
-                System.out.println("spelare 1");
-                category = new CategoryUI(out);
-                category.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+            if (playerTurn) { // Spelare 1
+
+                welcomeGui.setVisible(false);
+
+                categoryGui = new CategoryUI(out);
+
+                categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+
+                // Steg 3: klienten tar emot 3 strängar med de kategorier som ska visas
                 String categoryString = in.readLine();
-                System.out.println(categoryString);
-                category.category1.setText(categoryString);
+
+                categoryGui.category1.setText(categoryString);
+
                 categoryString = in.readLine();
-                System.out.println(categoryString);
-                category.category2.setText(categoryString);
+
+                categoryGui.category2.setText(categoryString);
+
                 categoryString = in.readLine();
-                System.out.println(categoryString);
-                category.category3.setText(categoryString);
-            } else {
-                System.out.println("spelare 2");
-                welcome.setTitle("QUIZKAMPEN " + userName.toUpperCase());
-                welcome.setWaitingLabel("väntar på att spelare väljer kategori");
+
+                categoryGui.category3.setText(categoryString);
+
+            } else { // Spelare 2
+
+                welcomeGui.setWaitingLabel("väntar på att spelare väljer kategori");
+
             }
-            if(in.readLine().equals("Spelare 1 har valt kategori")){
+
+            if(in.readLine().equals("KATEGORI VALD")){
                 if (!playerTurn) {
                     out.println("KATEGORI VALD");
                 }
 
                 gameGui = new GameGui();
-                welcome.setVisible(false);
+                welcomeGui.setVisible(false);
             }
 
 
