@@ -22,7 +22,7 @@
         </properties>
         <border type="bevel-raised"/>
         <children>
-          <component id="d431d" class="javax.swing.JLabel">
+          <component id="d431d" class="javax.swing.JLabel" binding="questionLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -43,7 +43,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="15623" class="javax.swing.JLabel">
+      <component id="15623" class="javax.swing.JLabel" binding="thisPLayerUserNameLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -53,7 +53,7 @@
           <text value="USERNAME"/>
         </properties>
       </component>
-      <component id="efa3b" class="javax.swing.JLabel">
+      <component id="efa3b" class="javax.swing.JLabel" binding="opponentUserNameLabel">
         <constraints>
           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -90,12 +90,11 @@
         </constraints>
         <properties>
           <background color="-13935483"/>
-          <borderPainted value="false"/>
-          <contentAreaFilled value="false"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
           <font name="Comic Sans MS" size="18"/>
           <foreground color="-1"/>
           <horizontalTextPosition value="0"/>
-          <icon value="Pictures/pngwing.com (4).png"/>
           <text value="Button"/>
         </properties>
       </component>
@@ -105,12 +104,11 @@
         </constraints>
         <properties>
           <background color="-13935483"/>
-          <borderPainted value="false"/>
-          <contentAreaFilled value="false"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
           <font name="Comic Sans MS" size="18"/>
           <foreground color="-1"/>
           <horizontalTextPosition value="0"/>
-          <icon value="Pictures/pngwing.com (4).png"/>
           <text value="Button"/>
         </properties>
       </component>
@@ -120,13 +118,12 @@
         </constraints>
         <properties>
           <background color="-13935483"/>
-          <borderPainted value="false"/>
-          <contentAreaFilled value="false"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
           <enabled value="true"/>
           <font name="Comic Sans MS" size="18"/>
           <foreground color="-1"/>
           <horizontalTextPosition value="0"/>
-          <icon value="Pictures/pngwing.com (4).png"/>
           <text value="Button"/>
         </properties>
       </component>
@@ -136,12 +133,11 @@
         </constraints>
         <properties>
           <background color="-13935483"/>
-          <borderPainted value="false"/>
-          <contentAreaFilled value="false"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
           <font name="Comic Sans MS" size="18"/>
           <foreground color="-1"/>
           <horizontalTextPosition value="0"/>
-          <icon value="Pictures/pngwing.com (4).png"/>
           <text value="Button"/>
         </properties>
       </component>

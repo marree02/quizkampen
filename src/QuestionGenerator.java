@@ -17,7 +17,7 @@ public class QuestionGenerator implements Quiz {
     }
 
     @Override
-    public String[] getCategoriesAsArray(int n) {
+    public synchronized String[] getCategoriesAsArray(int n) {
         String[] categories = new String[3];
         for (int i = 0; i < 3; i++) {
             categories[i] = categoryList.get(i).getCategoryName();
@@ -26,17 +26,17 @@ public class QuestionGenerator implements Quiz {
     }
 
     @Override
-    public String getCurrentQuestion() {
+    public synchronized String getCurrentQuestion() {
         return categoryList.get(currentCategory).getCurrentQuestion().getQuestion();
     }
 
     @Override
-    public String getCorrectAnswer() {
+    public synchronized String getCorrectAnswer() {
         return categoryList.get(currentCategory).getCurrentQuestion().getCorrectAnswer();
     }
 
     @Override
-    public String[] getChoicesAsArray() {
+    public synchronized String[] getChoicesAsArray() {
         String[] choices = new String[categoryList.get(currentCategory).getCurrentQuestion().getChoices().size()];
 
         for (int i = 0; i < choices.length; i++) {
@@ -48,18 +48,18 @@ public class QuestionGenerator implements Quiz {
     }
 
     @Override
-    public void nextQuestion() {
+    public synchronized void nextQuestion() {
         categoryList.get(currentCategory).currentQuestion++;
 
     }
 
     @Override
-    public String getCurrentCategory() {
+    public synchronized String getCurrentCategory() {
         return categoryList.get(currentCategory).getCategoryName();
     }
 
     @Override
-    public void setCategory(String s) {
+    public synchronized void setCategory(String s) {
         for (int i = 0; i < categoryList.size(); i++) {
 
             if (categoryList.get(i).getCategoryName().equals(s)) {
@@ -69,14 +69,14 @@ public class QuestionGenerator implements Quiz {
     }
 
     @Override
-    public void shuffleQuestions() {
+    public synchronized void shuffleQuestions() {
         for (Category c : categoryList) {
             c.shuffleQuestions();
         }
     }
 
 
-    public void loadCategoryFiles(String [] filenames) {
+    public synchronized void loadCategoryFiles(String [] filenames) {
 
         for (String filename : filenames) {
 

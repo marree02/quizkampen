@@ -71,26 +71,25 @@ public class ServerPlayer extends Thread {
             if (in.readLine().equals("KATEGORI VALD")) {
                 opponent.out.println("KATEGORI VALD");
                 out.println("KATEGORI VALD");
+                out.flush();
             }
 
+            out.println(opponent.userName);
+            out.println(game.questionGenerator.getCurrentCategory());
+            out.println(game.questionGenerator.getCurrentQuestion());
 
-            System.out.println(game.questionGenerator.getCurrentCategory());
-            System.out.println("Redo att skicka frågor");
+            String[] choices = game.questionGenerator.getChoicesAsArray();
+            for (String s : choices) {
+                out.println(s);
+            }
 
-            System.out.println(game.questionGenerator.getCurrentCategory());
-            System.out.println("Redo att skicka frågor");
+            out.println(game.questionGenerator.getCorrectAnswer());
 
             System.out.println(game.questionGenerator.getCurrentQuestion());
             System.out.println(game.questionGenerator.getCorrectAnswer());
 
+            out.close();
 
-            out.close(); //Kanske hitta annan lösning istället för denna
-
-               /*
-                while((fromClient = in.readLine()) != null){
-                    System.out.println("server" + fromClient);
-                }
-                */
 
 
             while (true) {

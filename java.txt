@@ -13,8 +13,8 @@ Vilken filändelse har en fil med java bytecode?
 .com
 ---
 När behövs Java Runtime Environment (JRE)?
-När man ska skriva javaprogram
 *När man ska köra javaprogram
+När man ska skriva javaprogram
 När man ska kompilera javaprogram
 När man ska debugga javaprogram
 ---

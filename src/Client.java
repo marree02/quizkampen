@@ -18,6 +18,8 @@ public class Client extends Thread {
 
     GameGui gameGui;
 
+    String correctAnswer;
+
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
@@ -82,20 +84,32 @@ public class Client extends Thread {
             if(in.readLine().equals("KATEGORI VALD")){
                 if (!playerTurn) {
                     out.println("KATEGORI VALD");
+                    out.flush();
                 }
 
                 gameGui = new GameGui();
                 welcomeGui.setVisible(false);
             }
 
+            // OBS Fullösning, läser av sträng som skickats i onödan
+            if(!playerTurn) {
+                in.readLine();
+            }
+            // Läser in från servern
+            gameGui.thisPLayerUserNameLabel.setText(userName);
+            gameGui.opponentUserNameLabel.setText(in.readLine());
+            gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
+            gameGui.questionLabel.setText(in.readLine());
+            gameGui.button1.setText(in.readLine());
+            gameGui.button2.setText(in.readLine());
+            gameGui.button3.setText(in.readLine());
+            gameGui.button4.setText(in.readLine());
+            gameGui.correctAnswer = in.readLine();
+
 
 
             System.out.println("Spelare redo för fråga");
 
-
-            while(true) {
-
-            }
 
 
         } catch (UnknownHostException e) {
