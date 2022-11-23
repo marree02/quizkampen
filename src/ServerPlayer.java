@@ -74,12 +74,16 @@ public class ServerPlayer extends Thread {
                 out.flush();
             }
 
+            out.println(opponent.userName);
+            out.println(game.questionGenerator.getCurrentCategory());
+            out.println(game.questionGenerator.getCurrentQuestion());
 
-            System.out.println(game.questionGenerator.getCurrentCategory());
-            System.out.println("Redo att skicka frågor");
+            String[] choices = game.questionGenerator.getChoicesAsArray();
+            for (String s : choices) {
+                out.println(s);
+            }
 
-            System.out.println(game.questionGenerator.getCurrentCategory());
-            System.out.println("Redo att skicka frågor");
+            out.println(game.questionGenerator.getCorrectAnswer());
 
             System.out.println(game.questionGenerator.getCurrentQuestion());
             System.out.println(game.questionGenerator.getCorrectAnswer());

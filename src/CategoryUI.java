@@ -63,7 +63,7 @@ public class CategoryUI extends JFrame implements ActionListener {
                 nya jbutton knappar
                 true/false sats
                  */
-        out.close();
+        // out.close();
     }
 }
 
