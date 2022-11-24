@@ -39,7 +39,7 @@ public class QuestionGenerator implements Quiz {
     public synchronized String[] getChoicesAsArray() {
         String[] choices = new String[categoryList.get(currentCategory).getCurrentQuestion().getChoices().size()];
 
-        for (int i = 0; i < choices.length; i++) {
+        for (int i = 0; i < categoryList.get(currentCategory).getCurrentQuestion().getChoices().size(); i++) {
             choices[i] = categoryList.get(currentCategory).getCurrentQuestion().getChoices().get(i);
         }
 
@@ -49,7 +49,9 @@ public class QuestionGenerator implements Quiz {
 
     @Override
     public synchronized void nextQuestion() {
+        if (categoryList.get(currentCategory).currentQuestion < categoryList.get(currentCategory).questionList.size()-1)
         categoryList.get(currentCategory).currentQuestion++;
+        else categoryList.get(currentCategory).currentQuestion = 0;
 
     }
 
@@ -108,6 +110,8 @@ public class QuestionGenerator implements Quiz {
 
                 }
 
+                newCategory.currentQuestion = 0;
+
                 categoryList.add(newCategory);
 
             } catch (FileNotFoundException e) {
@@ -131,7 +135,7 @@ class Category {
 
     private String categoryName;
 
-    private List<Question> questionList = new ArrayList<>();
+    protected List<Question> questionList = new ArrayList<>();
 
     public int currentQuestion;
 

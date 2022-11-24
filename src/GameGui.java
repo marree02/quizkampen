@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.PrintWriter;
 
 
 public class GameGui extends JFrame {
@@ -14,9 +15,11 @@ public class GameGui extends JFrame {
     protected JLabel opponentUserNameLabel;
     private JButton continueButton;
     protected String correctAnswer;
-    protected boolean userClickedContinue = false;
+    PrintWriter out;
 
-    public GameGui() {
+    public GameGui(PrintWriter out) {
+
+        this.out = out;
 
         setContentPane(panel1);
         setVisible(true);
@@ -70,7 +73,7 @@ public class GameGui extends JFrame {
         });
 
         continueButton.addActionListener(e -> {
-            userClickedContinue = (true);
+            out.println("fråga besvarad");
         });
     }
 
