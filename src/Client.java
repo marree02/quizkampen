@@ -12,6 +12,8 @@ public class Client extends Thread {
 
     CategoryUI categoryGui;
 
+    WaitingOnPlayerGUI waitingOnPlayerGUI = new WaitingOnPlayerGUI();
+
     String userName;
 
     boolean playerTurn;
@@ -29,7 +31,7 @@ public class Client extends Thread {
     int numberOfRounds = 2;
 
     public Client() {
-
+        waitingOnPlayerGUI.setVisible(false);
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
         welcomeGui = new WelcomeUI();
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
@@ -89,8 +91,7 @@ public class Client extends Thread {
 
                 out.println("INGEN KATEGORI");
 
-
-            }
+                }
 
             //Väntar på meddelande från servern om att kategori är vald och första ronden kan starta
             in.readLine();
@@ -121,8 +122,20 @@ public class Client extends Thread {
                 System.out.println(in.readLine());
                 System.out.println("nästa fråga");
 
-                gameGui.setVisible(false);
+                    gameGui.setVisible(false);
 
+                    questionCounter++;
+
+                }
+                questionCounter = 0;
+                roundCounter++;
+                gameGui.setVisible(false);
+                ResultsGUI resultsGUI = new ResultsGUI(out);
+                in.readLine();
+                resultsGUI.setVisible(false);
+                if (!playerTurn) {
+                    waitingOnPlayerGUI.setVisible(true);
+                }
             }
 
 
