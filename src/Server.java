@@ -30,10 +30,10 @@ public class Server {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public static void main(String[] args) {
+
         Server s = new Server();
     }
 }
