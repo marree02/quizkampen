@@ -26,6 +26,8 @@ public class Client extends Thread {
 
     int numberOfQuestionsPerRound = 2;
 
+    int roundCounter = 0;
+
     int questionCounter = 0;
 
     int numberOfRounds = 2;
@@ -64,63 +66,68 @@ public class Client extends Thread {
                 playerTurn = false;
             }
 
-            if (playerTurn) { // Spelare vars tur det är att välja kategori
+            while(roundCounter < numberOfRounds) {
 
-                welcomeGui.setVisible(false);
+                if (playerTurn) { // Spelare vars tur det är att välja kategori
 
-                categoryGui = new CategoryUI(out);
+                    welcomeGui.setVisible(false);
 
-                categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+                    categoryGui = new CategoryUI(out);
 
-                // Steg 3: klienten tar emot 3 strängar med de kategorier som ska visas
+                    categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
-                categoryGui.category1.setText(in.readLine());
+                    // Steg 3: klienten tar emot 3 strängar med de kategorier som ska visas
 
-                categoryGui.category2.setText(in.readLine());
+                    categoryGui.category1.setText(in.readLine());
 
-                categoryGui.category3.setText(in.readLine());
+                    categoryGui.category2.setText(in.readLine());
 
-            } else { // Spelare som väntar på att den andra ska välja kategori
+                    categoryGui.category3.setText(in.readLine());
 
-                in.readLine(); in.readLine(); in.readLine();
+                } else { // Spelare som väntar på att den andra ska välja kategori
 
-                welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
+                    in.readLine();
+                    in.readLine();
+                    in.readLine();
 
-                //Väntar på att motståndaren valt kategori
-                in.readLine();
+                    welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
 
-                out.println("INGEN KATEGORI");
+                    //Väntar på att motståndaren valt kategori
+                    in.readLine();
+
+                    waitingOnPlayerGUI.setVisible(false);
+
+                    out.println("INGEN KATEGORI");
 
                 }
 
-            //Väntar på meddelande från servern om att kategori är vald och första ronden kan starta
-            in.readLine();
+                //Väntar på meddelande från servern om att kategori är vald och första ronden kan starta
+                in.readLine();
 
 
-            // fönstret görs osynligt 2ggr för spelare 1, TODO bör fixas
+                // fönstret görs osynligt 2ggr för spelare 1, TODO bör fixas
 
-            welcomeGui.setVisible(false);
+                welcomeGui.setVisible(false);
 
-            while (questionCounter < numberOfQuestionsPerRound) {
+                while (questionCounter < numberOfQuestionsPerRound) {
 
-                gameGui = new GameGui(out);
+                    gameGui = new GameGui(out);
 
-                // Läser in från servern
-                gameGui.thisPLayerUserNameLabel.setText(userName);
-                gameGui.opponentUserNameLabel.setText(in.readLine());
-                gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
-                gameGui.questionLabel.setText(in.readLine());
-                gameGui.button1.setText(in.readLine());
-                gameGui.button2.setText(in.readLine());
-                gameGui.button3.setText(in.readLine());
-                gameGui.button4.setText(in.readLine());
-                gameGui.correctAnswer = in.readLine();
+                    // Läser in från servern
+                    gameGui.thisPLayerUserNameLabel.setText(userName);
+                    gameGui.opponentUserNameLabel.setText(in.readLine());
+                    gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
+                    gameGui.questionLabel.setText(in.readLine());
+                    gameGui.button1.setText(in.readLine());
+                    gameGui.button2.setText(in.readLine());
+                    gameGui.button3.setText(in.readLine());
+                    gameGui.button4.setText(in.readLine());
+                    gameGui.correctAnswer = in.readLine();
 
-                System.out.println("Spelare redo för fråga");
+                    System.out.println("Spelare redo för fråga");
 
-                //Väntar på nästa fråga från servern
-                System.out.println(in.readLine());
-                System.out.println("nästa fråga");
+                    //Väntar på nästa fråga från servern
+                    in.readLine();
 
                     gameGui.setVisible(false);
 
