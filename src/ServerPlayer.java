@@ -76,6 +76,7 @@ public class ServerPlayer extends Thread {
 
                 String[] choices = game.questionGenerator.getChoicesAsArray();
                 for (String s : choices) {
+                    System.out.println(s);
                     out.println(s);
                 }
 
@@ -85,7 +86,7 @@ public class ServerPlayer extends Thread {
                 in.readLine();
 
                 // skickar sträng så klienten vet att den ska starta nytt gameGui
-                out.println("fortsätt");
+                out.println();
 
                 game.questionGenerator.nextQuestion();
 

@@ -39,7 +39,7 @@ public class QuestionGenerator implements Quiz {
     public synchronized String[] getChoicesAsArray() {
         String[] choices = new String[categoryList.get(currentCategory).getCurrentQuestion().getChoices().size()];
 
-        for (int i = 0; i < choices.length; i++) {
+        for (int i = 0; i < categoryList.get(currentCategory).getCurrentQuestion().getChoices().size(); i++) {
             choices[i] = categoryList.get(currentCategory).getCurrentQuestion().getChoices().get(i);
         }
 
@@ -107,6 +107,8 @@ public class QuestionGenerator implements Quiz {
 
 
                 }
+
+                newCategory.currentQuestion = 0;
 
                 categoryList.add(newCategory);
 
