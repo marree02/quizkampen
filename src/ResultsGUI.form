@@ -10,7 +10,7 @@
     </properties>
     <border type="bevel-raised"/>
     <children>
-      <component id="b82ae" class="javax.swing.JLabel">
+      <component id="b82ae" class="javax.swing.JLabel" binding="player1Icon">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -19,7 +19,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="135b0" class="javax.swing.JLabel">
+      <component id="135b0" class="javax.swing.JLabel" binding="player2Icon">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -28,7 +28,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="50e3f" class="javax.swing.JLabel">
+      <component id="50e3f" class="javax.swing.JLabel" binding="userNamePlayer2Label">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -37,7 +37,7 @@
           <text value="USERNAME"/>
         </properties>
       </component>
-      <component id="31775" class="javax.swing.JLabel">
+      <component id="31775" class="javax.swing.JLabel" binding="usernamePlayer1Label">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -46,7 +46,7 @@
           <text value="USERNAME"/>
         </properties>
       </component>
-      <component id="d4e0" class="javax.swing.JButton" binding="FORSÄTTButton" default-binding="true">
+      <component id="d4e0" class="javax.swing.JButton" binding="fortsättButton">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -57,7 +57,7 @@
           <text value="FORSÄTT"/>
         </properties>
       </component>
-      <component id="e297b" class="javax.swing.JLabel">
+      <component id="e297b" class="javax.swing.JLabel" binding="resultsLabel">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -68,7 +68,7 @@
           <text value="0-0"/>
         </properties>
       </component>
-      <component id="a779" class="javax.swing.JLabel">
+      <component id="a779" class="javax.swing.JLabel" binding="whosTurnLabel">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -109,7 +109,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="a8de8" class="javax.swing.JLabel">
+          <component id="a8de8" class="javax.swing.JLabel" binding="categoryLabel1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -119,7 +119,7 @@
               <text value="KATEGORI 1"/>
             </properties>
           </component>
-          <component id="85f0f" class="javax.swing.JLabel">
+          <component id="85f0f" class="javax.swing.JLabel" binding="categoryLabel2">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -129,7 +129,7 @@
               <text value="KATEGORI 2"/>
             </properties>
           </component>
-          <component id="3c5e" class="javax.swing.JLabel">
+          <component id="3c5e" class="javax.swing.JLabel" binding="categoryLabel3">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -139,7 +139,7 @@
               <text value="KATEGORI 3"/>
             </properties>
           </component>
-          <component id="e951e" class="javax.swing.JLabel">
+          <component id="e951e" class="javax.swing.JLabel" binding="CategoryLabel4">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
