@@ -49,7 +49,9 @@ public class QuestionGenerator implements Quiz {
 
     @Override
     public synchronized void nextQuestion() {
+        if (categoryList.get(currentCategory).currentQuestion < categoryList.get(currentCategory).questionList.size()-1)
         categoryList.get(currentCategory).currentQuestion++;
+        else categoryList.get(currentCategory).currentQuestion = 0;
 
     }
 
@@ -133,7 +135,7 @@ class Category {
 
     private String categoryName;
 
-    private List<Question> questionList = new ArrayList<>();
+    protected List<Question> questionList = new ArrayList<>();
 
     public int currentQuestion;
 
