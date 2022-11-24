@@ -2,6 +2,8 @@ public class GameRoom {
 
     Quiz questionGenerator;
 
+    private boolean roundReadyToStart = false;
+
 
     public GameRoom(){
 
@@ -11,6 +13,14 @@ public class GameRoom {
 
         questionGenerator.shuffleQuestions();
 
+    }
+
+    public synchronized void setRoundReadyToStart(boolean trueOrFalse) {
+        roundReadyToStart = trueOrFalse;
+    }
+
+    public synchronized boolean roundReadyToStart() {
+        return roundReadyToStart;
     }
 
 }

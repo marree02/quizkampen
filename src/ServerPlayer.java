@@ -12,6 +12,7 @@ public class ServerPlayer extends Thread {
     BufferedReader in;
     String userName;
     String playerOneOrTwo;
+    String fromClient;
 
     int numberOfQuestionsPerRound = 2;
 
@@ -29,12 +30,6 @@ public class ServerPlayer extends Thread {
         try {
             this.out = new PrintWriter(socket.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-            //Det första som händer - ställer sig och väntar på att få användarnamnet
-            userName = in.readLine();
-
-            System.out.println("Välkommen " + userName);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +48,65 @@ public class ServerPlayer extends Thread {
 
         try {
 
+
+            while(true) {
+
+                fromClient = in.readLine();
+
+                if (fromClient.equals("GET PLAYER 1 OR 2")) {
+                    out.println(playerOneOrTwo);
+                }
+
+                else if (fromClient.equals("SENDING USERNAME")) {
+                    userName = in.readLine();
+                }
+
+                else if (fromClient.equals("GET CATEGORIES")) {
+                    String[] categories = game.questionGenerator.getCategoriesAsArray(3);
+                    out.println(categories[0]);
+                    out.println(categories[1]);
+                    out.println(categories[2]);
+                }
+
+                else if (fromClient.equals("SET CATEGORY")) {
+                    game.questionGenerator.setCategory(in.readLine());
+                    game.setRoundReadyToStart(true);
+                }
+
+                else if (fromClient.equals("REQUEST NEW ROUND")) {
+                    while(!game.roundReadyToStart()) {
+
+                    }
+                    out.println();
+                }
+
+                else if (fromClient.equals("GET QUESTION")) {
+                    out.println(opponent.userName);
+                    out.println(game.questionGenerator.getCurrentCategory());
+                    out.println(game.questionGenerator.getCurrentQuestion());
+
+                    String[] choices = game.questionGenerator.getChoicesAsArray();
+                    for (String s : choices) {
+                        System.out.println(s);
+                        out.println(s);
+                    }
+
+                    out.println(game.questionGenerator.getCorrectAnswer());
+                }
+
+                else if (fromClient.equals("QUESTION ANSWERED")) {
+
+                }
+
+                else {
+                    System.out.println("Felaktig input från client");
+                }
+
+
+            }
+
             //Steg 2: Varje servertråd skickar till sin klient om klienten är spelare 1 eller 2
+            /*
             out.println(playerOneOrTwo);
 
             while(roundCounter < numberOfRounds) {
@@ -108,6 +161,9 @@ public class ServerPlayer extends Thread {
             }
 
             // out.close();
+
+
+             */
 
         } catch (Exception e) {
             e.printStackTrace();

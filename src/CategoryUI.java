@@ -39,6 +39,7 @@ public class CategoryUI extends JFrame implements ActionListener {
         JButton button = (JButton) e.getSource();
 
         // Steg 4: klienten skickar texten på den knapp som valdes
+        out.println("SET CATEGORY");
         out.println(button.getText());
 
 

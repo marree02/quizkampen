@@ -12,7 +12,7 @@ public class Client extends Thread {
 
     CategoryUI categoryGui;
 
-    WaitingOnPlayerGUI waitingOnPlayerGUI = new WaitingOnPlayerGUI();
+    WaitingOnPlayerGUI waitingOnPlayerGUI;
 
     String userName;
 
@@ -33,7 +33,7 @@ public class Client extends Thread {
     int numberOfRounds = 2;
 
     public Client() {
-        waitingOnPlayerGUI.setVisible(false);
+
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
         welcomeGui = new WelcomeUI();
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
@@ -53,65 +53,66 @@ public class Client extends Thread {
         ) {
 
 
-            System.out.println("Klienttråd startad");
-
-            //Det första som händer - skickar userName till servern
-            out.println(userName);
+            out.println("GET PLAYER 1 OR 2");
 
 
-            //Steg 2: klienten tar emot om den är spelare ett eller två
             if (in.readLine().equals("1")) {
                 playerTurn = true;
             } else {
                 playerTurn = false;
             }
 
-            while(roundCounter < numberOfRounds) {
 
-                if (playerTurn) { // Spelare vars tur det är att välja kategori
+            out.println("SENDING USERNAME");
+            out.println(userName);
 
-                    welcomeGui.setVisible(false);
 
-                    categoryGui = new CategoryUI(out);
+            if (playerTurn) {
+                welcomeGui.setVisible(false);
+                categoryGui = new CategoryUI(out);
+                categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+                out.println("REQUEST CATEGORIES");
+                categoryGui.category1.setText(in.readLine());
+                categoryGui.category2.setText(in.readLine());
+                categoryGui.category3.setText(in.readLine());
+                out.println("REQUEST NEW ROUND");
+                in.readLine();
+                categoryGui.setVisible(false);
+            }
 
-                    categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+            if (!playerTurn) {
+                welcomeGui.setVisible(true);
+                welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
+                out.println("REQUEST NEW ROUND");
+                in.readLine();
+                welcomeGui.setVisible(false);
+            }
 
-                    // Steg 3: klienten tar emot 3 strängar med de kategorier som ska visas
+            while(true) {
 
-                    categoryGui.category1.setText(in.readLine());
+                gameGui = new GameGui(out);
+                out.println("GET QUESTION");
+                gameGui.thisPLayerUserNameLabel.setText(userName);
+                gameGui.opponentUserNameLabel.setText(in.readLine());
+                gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
+                gameGui.questionLabel.setText(in.readLine());
+                gameGui.button1.setText(in.readLine());
+                gameGui.button2.setText(in.readLine());
+                gameGui.button3.setText(in.readLine());
+                gameGui.button4.setText(in.readLine());
+                gameGui.correctAnswer = in.readLine();
 
-                    categoryGui.category2.setText(in.readLine());
-
-                    categoryGui.category3.setText(in.readLine());
-
-                } else { // Spelare som väntar på att den andra ska välja kategori
-
-                    in.readLine();
-                    in.readLine();
-                    in.readLine();
-
-                    welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
-
-                    //Väntar på att motståndaren valt kategori
-                    in.readLine();
-
-                    waitingOnPlayerGUI.setVisible(false);
-
-                    out.println("INGEN KATEGORI");
-
-                }
-
-                //Väntar på meddelande från servern om att kategori är vald och första ronden kan starta
                 in.readLine();
 
+            }
 
-                // fönstret görs osynligt 2ggr för spelare 1, TODO bör fixas
 
-                welcomeGui.setVisible(false);
 
-                while (questionCounter < numberOfQuestionsPerRound) {
 
-                    gameGui = new GameGui(out);
+            /*
+
+
+
 
                     // Läser in från servern
                     gameGui.thisPLayerUserNameLabel.setText(userName);
@@ -151,6 +152,7 @@ public class Client extends Thread {
                // }
             }
 
+        */
 
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
@@ -161,7 +163,7 @@ public class Client extends Thread {
 
     public static void main(String[] args) {
         Client c = new Client();
-        
+
     }
 }
 
