@@ -27,6 +27,7 @@ public class Client extends Thread {
     int questionCounter = 0;
 
     int numberOfRounds = 2;
+    PrintWriter out;
 
     public Client() {
 
@@ -39,7 +40,6 @@ public class Client extends Thread {
     }
 
     public void run() {
-
 
         try (
                 Socket socket = new Socket("127.0.0.1", 1234);
@@ -84,9 +84,7 @@ public class Client extends Thread {
                 categoryGui.category3.setText(categoryString);
 
             } else { // Spelare 2
-
                 welcomeGui.setWaitingLabel("väntar på att spelare väljer kategori");
-
             }
 
             if (in.readLine().equals("KATEGORI VALD")) {
@@ -94,8 +92,6 @@ public class Client extends Thread {
                     out.println("KATEGORI VALD");
                     out.flush();
                 }
-
-
             }
 
             // OBS Fullösning, läser av sträng som skickats i onödan TODO
@@ -126,9 +122,7 @@ public class Client extends Thread {
                 while(!gameGui.userClickedContinue) {
 
                 }
-
                 gameGui.setVisible(false);
-
             }
 
 
