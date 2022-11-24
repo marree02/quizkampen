@@ -37,7 +37,7 @@
             <properties>
               <font name="Comic Sans MS" size="20"/>
               <foreground color="-1"/>
-              <text value="Väntar på spelare väljer kategori...."/>
+              <text value="Väntar på motståndaren....."/>
             </properties>
           </component>
         </children>

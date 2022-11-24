@@ -62,6 +62,7 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("GET CATEGORIES")) {
+                    game.setRoundReadyToStart(false);
                     String[] categories = game.questionGenerator.getCategoriesAsArray(3);
                     out.println(categories[0]);
                     out.println(categories[1]);
@@ -71,13 +72,16 @@ public class ServerPlayer extends Thread {
                 else if (fromClient.equals("SET CATEGORY")) {
                     game.questionGenerator.setCategory(in.readLine());
                     game.setRoundReadyToStart(true);
+                    out.println();
                 }
 
                 else if (fromClient.equals("REQUEST NEW ROUND")) {
                     while(!game.roundReadyToStart()) {
-
+                        Thread.sleep(100);
+                        System.out.println(userName + "stuck in loop");
                     }
                     out.println();
+                    game.setRoundReadyToStart(false);
                 }
 
                 else if (fromClient.equals("GET QUESTION")) {
@@ -95,7 +99,25 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("QUESTION ANSWERED")) {
+                    game.questionGenerator.nextQuestion();
+                    out.println();
+                }
 
+                else if (fromClient.equals("CONTINUE FROM RESULTS")) {
+
+                    out.println();
+                }
+
+                else if (fromClient.equals("CHECK IF OTHER PLAYER IS READY FOR ROUND TO START")) {
+                    while (game.getPlayersFinishedWithRound() < 2) {
+                        Thread.sleep(100);
+                    }
+                    out.println();
+                    game.setPlayersFinishedWithRound(0);
+                }
+
+                else if (fromClient.equals("FINISH ROUND")) {
+                    game.finishRound();
                 }
 
                 else {

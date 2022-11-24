@@ -4,6 +4,8 @@ public class GameRoom {
 
     private boolean roundReadyToStart = false;
 
+    private int playersFinishedWithRound = 2;
+
 
     public GameRoom(){
 
@@ -23,4 +25,15 @@ public class GameRoom {
         return roundReadyToStart;
     }
 
+    public synchronized void finishRound() {
+        playersFinishedWithRound++;
+    }
+
+    public synchronized int getPlayersFinishedWithRound() {
+        return playersFinishedWithRound;
+    }
+
+    public synchronized void setPlayersFinishedWithRound(int playersFinishedWithRound) {
+        this.playersFinishedWithRound = playersFinishedWithRound;
+    }
 }

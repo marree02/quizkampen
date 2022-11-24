@@ -43,7 +43,7 @@ public class CategoryUI extends JFrame implements ActionListener {
         out.println(button.getText());
 
 
-        p = new Properties();
+        /*p = new Properties();
 
         try {
             p.load(new FileInputStream("src/Settings.properties"));
@@ -53,17 +53,7 @@ public class CategoryUI extends JFrame implements ActionListener {
 
         int question = Integer.parseInt(p.getProperty("questions"));
         int rounds = Integer.parseInt(p.getProperty("rounds"));
-
-
-        setVisible(false);
-
-
-                /*
-                hämta txt frågor
-                nya jbutton knappar
-                true/false sats
-                 */
-        // out.close();
+        */
     }
 }
 

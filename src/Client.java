@@ -14,15 +14,13 @@ public class Client extends Thread {
 
     WaitingOnPlayerGUI waitingOnPlayerGUI;
 
+    GameGui gameGui;
+
+    ResultsGUI resultsGUI;
+
     String userName;
 
     boolean playerTurn;
-
-    GameRoom game;
-
-    GameGui gameGui;
-
-    String correctAnswer;
 
     int numberOfQuestionsPerRound = 2;
 
@@ -30,7 +28,7 @@ public class Client extends Thread {
 
     int questionCounter = 0;
 
-    int numberOfRounds = 2;
+    int numberOfRounds = 4;
 
     public Client() {
 
@@ -66,44 +64,63 @@ public class Client extends Thread {
             out.println("SENDING USERNAME");
             out.println(userName);
 
+            while (roundCounter < numberOfRounds) {
 
-            if (playerTurn) {
-                welcomeGui.setVisible(false);
-                categoryGui = new CategoryUI(out);
-                categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
-                out.println("REQUEST CATEGORIES");
-                categoryGui.category1.setText(in.readLine());
-                categoryGui.category2.setText(in.readLine());
-                categoryGui.category3.setText(in.readLine());
-                out.println("REQUEST NEW ROUND");
+                if (playerTurn) {
+                    welcomeGui.setVisible(false);
+                    categoryGui = new CategoryUI(out);
+                    categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+                    out.println("GET CATEGORIES");
+                    categoryGui.category1.setText(in.readLine());
+                    categoryGui.category2.setText(in.readLine());
+                    categoryGui.category3.setText(in.readLine());
+                    in.readLine();
+                    categoryGui.setVisible(false);
+                    waitingOnPlayerGUI = new WaitingOnPlayerGUI();
+                    out.println("CHECK IF OTHER PLAYER IS READY FOR ROUND TO START");
+                    in.readLine();
+                    waitingOnPlayerGUI.setVisible(false);
+                }
+
+                if (!playerTurn) {
+                    welcomeGui.setVisible(true);
+                    welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
+                    out.println("REQUEST NEW ROUND");
+                    in.readLine();
+                    welcomeGui.setVisible(false);
+                }
+
+                while (questionCounter < numberOfQuestionsPerRound) {
+
+                    gameGui = new GameGui(out);
+                    out.println("GET QUESTION");
+                    gameGui.thisPLayerUserNameLabel.setText(userName);
+                    gameGui.opponentUserNameLabel.setText(in.readLine());
+                    gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
+                    gameGui.questionLabel.setText(in.readLine());
+                    gameGui.button1.setText(in.readLine());
+                    gameGui.button2.setText(in.readLine());
+                    gameGui.button3.setText(in.readLine());
+                    gameGui.button4.setText(in.readLine());
+                    gameGui.correctAnswer = in.readLine();
+
+                    in.readLine();
+                    gameGui.setVisible(false);
+                    questionCounter++;
+
+                }
+
+                resultsGUI = new ResultsGUI(out);
+                resultsGUI.setTitle(userName);
+
                 in.readLine();
-                categoryGui.setVisible(false);
-            }
 
-            if (!playerTurn) {
-                welcomeGui.setVisible(true);
-                welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
-                out.println("REQUEST NEW ROUND");
-                in.readLine();
-                welcomeGui.setVisible(false);
-            }
+                resultsGUI.setVisible(false);
 
-            while(true) {
-
-                gameGui = new GameGui(out);
-                out.println("GET QUESTION");
-                gameGui.thisPLayerUserNameLabel.setText(userName);
-                gameGui.opponentUserNameLabel.setText(in.readLine());
-                gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
-                gameGui.questionLabel.setText(in.readLine());
-                gameGui.button1.setText(in.readLine());
-                gameGui.button2.setText(in.readLine());
-                gameGui.button3.setText(in.readLine());
-                gameGui.button4.setText(in.readLine());
-                gameGui.correctAnswer = in.readLine();
-
-                in.readLine();
-
+                playerTurn = !playerTurn;
+                questionCounter = 0;
+                out.println("FINISH ROUND");
+                roundCounter++;
             }
 
 

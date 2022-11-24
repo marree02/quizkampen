@@ -73,7 +73,7 @@ public class GameGui extends JFrame {
         });
 
         continueButton.addActionListener(e -> {
-            out.println("fråga besvarad");
+            out.println("QUESTION ANSWERED");
         });
     }
 

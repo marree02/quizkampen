@@ -29,7 +29,7 @@ public class ResultsGUI extends JFrame {
         fortsättButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                out.println();
+                out.println("CONTINUE FROM RESULTS");
             }
         });
     }
