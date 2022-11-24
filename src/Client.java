@@ -124,40 +124,7 @@ public class Client extends Thread {
             }
 
 
-
-
             /*
-
-
-
-
-                    // Läser in från servern
-                    gameGui.thisPLayerUserNameLabel.setText(userName);
-                    gameGui.opponentUserNameLabel.setText(in.readLine());
-                    gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
-                    gameGui.questionLabel.setText(in.readLine());
-                    gameGui.button1.setText(in.readLine());
-                    gameGui.button2.setText(in.readLine());
-                    gameGui.button3.setText(in.readLine());
-                    gameGui.button4.setText(in.readLine());
-                    gameGui.correctAnswer = in.readLine();
-
-                    System.out.println("Spelare redo för fråga");
-
-                    //Väntar på nästa fråga från servern
-                    in.readLine();
-
-                    gameGui.setVisible(false);
-
-                    questionCounter++;
-
-                }
-                questionCounter = 0;
-                roundCounter++;
-                gameGui.setVisible(false);
-                ResultsGUI resultsGUI = new ResultsGUI(out);
-                in.readLine();
-                resultsGUI.setVisible(false);
 
                 if (!playerTurn && questionCounter<2 && roundCounter<2) {
                     waitingOnPlayerGUI.setVisible(true);
