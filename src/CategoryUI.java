@@ -16,9 +16,10 @@ public class CategoryUI extends JFrame implements ActionListener {
     private JButton button1;
     private JLabel chooseCategoryLabel;
     PrintWriter out;
-    GameGui gameGui;
+    Client client;
 
-    public CategoryUI(PrintWriter out) {
+    public CategoryUI(PrintWriter out, Client client) {
+        this.client = client;
         this.out = out;
         setContentPane(panel1);
         setVisible(true);

@@ -39,7 +39,7 @@ public class Client extends Thread {
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
-        welcomeGui = new WelcomeUI();
+        welcomeGui = new WelcomeUI(this);
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
@@ -83,7 +83,7 @@ public class Client extends Thread {
 
                 if (playerTurn) {
                     welcomeGui.setVisible(false);
-                    categoryGui = new CategoryUI(out);
+                    categoryGui = new CategoryUI(out, this);
                     categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                     out.println("GET CATEGORIES");
                     categoryGui.category1.setText(in.readLine());
@@ -91,7 +91,7 @@ public class Client extends Thread {
                     categoryGui.category3.setText(in.readLine());
                     in.readLine();
                     categoryGui.setVisible(false);
-                    waitingOnPlayerGUI = new WaitingOnPlayerGUI();
+                    waitingOnPlayerGUI = new WaitingOnPlayerGUI(this);
 
                     out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
                     while (in.readLine().equals("NO")) {
@@ -152,7 +152,7 @@ public class Client extends Thread {
                 System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
                 // Rita ut i GUI:t här
 
-                resultsGUI = new ResultsGUI(out);
+                resultsGUI = new ResultsGUI(out, this);
                 resultsGUI.setTitle(userName);
 
                 out.println("CHECK IF OPPONENT SCORE IS IN");

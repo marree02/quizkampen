@@ -16,9 +16,11 @@ public class ResultsGUI extends JFrame {
     private JLabel whosTurnLabel;
     private JLabel player1Icon;
     private JLabel player2Icon;
+    Client client;
     PrintWriter out;
 
-    public ResultsGUI(PrintWriter out){
+    public ResultsGUI(PrintWriter out, Client client){
+        this.client = client;
         this.out = out;
         setContentPane(panel1);
         setVisible(true);

@@ -6,9 +6,11 @@ public class WelcomeUI extends JFrame {
     private JLabel waitingLabel;
     private JPanel welcomePanel;
     private JButton button1;
+    Client client;
 
-    public WelcomeUI() {
+    public WelcomeUI(Client client) {
 
+        this.client = client;
         setContentPane(welcomePanel);
         setVisible(true);
         setSize(400,500);
