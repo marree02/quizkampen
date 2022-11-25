@@ -25,6 +25,16 @@ public class Client extends Thread {
 
     List<String> categoriesPlayed = new ArrayList<>();
 
+    List<String> scorePerRound = new ArrayList<>();
+
+    List<String> scorePerRoundOpponent = new ArrayList<>();
+
+    int roundScore = 0;
+
+    int totalScore = 0;
+
+    int totalScoreOpponent = 0;
+
     boolean playerTurn;
 
     boolean windowCentered;
@@ -35,8 +45,6 @@ public class Client extends Thread {
     int numberOfRounds;
 
 
-
-    int roundScore = 0;
 
     public Client() {
 
@@ -154,8 +162,13 @@ public class Client extends Thread {
                 out.println("GET SCORES");
                 String myScoreForThisRound = in.readLine();
                 String opponentScoreForThisRound = in.readLine();
+                scorePerRound.add(myScoreForThisRound);
+                totalScore = totalScore + roundScore;
                 System.out.println("Egen poäng: " + myScoreForThisRound);
                 System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
+                System.out.println("Min total: " + totalScore);
+                System.out.println("Motståndarens total: " + totalScoreOpponent);
+
                 // Rita ut i GUI:t här
 
                 resultsGUI = new ResultsGUI(out, this);
@@ -170,16 +183,18 @@ public class Client extends Thread {
                 out.println("GET SCORES");
                 myScoreForThisRound = in.readLine();
                 opponentScoreForThisRound = in.readLine();
+                totalScoreOpponent = totalScoreOpponent + Integer.parseInt(opponentScoreForThisRound);
+                scorePerRoundOpponent.add(opponentScoreForThisRound);
                 System.out.println("Egen poäng: " + myScoreForThisRound);
                 System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
+                System.out.println("Min total: " + totalScore);
+                System.out.println("Motståndarens total: " + totalScoreOpponent);
+
                 // Rita ut i GUI:t här
 
                 resultsGUI.continueButton.setEnabled(true);
 
                 if(in.readLine().equals("CONTINUE"));
-
-
-
 
 
                 resultsGUI.dispose();
