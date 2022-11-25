@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameRoom {
 
     Quiz questionGenerator;
@@ -5,6 +8,8 @@ public class GameRoom {
     private boolean roundReadyToStart = false;
 
     private int playersFinishedWithRound = 2;
+
+    List<Question> questionsForNextRound = new ArrayList<>();
 
 
     public GameRoom(){
@@ -35,5 +40,16 @@ public class GameRoom {
 
     public synchronized void setPlayersFinishedWithRound(int playersFinishedWithRound) {
         this.playersFinishedWithRound = playersFinishedWithRound;
+    }
+
+    public synchronized void generateQuestionsForNextRound(int numberOfQuestions) {
+        questionsForNextRound.clear();
+        for (int i = 0; i < numberOfQuestions; i++) {
+            questionsForNextRound.add(questionGenerator.getNextQuestion());
+        }
+    }
+
+    public synchronized List<Question> getQuestionsForNextRound() {
+        return questionsForNextRound;
     }
 }

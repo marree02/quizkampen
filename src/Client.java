@@ -88,7 +88,11 @@ public class Client extends Thread {
                     out.println("REQUEST NEW ROUND");
                     in.readLine();
                     welcomeGui.setVisible(false);
+                    Thread.sleep(200);
                 }
+
+                out.println("GENERATE QUESTIONS FOR NEXT ROUND");
+
 
                 while (questionCounter < numberOfQuestionsPerRound) {
 
@@ -140,7 +144,7 @@ public class Client extends Thread {
 
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

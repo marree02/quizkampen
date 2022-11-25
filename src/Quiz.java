@@ -8,11 +8,13 @@ public interface Quiz {
 
     public String[] getCategoriesAsArray(int n);
 
-    public String getCurrentQuestion();
+    public String getQuestion(Question question);
 
-    public String getCorrectAnswer();
+    public Question getNextQuestion();
 
-    public String[] getChoicesAsArray();
+    public String getCorrectAnswer(Question question);
+
+    public String[] getChoicesAsArray(Question question);
 
     public void nextQuestion();
 

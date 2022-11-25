@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ServerPlayer extends Thread {
 
@@ -14,6 +17,7 @@ public class ServerPlayer extends Thread {
     String playerOneOrTwo;
     String fromClient;
 
+
     int numberOfQuestionsPerRound = 2;
 
     int roundCounter = 0;
@@ -23,6 +27,8 @@ public class ServerPlayer extends Thread {
     int numberOfRounds = 2;
 
     String nextCategory;
+
+    List<Question> questionsForNextRound = new ArrayList<>();
 
 
     public ServerPlayer(Socket accept, GameRoom game, String playerOneOrTwo) {
@@ -80,29 +86,37 @@ public class ServerPlayer extends Thread {
                 else if (fromClient.equals("REQUEST NEW ROUND")) {
                     while(!game.roundReadyToStart()) {
                         Thread.sleep(100);
-                        System.out.println(userName + "stuck in loop");
                     }
                     out.println();
+
 
                     game.setRoundReadyToStart(false);
                 }
 
+                else if (fromClient.equals("GENERATE QUESTIONS FOR NEXT ROUND")) {
+                    questionsForNextRound.clear();
+                    questionsForNextRound.addAll(game.getQuestionsForNextRound());
+                }
+
+
                 else if (fromClient.equals("GET QUESTION")) {
+
+                    Question question = questionsForNextRound.remove(0);
+
                     out.println(opponent.userName);
                     out.println(game.questionGenerator.getCurrentCategory());
-                    out.println(game.questionGenerator.getCurrentQuestion());
+                    out.println(game.questionGenerator.getQuestion(question));
 
-                    String[] choices = game.questionGenerator.getChoicesAsArray();
+                    String[] choices = game.questionGenerator.getChoicesAsArray(question);
                     for (String s : choices) {
                         System.out.println(s);
                         out.println(s);
                     }
 
-                    out.println(game.questionGenerator.getCorrectAnswer());
+                    out.println(game.questionGenerator.getCorrectAnswer(question));
                 }
 
                 else if (fromClient.equals("QUESTION ANSWERED")) {
-                    game.questionGenerator.nextQuestion();
                     out.println();
                 }
 
@@ -115,9 +129,13 @@ public class ServerPlayer extends Thread {
                     while (game.getPlayersFinishedWithRound() < 2) {
                         Thread.sleep(100);
                     }
-                    out.println();
-                    game.setPlayersFinishedWithRound(0);
+
+
                     game.questionGenerator.setCategory(nextCategory);
+                    game.generateQuestionsForNextRound(8);
+                    game.setPlayersFinishedWithRound(0);
+                    out.println();
+
                 }
 
                 else if (fromClient.equals("FINISH ROUND")) {

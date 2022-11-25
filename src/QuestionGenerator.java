@@ -26,21 +26,31 @@ public class QuestionGenerator implements Quiz {
     }
 
     @Override
-    public synchronized String getCurrentQuestion() {
-        return categoryList.get(currentCategory).getCurrentQuestion().getQuestion();
+    public Question getNextQuestion() {
+
+        Question question = categoryList.get(currentCategory).getCurrentQuestion();
+        nextQuestion();
+        return question;
     }
 
     @Override
-    public synchronized String getCorrectAnswer() {
-        return categoryList.get(currentCategory).getCurrentQuestion().getCorrectAnswer();
+    public synchronized String getQuestion(Question question) {
+        return question.getQuestion();
+    }
+
+
+
+    @Override
+    public synchronized String getCorrectAnswer(Question question) {
+        return question.getCorrectAnswer();
     }
 
     @Override
-    public synchronized String[] getChoicesAsArray() {
-        String[] choices = new String[categoryList.get(currentCategory).getCurrentQuestion().getChoices().size()];
+    public synchronized String[] getChoicesAsArray(Question question) {
+        String[] choices = new String[question.getChoices().size()];
 
-        for (int i = 0; i < categoryList.get(currentCategory).getCurrentQuestion().getChoices().size(); i++) {
-            choices[i] = categoryList.get(currentCategory).getCurrentQuestion().getChoices().get(i);
+        for (int i = 0; i < question.getChoices().size(); i++) {
+            choices[i] = question.getChoices().get(i);
         }
 
 
