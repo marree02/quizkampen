@@ -77,7 +77,7 @@ public class Client extends Thread {
                     in.readLine();
                     categoryGui.setVisible(false);
                     waitingOnPlayerGUI = new WaitingOnPlayerGUI();
-                    out.println("CHECK IF OTHER PLAYER IS READY FOR ROUND TO START");
+                    out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
                     in.readLine();
                     waitingOnPlayerGUI.setVisible(false);
                 }
