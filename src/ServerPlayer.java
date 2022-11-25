@@ -140,10 +140,13 @@ public class ServerPlayer extends Thread {
                     game.finishRound();
                 }
 
+                else if (fromClient.contains("GET SCORES")) {
+                    //skicka scores som flera strängar?
+                }
+
                 else {
                     System.out.println("Felaktig input från client");
                 }
-
 
             }
 

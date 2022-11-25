@@ -50,9 +50,7 @@ public class Client extends Thread {
 
         ) {
 
-
             out.println("GET PLAYER 1 OR 2");
-
 
             if (in.readLine().equals("1")) {
                 playerTurn = true;
@@ -121,6 +119,9 @@ public class Client extends Thread {
                     questionCounter++;
 
                 }
+
+                out.println("GET SCORES");
+                //Ta emot strängar med scores
 
                 resultsGUI = new ResultsGUI(out);
                 resultsGUI.setTitle(userName);
