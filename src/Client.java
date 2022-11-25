@@ -82,7 +82,7 @@ public class Client extends Thread {
             out.println("SENDING USERNAME");
             out.println(userName);
 
-            welcomeGui.setVisible(false);
+            welcomeGui.dispose();
 
             while (roundCounter < numberOfRounds) {
 
@@ -95,7 +95,7 @@ public class Client extends Thread {
                     categoryGui.category2.setText(in.readLine());
                     categoryGui.category3.setText(in.readLine());
                     in.readLine();
-                    categoryGui.setVisible(false);
+                    categoryGui.dispose();
                     waitingOnPlayerGUI = new WaitingOnPlayerGUI(this);
 
                     out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
@@ -104,7 +104,7 @@ public class Client extends Thread {
                         out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
                     }
 
-                    waitingOnPlayerGUI.setVisible(false);
+                    waitingOnPlayerGUI.dispose();
                 }
 
                 if (!playerTurn) {
@@ -116,7 +116,7 @@ public class Client extends Thread {
                         Thread.sleep(300);
                         out.println("REQUEST NEW ROUND");
                     }
-                    welcomeGui.setVisible(false);
+                    welcomeGui.dispose();
                     Thread.sleep(300);
                 }
                 Thread.sleep(300);
@@ -139,7 +139,7 @@ public class Client extends Thread {
                     gameGui.correctAnswer = in.readLine();
 
                     if(in.readLine().equals("QUESTION ANSWERED"));
-                    gameGui.setVisible(false);
+                    gameGui.dispose();
                     questionCounter++;
 
                 }
@@ -174,7 +174,7 @@ public class Client extends Thread {
                 System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
                 // Rita ut i GUI:t här
 
-                resultsGUI.fortsättButton.setEnabled(true);
+                resultsGUI.continueButton.setEnabled(true);
 
                 if(in.readLine().equals("CONTINUE"));
 
@@ -182,7 +182,7 @@ public class Client extends Thread {
 
 
 
-                resultsGUI.setVisible(false);
+                resultsGUI.dispose();
 
                 roundScore = 0;
                 playerTurn = !playerTurn; // Byte av spelare

@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 
 public class ResultsGUI extends JFrame {
     private JPanel panel1;
-    protected JButton fortsättButton;
+    protected JButton continueButton;
     private JLabel categoryLabel1;
     private JLabel categoryLabel2;
     private JLabel categoryLabel3;
@@ -30,7 +30,7 @@ public class ResultsGUI extends JFrame {
 
 
 
-        fortsättButton.addActionListener(new ActionListener() {
+        continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 out.println("CONTINUE FROM RESULTS");
