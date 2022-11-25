@@ -17,7 +17,6 @@ public class CategoryUI extends JFrame implements ActionListener {
     private JLabel chooseCategoryLabel;
     PrintWriter out;
     GameGui gameGui;
-    Properties p;
 
     public CategoryUI(PrintWriter out) {
         this.out = out;
@@ -41,19 +40,6 @@ public class CategoryUI extends JFrame implements ActionListener {
         // Steg 4: klienten skickar texten på den knapp som valdes
         out.println("SET CATEGORY");
         out.println(button.getText());
-
-
-        /*p = new Properties();
-
-        try {
-            p.load(new FileInputStream("src/Settings.properties"));
-        } catch (Exception ex) {
-            System.out.println("Filen kunde inte hittas");
-        }
-
-        int question = Integer.parseInt(p.getProperty("questions"));
-        int rounds = Integer.parseInt(p.getProperty("rounds"));
-        */
     }
 }
 
