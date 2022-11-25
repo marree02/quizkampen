@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 
 public class ResultsGUI extends JFrame {
     private JPanel panel1;
-    private JButton fortsättButton;
+    protected JButton continueResultButton;
     private JLabel categoryLabel1;
     private JLabel categoryLabel2;
     private JLabel categoryLabel3;
@@ -18,19 +18,22 @@ public class ResultsGUI extends JFrame {
     private JLabel player2Icon;
     PrintWriter out;
 
-    public ResultsGUI(PrintWriter out){
+
+    public ResultsGUI(PrintWriter out) {
         this.out = out;
         setContentPane(panel1);
         setVisible(true);
-        setSize(400,600);
+        setSize(400, 600);
 
 
+            continueResultButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    out.println();
 
-        fortsättButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                out.println();
-            }
-        });
-    }
+                }
+            });
+        }
+
+
 }

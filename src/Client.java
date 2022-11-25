@@ -138,8 +138,8 @@ public class Client extends Thread {
                 roundCounter++;
                 gameGui.setVisible(false);
                 ResultsGUI resultsGUI = new ResultsGUI(out);
+
                 in.readLine();
-                resultsGUI.setVisible(false);
 
                 if (!playerTurn && questionCounter<2 && roundCounter<2) {
                     waitingOnPlayerGUI.setVisible(true);
