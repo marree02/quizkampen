@@ -77,8 +77,13 @@ public class Client extends Thread {
                     in.readLine();
                     categoryGui.setVisible(false);
                     waitingOnPlayerGUI = new WaitingOnPlayerGUI();
+
                     out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
-                    in.readLine();
+                    while (in.readLine().equals("NO")) {
+                        Thread.sleep(300);
+                        out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
+                    }
+
                     waitingOnPlayerGUI.setVisible(false);
                 }
 
@@ -86,7 +91,10 @@ public class Client extends Thread {
                     welcomeGui.setVisible(true);
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
-                    in.readLine();
+                    while (in.readLine().equals("NO")) {
+                        Thread.sleep(300);
+                        out.println("REQUEST NEW ROUND");
+                    }
                     welcomeGui.setVisible(false);
                     Thread.sleep(200);
                 }

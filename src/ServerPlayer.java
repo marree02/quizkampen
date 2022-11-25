@@ -84,11 +84,12 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("REQUEST NEW ROUND")) {
-                    while(!game.roundReadyToStart()) {
-                        Thread.sleep(100);
+                    if (!game.roundReadyToStart()) {
+                        out.println("NO");
+                    } else {
+                        out.println();
+                        game.setRoundReadyToStart(false);
                     }
-                    out.println();
-                    game.setRoundReadyToStart(false);
                 }
 
                 else if (fromClient.equals("GENERATE QUESTIONS FOR NEXT ROUND")) {
@@ -124,13 +125,15 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND")) {
-                    while (game.getPlayersFinishedWithRound() < 2) {
-                        Thread.sleep(100);
+                    if (game.getPlayersFinishedWithRound() < 2) {
+                        out.println("NO");
+                    } else {
+                        game.questionGenerator.setCategory(nextCategory);
+                        game.generateQuestionsForNextRound(8);
+                        game.setPlayersFinishedWithRound(0);
+                        out.println("YES");
                     }
-                    game.questionGenerator.setCategory(nextCategory);
-                    game.generateQuestionsForNextRound(8);
-                    game.setPlayersFinishedWithRound(0);
-                    out.println();
+
                 }
 
                 else if (fromClient.equals("FINISH ROUND")) {
