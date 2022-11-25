@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -6,6 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class Client extends Thread {
 
@@ -25,13 +27,12 @@ public class Client extends Thread {
 
     boolean playerTurn;
 
-    int numberOfQuestionsPerRound = 2;
-
+    int numberOfQuestionsPerRound;
     int roundCounter = 0;
-
     int questionCounter = 0;
+    int numberOfRounds;
 
-    int numberOfRounds = 4;
+
 
     int roundScore = 0;
 
@@ -41,6 +42,17 @@ public class Client extends Thread {
         welcomeGui = new WelcomeUI();
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+
+
+        Properties p = new Properties();
+       try{
+           p.load(new FileInputStream("src/Settings.properties"));
+       }catch(Exception e){
+           System.out.println("filen kunde ej hittas");
+       }
+
+        this.numberOfQuestionsPerRound = Integer.parseInt(p.getProperty("questions"));
+        this.numberOfRounds = Integer.parseInt(p.getProperty("rounds"));
 
         this.start();
     }
