@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 
 public class ResultsGUI extends JFrame {
     private JPanel panel1;
-    private JButton fortsättButton;
+    protected JButton fortsättButton;
     private JLabel categoryLabel1;
     private JLabel categoryLabel2;
     private JLabel categoryLabel3;

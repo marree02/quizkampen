@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client extends Thread {
 
@@ -20,6 +21,8 @@ public class Client extends Thread {
 
     String userName;
 
+    List<String> categoriesPlayed = new ArrayList<>();
+
     boolean playerTurn;
 
     int numberOfQuestionsPerRound = 2;
@@ -29,6 +32,8 @@ public class Client extends Thread {
     int questionCounter = 0;
 
     int numberOfRounds = 4;
+
+    int roundScore = 0;
 
     public Client() {
 
@@ -102,7 +107,7 @@ public class Client extends Thread {
 
                 while (questionCounter < numberOfQuestionsPerRound) {
 
-                    gameGui = new GameGui(out);
+                    gameGui = new GameGui(out, this);
                     out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
                     gameGui.opponentUserNameLabel.setText(in.readLine());
@@ -120,16 +125,47 @@ public class Client extends Thread {
 
                 }
 
+                out.println("SEND SCORE FOR ROUND");
+                out.println(roundScore);
+
+                out.println("GET CURRENT CATEGORY");
+                categoriesPlayed.add(in.readLine());
+                System.out.println(categoriesPlayed.get(categoriesPlayed.size()-1));
+
                 out.println("GET SCORES");
-                //Ta emot strängar med scores
+                String myScoreForThisRound = in.readLine();
+                String opponentScoreForThisRound = in.readLine();
+                System.out.println("Egen poäng: " + myScoreForThisRound);
+                System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
+                // Rita ut i GUI:t här
 
                 resultsGUI = new ResultsGUI(out);
                 resultsGUI.setTitle(userName);
 
-                if (in.readLine().equals("CONTINUE")); // Add: Resultat från motståndaren.
+                out.println("CHECK IF OPPONENT SCORE IS IN");
+                while(in.readLine().equals("NO")) {
+                    Thread.sleep(300);
+                    out.println("CHECK IF OPPONENT SCORE IS IN");
+                }
+
+                out.println("GET SCORES");
+                myScoreForThisRound = in.readLine();
+                opponentScoreForThisRound = in.readLine();
+                System.out.println("Egen poäng: " + myScoreForThisRound);
+                System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
+                // Rita ut i GUI:t här
+
+                resultsGUI.fortsättButton.setEnabled(true);
+
+                if(in.readLine().equals("CONTINUE"));
+
+
+
+
 
                 resultsGUI.setVisible(false);
 
+                roundScore = 0;
                 playerTurn = !playerTurn; // Byte av spelare
                 questionCounter = 0;
                 out.println("FINISH ROUND");

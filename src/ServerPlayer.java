@@ -26,6 +26,8 @@ public class ServerPlayer extends Thread {
 
     int numberOfRounds = 2;
 
+    boolean userClickedContinue = false;
+
     String nextCategory;
 
     List<Question> questionsForNextRound = new ArrayList<>();
@@ -120,7 +122,6 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("CONTINUE FROM RESULTS")) {
-
                     out.println("CONTINUE");
                 }
 
@@ -140,8 +141,36 @@ public class ServerPlayer extends Thread {
                     game.finishRound();
                 }
 
+                else if (fromClient.equals("SEND SCORE FOR ROUND")) {
+                    game.addRoundScore(playerOneOrTwo, in.readLine());
+                }
+
+                else if (fromClient.equals("CHECK IF OPPONENT SCORE IS IN")) {
+
+                    if (game.checkIfOpponentScoresAreIn()) {
+                        out.println("YES");
+                    } else {
+                        out.println("NO");
+                    }
+                }
+
+                else if (fromClient.equals("GET CURRENT CATEGORY")) {
+                    out.println(game.questionGenerator.getCurrentCategory());
+                }
+
                 else if (fromClient.contains("GET SCORES")) {
-                    //skicka scores som flera strängar?
+
+                    List<String> myScoresPerRound = game.getScoresPerRound(playerOneOrTwo);
+                    List<String> opponentScoresPerRound = game.getScoresPerRound(opponent.playerOneOrTwo);
+
+                    int currentRound = myScoresPerRound.size() - 1;
+                    out.println(myScoresPerRound.get(currentRound));
+                    if (opponentScoresPerRound.size() < myScoresPerRound.size()) {
+                        out.println("-");
+                    } else {
+                        out.println(opponentScoresPerRound.get(currentRound));
+                    }
+
                 }
 
                 else {

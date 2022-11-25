@@ -11,6 +11,8 @@ public class GameRoom {
 
     List<Question> questionsForNextRound = new ArrayList<>();
 
+    List<String> scoresPerRoundPlayer1 = new ArrayList<>();
+    List<String> scoresPerRoundPlayer2 = new ArrayList<>();
 
 
 
@@ -22,6 +24,23 @@ public class GameRoom {
 
         questionGenerator.shuffleQuestions();
 
+    }
+
+    public synchronized List<String> getScoresPerRound(String playerOneOrTwo) {
+        if (playerOneOrTwo.equals("1")) {
+            return scoresPerRoundPlayer1;
+        } else {
+            return scoresPerRoundPlayer2;
+        }
+    }
+
+    public synchronized void addRoundScore(String playerOneOrTwo, String score) {
+        if (playerOneOrTwo.equals("1")) {
+            scoresPerRoundPlayer1.add(score);
+        }
+        if (playerOneOrTwo.equals("2")) {
+            scoresPerRoundPlayer2.add(score);
+        }
     }
 
     public synchronized void setRoundReadyToStart(boolean trueOrFalse) {
@@ -53,5 +72,13 @@ public class GameRoom {
 
     public synchronized List<Question> getQuestionsForNextRound() {
         return questionsForNextRound;
+    }
+
+    public synchronized boolean checkIfOpponentScoresAreIn() {
+        if (scoresPerRoundPlayer1.size() == scoresPerRoundPlayer2.size()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
