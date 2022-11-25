@@ -24,9 +24,9 @@ public class GameGui extends JFrame {
         this.client = client;
 
         setContentPane(panel1);
-        setVisible(true);
         setSize(550,600);
-        setLocationRelativeTo(null);
+        if (client.windowCentered) setLocationRelativeTo(null);
+        setVisible(true);
         continueButton.setVisible(false);
         setResizable(false);
 

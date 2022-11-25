@@ -27,6 +27,8 @@ public class Client extends Thread {
 
     boolean playerTurn;
 
+    boolean windowCentered;
+
     int numberOfQuestionsPerRound;
     int roundCounter = 0;
     int questionCounter = 0;
@@ -71,18 +73,21 @@ public class Client extends Thread {
 
             if (in.readLine().equals("1")) {
                 playerTurn = true;
+                windowCentered = true;
             } else {
                 playerTurn = false;
+                windowCentered = false;
             }
-
 
             out.println("SENDING USERNAME");
             out.println(userName);
 
+            welcomeGui.setVisible(false);
+
             while (roundCounter < numberOfRounds) {
 
                 if (playerTurn) {
-                    welcomeGui.setVisible(false);
+
                     categoryGui = new CategoryUI(out, this);
                     categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                     out.println("GET CATEGORIES");
@@ -103,7 +108,8 @@ public class Client extends Thread {
                 }
 
                 if (!playerTurn) {
-                    welcomeGui.setVisible(true);
+                    welcomeGui = new WelcomeUI(this);
+                    welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
                     while (in.readLine().equals("NO")) {

@@ -17,17 +17,6 @@ public class ServerPlayer extends Thread {
     String playerOneOrTwo;
     String fromClient;
 
-
-    int numberOfQuestionsPerRound = 2;
-
-    int roundCounter = 0;
-
-    int questionCounter = 0;
-
-    int numberOfRounds = 2;
-
-    boolean userClickedContinue = false;
-
     String nextCategory;
 
     List<Question> questionsForNextRound = new ArrayList<>();

@@ -23,8 +23,10 @@ public class ResultsGUI extends JFrame {
         this.client = client;
         this.out = out;
         setContentPane(panel1);
-        setVisible(true);
         setSize(400,600);
+        if (client.windowCentered) setLocationRelativeTo(null);
+        setVisible(true);
+
 
 
 

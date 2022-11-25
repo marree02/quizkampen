@@ -22,10 +22,9 @@ public class CategoryUI extends JFrame implements ActionListener {
         this.client = client;
         this.out = out;
         setContentPane(panel1);
-        setVisible(true);
         setSize(450, 500);
-        setLocationRelativeTo(null);
-
+        if (client.windowCentered) setLocationRelativeTo(null);
+        setVisible(true);
 
         category1.addActionListener(this);
         category2.addActionListener(this);

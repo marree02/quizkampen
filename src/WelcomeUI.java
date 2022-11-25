@@ -12,9 +12,9 @@ public class WelcomeUI extends JFrame {
 
         this.client = client;
         setContentPane(welcomePanel);
-        setVisible(true);
         setSize(400,500);
-        setLocationRelativeTo(null);
+        if (client.windowCentered) setLocationRelativeTo(null);
+        setVisible(true);
 
     }
 
