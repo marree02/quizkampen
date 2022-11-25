@@ -111,8 +111,9 @@ public class Client extends Thread {
                         out.println("REQUEST NEW ROUND");
                     }
                     welcomeGui.setVisible(false);
-                    Thread.sleep(500);
+                    Thread.sleep(300);
                 }
+                Thread.sleep(300);
 
                 out.println("GENERATE QUESTIONS FOR NEXT ROUND");
 
