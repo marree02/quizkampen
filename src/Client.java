@@ -12,17 +12,15 @@ public class Client extends Thread {
 
     CategoryUI categoryGui;
 
-    WaitingOnPlayerGUI waitingOnPlayerGUI = new WaitingOnPlayerGUI();
+    WaitingOnPlayerGUI waitingOnPlayerGUI;
+
+    GameGui gameGui;
+
+    ResultsGUI resultsGUI;
 
     String userName;
 
     boolean playerTurn;
-
-    GameRoom game;
-
-    GameGui gameGui;
-
-    String correctAnswer;
 
     int numberOfQuestionsPerRound = 2;
 
@@ -30,10 +28,10 @@ public class Client extends Thread {
 
     int questionCounter = 0;
 
-    int numberOfRounds = 2;
+    int numberOfRounds = 4;
 
     public Client() {
-        waitingOnPlayerGUI.setVisible(false);
+
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
         welcomeGui = new WelcomeUI();
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
@@ -53,67 +51,61 @@ public class Client extends Thread {
         ) {
 
 
-            System.out.println("Klienttråd startad");
-
-            //Det första som händer - skickar userName till servern
-            out.println(userName);
+            out.println("GET PLAYER 1 OR 2");
 
 
-            //Steg 2: klienten tar emot om den är spelare ett eller två
             if (in.readLine().equals("1")) {
                 playerTurn = true;
             } else {
                 playerTurn = false;
             }
 
-            while(roundCounter < numberOfRounds) {
 
-                if (playerTurn) { // Spelare vars tur det är att välja kategori
+            out.println("SENDING USERNAME");
+            out.println(userName);
 
+            while (roundCounter < numberOfRounds) {
+
+                if (playerTurn) {
                     welcomeGui.setVisible(false);
-
                     categoryGui = new CategoryUI(out);
-
                     categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
-
-                    // Steg 3: klienten tar emot 3 strängar med de kategorier som ska visas
-
+                    out.println("GET CATEGORIES");
                     categoryGui.category1.setText(in.readLine());
-
                     categoryGui.category2.setText(in.readLine());
-
                     categoryGui.category3.setText(in.readLine());
-
-                } else { // Spelare som väntar på att den andra ska välja kategori
-
                     in.readLine();
-                    in.readLine();
-                    in.readLine();
+                    categoryGui.setVisible(false);
+                    waitingOnPlayerGUI = new WaitingOnPlayerGUI();
 
-                    welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
-
-                    //Väntar på att motståndaren valt kategori
-                    in.readLine();
+                    out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
+                    while (in.readLine().equals("NO")) {
+                        Thread.sleep(300);
+                        out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
+                    }
 
                     waitingOnPlayerGUI.setVisible(false);
-
-                    out.println("INGEN KATEGORI");
-
                 }
 
-                //Väntar på meddelande från servern om att kategori är vald och första ronden kan starta
-                in.readLine();
+                if (!playerTurn) {
+                    welcomeGui.setVisible(true);
+                    welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
+                    out.println("REQUEST NEW ROUND");
+                    while (in.readLine().equals("NO")) {
+                        Thread.sleep(300);
+                        out.println("REQUEST NEW ROUND");
+                    }
+                    welcomeGui.setVisible(false);
+                    Thread.sleep(200);
+                }
 
+                out.println("GENERATE QUESTIONS FOR NEXT ROUND");
 
-                // fönstret görs osynligt 2ggr för spelare 1, TODO bör fixas
-
-                welcomeGui.setVisible(false);
 
                 while (questionCounter < numberOfQuestionsPerRound) {
 
                     gameGui = new GameGui(out);
-
-                    // Läser in från servern
+                    out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
                     gameGui.opponentUserNameLabel.setText(in.readLine());
                     gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
@@ -124,22 +116,27 @@ public class Client extends Thread {
                     gameGui.button4.setText(in.readLine());
                     gameGui.correctAnswer = in.readLine();
 
-                    System.out.println("Spelare redo för fråga");
-
-                    //Väntar på nästa fråga från servern
-                    in.readLine();
-
+                    if(in.readLine().equals("QUESTION ANSWERED"));
                     gameGui.setVisible(false);
-
                     questionCounter++;
 
                 }
-                questionCounter = 0;
-                roundCounter++;
-                gameGui.setVisible(false);
-                ResultsGUI resultsGUI = new ResultsGUI(out);
-                in.readLine();
+
+                resultsGUI = new ResultsGUI(out);
+                resultsGUI.setTitle(userName);
+
+                if (in.readLine().equals("CONTINUE"));
+
                 resultsGUI.setVisible(false);
+
+                playerTurn = !playerTurn;
+                questionCounter = 0;
+                out.println("FINISH ROUND");
+                roundCounter++;
+            }
+
+
+            /*
 
                 if (!playerTurn && questionCounter<2 && roundCounter<2) {
                     waitingOnPlayerGUI.setVisible(true);
@@ -151,17 +148,18 @@ public class Client extends Thread {
                // }
             }
 
+        */
 
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public static void main(String[] args) {
         Client c = new Client();
-        
+
     }
 }
 

@@ -39,10 +39,11 @@ public class CategoryUI extends JFrame implements ActionListener {
         JButton button = (JButton) e.getSource();
 
         // Steg 4: klienten skickar texten på den knapp som valdes
+        out.println("SET CATEGORY");
         out.println(button.getText());
 
 
-        p = new Properties();
+        /*p = new Properties();
 
         try {
             p.load(new FileInputStream("src/Settings.properties"));
@@ -52,17 +53,7 @@ public class CategoryUI extends JFrame implements ActionListener {
 
         int question = Integer.parseInt(p.getProperty("questions"));
         int rounds = Integer.parseInt(p.getProperty("rounds"));
-
-
-        setVisible(false);
-
-
-                /*
-                hämta txt frågor
-                nya jbutton knappar
-                true/false sats
-                 */
-        // out.close();
+        */
     }
 }
 
