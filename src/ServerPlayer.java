@@ -116,12 +116,12 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("QUESTION ANSWERED")) {
-                    out.println();
+                    out.println("QUESTION ANSWERED");
                 }
 
                 else if (fromClient.equals("CONTINUE FROM RESULTS")) {
 
-                    out.println();
+                    out.println("CONTINUE");
                 }
 
                 else if (fromClient.equals("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND")) {

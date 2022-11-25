@@ -116,7 +116,7 @@ public class Client extends Thread {
                     gameGui.button4.setText(in.readLine());
                     gameGui.correctAnswer = in.readLine();
 
-                    in.readLine();
+                    if(in.readLine().equals("QUESTION ANSWERED"));
                     gameGui.setVisible(false);
                     questionCounter++;
 
@@ -125,7 +125,7 @@ public class Client extends Thread {
                 resultsGUI = new ResultsGUI(out);
                 resultsGUI.setTitle(userName);
 
-                in.readLine();
+                if (in.readLine().equals("CONTINUE"));
 
                 resultsGUI.setVisible(false);
 
