@@ -4,6 +4,8 @@ public interface Quiz {
 
     public void shuffleQuestions();
 
+    public void shuffleCategories();
+
     public void setCategory(String s);
 
     public String[] getCategoriesAsArray(int n);

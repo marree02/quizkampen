@@ -18,7 +18,7 @@ public class GameRoom {
 
     public GameRoom(){
 
-        String[] filenames = {"java.txt", "golf.txt", "svamp.txt"};
+        String[] filenames = {"java.txt", "golf.txt", "svamp.txt", "huvudstäder.txt"};
 
         this.questionGenerator = new QuestionGenerator(filenames);
 

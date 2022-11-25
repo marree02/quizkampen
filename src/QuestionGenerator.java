@@ -19,7 +19,7 @@ public class QuestionGenerator implements Quiz {
     @Override
     public synchronized String[] getCategoriesAsArray(int n) {
         String[] categories = new String[3];
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < n; i++) {
             categories[i] = categoryList.get(i).getCategoryName();
         }
         return categories;
@@ -85,6 +85,11 @@ public class QuestionGenerator implements Quiz {
         for (Category c : categoryList) {
             c.shuffleQuestions();
         }
+    }
+
+    @Override
+    public synchronized void shuffleCategories() {
+        Collections.shuffle(categoryList);
     }
 
 

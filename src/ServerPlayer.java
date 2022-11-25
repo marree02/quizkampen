@@ -73,6 +73,7 @@ public class ServerPlayer extends Thread {
 
                 else if (fromClient.equals("GET CATEGORIES")) {
                     game.setRoundReadyToStart(false);
+                    game.questionGenerator.shuffleCategories();
                     String[] categories = game.questionGenerator.getCategoriesAsArray(3);
                     out.println(categories[0]);
                     out.println(categories[1]);
