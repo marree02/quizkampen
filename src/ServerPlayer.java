@@ -88,8 +88,6 @@ public class ServerPlayer extends Thread {
                         Thread.sleep(100);
                     }
                     out.println();
-
-
                     game.setRoundReadyToStart(false);
                 }
 
@@ -129,13 +127,10 @@ public class ServerPlayer extends Thread {
                     while (game.getPlayersFinishedWithRound() < 2) {
                         Thread.sleep(100);
                     }
-
-
                     game.questionGenerator.setCategory(nextCategory);
                     game.generateQuestionsForNextRound(8);
                     game.setPlayersFinishedWithRound(0);
                     out.println();
-
                 }
 
                 else if (fromClient.equals("FINISH ROUND")) {
