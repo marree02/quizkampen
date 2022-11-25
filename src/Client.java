@@ -50,9 +50,7 @@ public class Client extends Thread {
 
         ) {
 
-
             out.println("GET PLAYER 1 OR 2");
-
 
             if (in.readLine().equals("1")) {
                 playerTurn = true;
@@ -122,14 +120,17 @@ public class Client extends Thread {
 
                 }
 
+                out.println("GET SCORES");
+                //Ta emot strängar med scores
+
                 resultsGUI = new ResultsGUI(out);
                 resultsGUI.setTitle(userName);
 
-                if (in.readLine().equals("CONTINUE"));
+                if (in.readLine().equals("CONTINUE")); // Add: Resultat från motståndaren.
 
                 resultsGUI.setVisible(false);
 
-                playerTurn = !playerTurn;
+                playerTurn = !playerTurn; // Byte av spelare
                 questionCounter = 0;
                 out.println("FINISH ROUND");
                 roundCounter++;
