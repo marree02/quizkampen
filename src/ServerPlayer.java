@@ -17,8 +17,6 @@ public class ServerPlayer extends Thread {
     String playerOneOrTwo;
     String fromClient;
 
-    String nextCategory;
-
     List<Question> questionsForNextRound = new ArrayList<>();
 
 
@@ -70,41 +68,43 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("SET CATEGORY")) {
-                    nextCategory = in.readLine();
+                    game.questionGenerator.setCategory(in.readLine());
+                    game.generateQuestionsForNextRound(8);
+                    game.resetRoundScores();
                     game.setRoundReadyToStart(true);
-                    out.println();
+                    out.println("CONTINUE");
                 }
 
                 else if (fromClient.equals("REQUEST NEW ROUND")) {
                     if (!game.roundReadyToStart()) {
                         out.println("NO");
                     } else {
-                        out.println();
+                        out.println("YES");
                         game.setRoundReadyToStart(false);
                     }
                 }
 
                 else if (fromClient.equals("GENERATE QUESTIONS FOR NEXT ROUND")) {
-                    questionsForNextRound.clear();
-                    questionsForNextRound.addAll(game.getQuestionsForNextRound());
-                }
 
+                    this.questionsForNextRound.clear();
+
+                    this.questionsForNextRound.addAll(game.getQuestionsForNextRound());
+                }
 
                 else if (fromClient.equals("GET QUESTION")) {
 
-                    Question question = questionsForNextRound.remove(0);
+                    Question question = this.questionsForNextRound.remove(0);
 
                     out.println(opponent.userName);
                     out.println(game.questionGenerator.getCurrentCategory());
-                    out.println(game.questionGenerator.getQuestion(question));
+                    out.println(question.getQuestion());
 
-                    String[] choices = game.questionGenerator.getChoicesAsArray(question);
+                    List<String> choices = question.getChoices();
                     for (String s : choices) {
-                        System.out.println(s);
                         out.println(s);
                     }
 
-                    out.println(game.questionGenerator.getCorrectAnswer(question));
+                    out.println(question.getCorrectAnswer());
                 }
 
                 else if (fromClient.equals("QUESTION ANSWERED")) {
@@ -113,22 +113,6 @@ public class ServerPlayer extends Thread {
 
                 else if (fromClient.equals("CONTINUE FROM RESULTS")) {
                     out.println("CONTINUE");
-                }
-
-                else if (fromClient.equals("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND")) {
-                    if (game.getPlayersFinishedWithRound() < 2) {
-                        out.println("NO");
-                    } else {
-                        game.questionGenerator.setCategory(nextCategory);
-                        game.generateQuestionsForNextRound(8);
-                        game.setPlayersFinishedWithRound(0);
-                        out.println("YES");
-                    }
-
-                }
-
-                else if (fromClient.equals("FINISH ROUND")) {
-                    game.finishRound();
                 }
 
                 else if (fromClient.equals("SEND SCORE FOR ROUND")) {
@@ -150,16 +134,8 @@ public class ServerPlayer extends Thread {
 
                 else if (fromClient.contains("GET SCORES")) {
 
-                    List<String> myScoresPerRound = game.getScoresPerRound(playerOneOrTwo);
-                    List<String> opponentScoresPerRound = game.getScoresPerRound(opponent.playerOneOrTwo);
-
-                    int currentRound = myScoresPerRound.size() - 1;
-                    out.println(myScoresPerRound.get(currentRound));
-                    if (opponentScoresPerRound.size() < myScoresPerRound.size()) {
-                        out.println("-");
-                    } else {
-                        out.println(opponentScoresPerRound.get(currentRound));
-                    }
+                    out.println(game.getScoresPerRound(playerOneOrTwo));
+                    out.println(game.getScoresPerRound(opponent.playerOneOrTwo));
 
                 }
 

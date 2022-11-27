@@ -95,24 +95,14 @@ public class Client extends Thread {
             while (roundCounter < numberOfRounds) {
 
                 if (playerTurn) {
-
                     categoryGui = new CategoryUI(out, this);
                     categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                     out.println("GET CATEGORIES");
                     categoryGui.category1.setText(in.readLine());
                     categoryGui.category2.setText(in.readLine());
                     categoryGui.category3.setText(in.readLine());
-                    in.readLine();
+                    if(in.readLine().equals("CONTINUE"));
                     categoryGui.dispose();
-                    waitingOnPlayerGUI = new WaitingOnPlayerGUI(this);
-
-                    out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
-                    while (in.readLine().equals("NO")) {
-                        Thread.sleep(300);
-                        out.println("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND");
-                    }
-
-                    waitingOnPlayerGUI.dispose();
                 }
 
                 if (!playerTurn) {
@@ -121,13 +111,10 @@ public class Client extends Thread {
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
                     while (in.readLine().equals("NO")) {
-                        Thread.sleep(300);
                         out.println("REQUEST NEW ROUND");
                     }
                     welcomeGui.dispose();
-                    Thread.sleep(300);
                 }
-                Thread.sleep(300);
 
                 out.println("GENERATE QUESTIONS FOR NEXT ROUND");
 
@@ -176,7 +163,7 @@ public class Client extends Thread {
 
                 out.println("CHECK IF OPPONENT SCORE IS IN");
                 while(in.readLine().equals("NO")) {
-                    Thread.sleep(300);
+                    Thread.sleep(500);
                     out.println("CHECK IF OPPONENT SCORE IS IN");
                 }
 
@@ -202,7 +189,7 @@ public class Client extends Thread {
                 roundScore = 0;
                 playerTurn = !playerTurn; // Byte av spelare
                 questionCounter = 0;
-                out.println("FINISH ROUND");
+
                 roundCounter++;
             }
 

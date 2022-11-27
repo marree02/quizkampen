@@ -11,8 +11,8 @@ public class GameRoom {
 
     List<Question> questionsForNextRound = new ArrayList<>();
 
-    List<String> scoresPerRoundPlayer1 = new ArrayList<>();
-    List<String> scoresPerRoundPlayer2 = new ArrayList<>();
+    String roundScorePlayer1 = "-";
+    String roundScorePlayer2 = "-";
 
 
 
@@ -26,20 +26,20 @@ public class GameRoom {
 
     }
 
-    public synchronized List<String> getScoresPerRound(String playerOneOrTwo) {
+    public synchronized String getScoresPerRound(String playerOneOrTwo) {
         if (playerOneOrTwo.equals("1")) {
-            return scoresPerRoundPlayer1;
+            return roundScorePlayer1;
         } else {
-            return scoresPerRoundPlayer2;
+            return roundScorePlayer2;
         }
     }
 
     public synchronized void addRoundScore(String playerOneOrTwo, String score) {
         if (playerOneOrTwo.equals("1")) {
-            scoresPerRoundPlayer1.add(score);
+            roundScorePlayer1 = score;
         }
         if (playerOneOrTwo.equals("2")) {
-            scoresPerRoundPlayer2.add(score);
+            roundScorePlayer2 = score;
         }
     }
 
@@ -51,17 +51,6 @@ public class GameRoom {
         return roundReadyToStart;
     }
 
-    public synchronized void finishRound() {
-        playersFinishedWithRound++;
-    }
-
-    public synchronized int getPlayersFinishedWithRound() {
-        return playersFinishedWithRound;
-    }
-
-    public synchronized void setPlayersFinishedWithRound(int playersFinishedWithRound) {
-        this.playersFinishedWithRound = playersFinishedWithRound;
-    }
 
     public synchronized void generateQuestionsForNextRound(int numberOfQuestions) {
         questionsForNextRound.clear();
@@ -75,10 +64,15 @@ public class GameRoom {
     }
 
     public synchronized boolean checkIfOpponentScoresAreIn() {
-        if (scoresPerRoundPlayer1.size() == scoresPerRoundPlayer2.size()) {
+        if (!roundScorePlayer1.equals("Väntar...") && !roundScorePlayer2.equals("Väntar...")) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public synchronized void resetRoundScores() {
+        roundScorePlayer1 = "Väntar...";
+        roundScorePlayer2 = "Väntar...";
     }
 }
