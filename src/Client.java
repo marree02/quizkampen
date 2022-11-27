@@ -81,10 +81,10 @@ public class Client extends Thread {
 
             if (in.readLine().equals("1")) {
                 playerTurn = true;
-                windowCentered = true;
+                windowCentered = false;
             } else {
                 playerTurn = false;
-                windowCentered = false;
+                windowCentered = true;
             }
 
             out.println("SENDING USERNAME");

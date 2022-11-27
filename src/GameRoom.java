@@ -7,12 +7,10 @@ public class GameRoom {
 
     private boolean roundReadyToStart = false;
 
-    private int playersFinishedWithRound = 2;
-
     List<Question> questionsForNextRound = new ArrayList<>();
 
-    String roundScorePlayer1 = "-";
-    String roundScorePlayer2 = "-";
+    String roundScorePlayer1 = "Väntar...";
+    String roundScorePlayer2 = "Väntar...";
 
 
 
