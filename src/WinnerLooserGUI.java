@@ -12,6 +12,7 @@ public class WinnerLooserGUI extends JFrame {
         setContentPane(panel1);
         setVisible(true);
         setSize(300,300);
+        setResizable(false);
 
 
         button1.addActionListener(new ActionListener() {
