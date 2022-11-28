@@ -84,9 +84,7 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("GENERATE QUESTIONS FOR NEXT ROUND")) {
-
                     this.questionsForNextRound.clear();
-
                     this.questionsForNextRound.addAll(game.getQuestionsForNextRound());
                 }
 
@@ -132,10 +130,8 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.contains("GET SCORES")) {
-
                     out.println(game.getScoresPerRound(playerOneOrTwo));
                     out.println(game.getScoresPerRound(opponent.playerOneOrTwo));
-
                 }
 
                 else {

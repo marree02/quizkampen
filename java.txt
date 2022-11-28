@@ -18,3 +18,33 @@ Skriva javaprogram
 Kompilera javaprogram
 Debugga javaprogram
 ---
+Hur många interface kan en klass implementera?
+*Obegränsat antal
+Ett
+Inga
+255
+---
+Hur många klasser kan en klass ärva från?
+*En
+Två
+Tre
+Hur många som helst
+---
+Vilket nyckelord anger paketsynlighet?
+*Inget
+Private
+Protected
+Public
+---
+Vilken metod anropas för att starta exekveringen av en tråd?
+*start()
+run()
+execute()
+init()
+---
+Vilken metod kommer att köras när man anropar start() på en tråd?
+*run()
+start()
+execute()
+init()
+---
