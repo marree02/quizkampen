@@ -136,6 +136,8 @@ public class ServerPlayer extends Thread {
                     out.println(game.getScoresPerRound(playerOneOrTwo));
                     out.println(game.getScoresPerRound(opponent.playerOneOrTwo));
 
+                }else if(fromClient.equals("MOTSTÅNDAREN GAV UPP")){
+                    out.println("MOTSTÅNDAREN");
                 }
 
                 else {

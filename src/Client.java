@@ -212,7 +212,16 @@ public class Client extends Thread {
                 questionCounter = 0;
 
                 roundCounter++;
+
+                if(in.readLine().equals("MOTSTÅNDAREN")) {
+                        resultsGUI.giveUpButton.setText(opponentUserName + " gav upp. Spelet avslutas");
+                     //   Thread.sleep(5000);
+                //        interrupt();
+
+                }
             }
+
+
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
 
             if(totalScoreOpponent > playerTotalScore){
@@ -238,8 +247,6 @@ public class Client extends Thread {
 
         */
 
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

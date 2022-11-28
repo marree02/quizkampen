@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
 
@@ -14,6 +16,7 @@ public class GameGui extends JFrame {
     protected JLabel thisPLayerUserNameLabel;
     protected JLabel opponentUserNameLabel;
     private JButton continueButton;
+    private JButton giveUpButton;
     protected String correctAnswer;
     PrintWriter out;
     Client client;

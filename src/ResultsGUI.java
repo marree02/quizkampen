@@ -24,6 +24,7 @@ public class ResultsGUI extends JFrame {
     protected JLabel opponentScoreRound4;
     protected JLabel playerTotalScore;
     protected JLabel opponentTotalScore;
+    protected JButton giveUpButton;
     Client client;
     PrintWriter out;
 
@@ -44,5 +45,6 @@ public class ResultsGUI extends JFrame {
                 out.println("CONTINUE FROM RESULTS");
             }
         });
+        giveUpButton.addActionListener(e -> out.println("MOTSTÅNDAREN GAV UPP"));
     }
 }
