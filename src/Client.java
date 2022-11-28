@@ -273,7 +273,16 @@ public class Client extends Thread {
             } else {
                 winnerLooserGUI.winnerOrLooserLabel.setText("oavgjort!");
             }
-                
+
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
+            printWriter.println(userName + " -" + playerTotalScore);
+            printWriter.close();
+
+
+
+
+
+
 
             /*
 
