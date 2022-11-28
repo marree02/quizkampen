@@ -7,19 +7,38 @@ public class GameRoom {
 
     private boolean roundReadyToStart = false;
 
-    private int playersFinishedWithRound = 2;
-
     List<Question> questionsForNextRound = new ArrayList<>();
+
+    String roundScorePlayer1 = "Väntar...";
+    String roundScorePlayer2 = "Väntar...";
+
 
 
     public GameRoom(){
 
-        String[] filenames = {"java.txt", "golf.txt", "svamp.txt"};
+        String[] filenames = {"java.txt", "golf.txt", "svamp.txt", "huvudstäder.txt"};
 
         this.questionGenerator = new QuestionGenerator(filenames);
 
         questionGenerator.shuffleQuestions();
 
+    }
+
+    public synchronized String getScoresPerRound(String playerOneOrTwo) {
+        if (playerOneOrTwo.equals("1")) {
+            return roundScorePlayer1;
+        } else {
+            return roundScorePlayer2;
+        }
+    }
+
+    public synchronized void addRoundScore(String playerOneOrTwo, String score) {
+        if (playerOneOrTwo.equals("1")) {
+            roundScorePlayer1 = score;
+        }
+        if (playerOneOrTwo.equals("2")) {
+            roundScorePlayer2 = score;
+        }
     }
 
     public synchronized void setRoundReadyToStart(boolean trueOrFalse) {
@@ -30,17 +49,6 @@ public class GameRoom {
         return roundReadyToStart;
     }
 
-    public synchronized void finishRound() {
-        playersFinishedWithRound++;
-    }
-
-    public synchronized int getPlayersFinishedWithRound() {
-        return playersFinishedWithRound;
-    }
-
-    public synchronized void setPlayersFinishedWithRound(int playersFinishedWithRound) {
-        this.playersFinishedWithRound = playersFinishedWithRound;
-    }
 
     public synchronized void generateQuestionsForNextRound(int numberOfQuestions) {
         questionsForNextRound.clear();
@@ -51,5 +59,18 @@ public class GameRoom {
 
     public synchronized List<Question> getQuestionsForNextRound() {
         return questionsForNextRound;
+    }
+
+    public synchronized boolean checkIfOpponentScoresAreIn() {
+        if (!roundScorePlayer1.equals("Väntar...") && !roundScorePlayer2.equals("Väntar...")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public synchronized void resetRoundScores() {
+        roundScorePlayer1 = "Väntar...";
+        roundScorePlayer2 = "Väntar...";
     }
 }

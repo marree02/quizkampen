@@ -17,17 +17,6 @@ public class ServerPlayer extends Thread {
     String playerOneOrTwo;
     String fromClient;
 
-
-    int numberOfQuestionsPerRound = 2;
-
-    int roundCounter = 0;
-
-    int questionCounter = 0;
-
-    int numberOfRounds = 2;
-
-    String nextCategory;
-
     List<Question> questionsForNextRound = new ArrayList<>();
 
 
@@ -70,7 +59,7 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("GET CATEGORIES")) {
-                    game.setRoundReadyToStart(false);
+                    game.questionGenerator.shuffleCategories();
                     String[] categories = game.questionGenerator.getCategoriesAsArray(3);
                     out.println(categories[0]);
                     out.println(categories[1]);
@@ -78,41 +67,43 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("SET CATEGORY")) {
-                    nextCategory = in.readLine();
+                    game.questionGenerator.setCategory(in.readLine());
+                    game.generateQuestionsForNextRound(8);
+                    game.resetRoundScores();
                     game.setRoundReadyToStart(true);
-                    out.println();
+                    out.println("CONTINUE");
                 }
 
                 else if (fromClient.equals("REQUEST NEW ROUND")) {
                     if (!game.roundReadyToStart()) {
                         out.println("NO");
                     } else {
-                        out.println();
+                        out.println("YES");
                         game.setRoundReadyToStart(false);
                     }
                 }
 
                 else if (fromClient.equals("GENERATE QUESTIONS FOR NEXT ROUND")) {
-                    questionsForNextRound.clear();
-                    questionsForNextRound.addAll(game.getQuestionsForNextRound());
-                }
 
+                    this.questionsForNextRound.clear();
+
+                    this.questionsForNextRound.addAll(game.getQuestionsForNextRound());
+                }
 
                 else if (fromClient.equals("GET QUESTION")) {
 
-                    Question question = questionsForNextRound.remove(0);
+                    Question question = this.questionsForNextRound.remove(0);
 
                     out.println(opponent.userName);
                     out.println(game.questionGenerator.getCurrentCategory());
-                    out.println(game.questionGenerator.getQuestion(question));
+                    out.println(question.getQuestion());
 
-                    String[] choices = game.questionGenerator.getChoicesAsArray(question);
+                    List<String> choices = question.getChoices();
                     for (String s : choices) {
-                        System.out.println(s);
                         out.println(s);
                     }
 
-                    out.println(game.questionGenerator.getCorrectAnswer(question));
+                    out.println(question.getCorrectAnswer());
                 }
 
                 else if (fromClient.equals("QUESTION ANSWERED")) {
@@ -120,92 +111,39 @@ public class ServerPlayer extends Thread {
                 }
 
                 else if (fromClient.equals("CONTINUE FROM RESULTS")) {
-
                     out.println("CONTINUE");
                 }
 
-                else if (fromClient.equals("CHECK IF BOTH PLAYERS HAVE FINISHED ROUND")) {
-                    if (game.getPlayersFinishedWithRound() < 2) {
-                        out.println("NO");
-                    } else {
-                        game.questionGenerator.setCategory(nextCategory);
-                        game.generateQuestionsForNextRound(8);
-                        game.setPlayersFinishedWithRound(0);
-                        out.println("YES");
-                    }
-
+                else if (fromClient.equals("SEND SCORE FOR ROUND")) {
+                    game.addRoundScore(playerOneOrTwo, in.readLine());
                 }
 
-                else if (fromClient.equals("FINISH ROUND")) {
-                    game.finishRound();
+                else if (fromClient.equals("CHECK IF OPPONENT SCORE IS IN")) {
+
+                    if (game.checkIfOpponentScoresAreIn()) {
+                        out.println("YES");
+                    } else {
+                        out.println("NO");
+                    }
+                }
+
+                else if (fromClient.equals("GET CURRENT CATEGORY")) {
+                    out.println(game.questionGenerator.getCurrentCategory());
+                }
+
+                else if (fromClient.contains("GET SCORES")) {
+
+                    out.println(game.getScoresPerRound(playerOneOrTwo));
+                    out.println(game.getScoresPerRound(opponent.playerOneOrTwo));
+
                 }
 
                 else {
                     System.out.println("Felaktig input från client");
                 }
 
-
             }
 
-            //Steg 2: Varje servertråd skickar till sin klient om klienten är spelare 1 eller 2
-            /*
-            out.println(playerOneOrTwo);
-
-            while(roundCounter < numberOfRounds) {
-
-                String[] categories = game.questionGenerator.getCategoriesAsArray(3);
-
-                //Steg 3: en sträng för varje kategori som kan väljas skickas till båda klienterna
-                out.println(categories[0]);
-                out.println(categories[1]);
-                out.println(categories[2]);
-
-                //Steg 4: väntar på att få vald kategori från klienten
-                String chosenCategory = in.readLine();
-
-                //If blir true om kategorin kommer från den spelare som ska välja kategori
-                //Då meddelas den andre spelaren att kategori är vald
-                if (!chosenCategory.equals("INGEN KATEGORI")) {
-                    game.questionGenerator.setCategory(chosenCategory);
-                    opponent.out.println();
-                }
-
-                out.println();
-
-                while (questionCounter < numberOfQuestionsPerRound) {
-
-                    out.println(opponent.userName);
-                    out.println(game.questionGenerator.getCurrentCategory());
-                    out.println(game.questionGenerator.getCurrentQuestion());
-
-                    String[] choices = game.questionGenerator.getChoicesAsArray();
-                    for (String s : choices) {
-                        System.out.println(s);
-                        out.println(s);
-                    }
-
-                    out.println(game.questionGenerator.getCorrectAnswer());
-
-                    // Väntar på att klienten ska svara på frågan
-                    in.readLine();
-
-                    // skickar sträng så klienten vet att den ska starta nytt gameGui
-                    out.println();
-
-                    game.questionGenerator.nextQuestion();
-
-                    questionCounter++;
-                }
-                    in.readLine();
-                    out.println();
-                    questionCounter = 0;
-                    roundCounter++;
-            }
-
-            // out.close();
-
-
-             */
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,60 +16,65 @@ public class GameGui extends JFrame {
     private JButton continueButton;
     protected String correctAnswer;
     PrintWriter out;
+    Client client;
 
-    public GameGui(PrintWriter out) {
+    public GameGui(PrintWriter out, Client client) {
 
         this.out = out;
+        this.client = client;
 
         setContentPane(panel1);
-        setVisible(true);
         setSize(550,600);
-        setLocationRelativeTo(null);
+        if (client.windowCentered) setLocationRelativeTo(null);
+        setVisible(true);
         continueButton.setVisible(false);
         setResizable(false);
 
         button1.addActionListener(e -> {
             if(button1.getText().equals(correctAnswer)) {
                 button1.setBackground(Color.green);
+                client.roundScore++;
             }
             else {
                 button1.setBackground(Color.red);
                 setCorrectButton();
             }
-            setButtonDefault();
+            disableButtons();
         });
 
         button2.addActionListener(e -> {
-            if(button2.getText().equals(correctAnswer))
+            if(button2.getText().equals(correctAnswer)) {
                 button2.setBackground(Color.green);
-
-            else {
+                client.roundScore++;
+            } else {
                 button2.setBackground(Color.red);
                 setCorrectButton();
             }
-            setButtonDefault();
+            disableButtons();
         });
 
         button3.addActionListener(e -> {
             if(button3.getText().equals(correctAnswer)) {
                 button3.setBackground(Color.green);
+                client.roundScore++;
             }
             else {
                 button3.setBackground(Color.red);
                 setCorrectButton();
             }
-            setButtonDefault();
+            disableButtons();
         });
 
         button4.addActionListener(e -> {
             if(button4.getText().equals(correctAnswer)) {
                 button4.setBackground(Color.green);
+                client.roundScore++;
             }
             else {
                 button4.setBackground(Color.red);
                 setCorrectButton();
             }
-            setButtonDefault();
+            disableButtons();
         });
 
         continueButton.addActionListener(e -> {
@@ -91,12 +96,11 @@ public class GameGui extends JFrame {
         }
     }
 
-    public void setButtonDefault(){
+    public void disableButtons(){
         button1.setEnabled(false);
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-       // continueButton.setEnabled(true);
         continueButton.setVisible(true);
     }
 }

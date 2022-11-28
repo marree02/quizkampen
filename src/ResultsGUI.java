@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 
 public class ResultsGUI extends JFrame {
     private JPanel panel1;
-    private JButton fortsättButton;
+    protected JButton continueButton;
     private JLabel categoryLabel1;
     private JLabel categoryLabel2;
     private JLabel categoryLabel3;
@@ -16,17 +16,21 @@ public class ResultsGUI extends JFrame {
     private JLabel whosTurnLabel;
     private JLabel player1Icon;
     private JLabel player2Icon;
+    Client client;
     PrintWriter out;
 
-    public ResultsGUI(PrintWriter out){
+    public ResultsGUI(PrintWriter out, Client client){
+        this.client = client;
         this.out = out;
         setContentPane(panel1);
-        setVisible(true);
         setSize(400,600);
+        if (client.windowCentered) setLocationRelativeTo(null);
+        setVisible(true);
 
 
 
-        fortsättButton.addActionListener(new ActionListener() {
+
+        continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 out.println("CONTINUE FROM RESULTS");
