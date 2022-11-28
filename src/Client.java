@@ -5,8 +5,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class Client extends Thread {
@@ -23,15 +21,11 @@ public class Client extends Thread {
 
     String userName;
 
-    List<String> categoriesPlayed = new ArrayList<>();
-
-    List<String> scorePerRound = new ArrayList<>();
-
-    List<String> scorePerRoundOpponent = new ArrayList<>();
+    String opponentUserName;
 
     int roundScore = 0;
 
-    int totalScore = 0;
+    int playerTotalScore = 0;
 
     int totalScoreOpponent = 0;
 
@@ -124,7 +118,8 @@ public class Client extends Thread {
                     gameGui = new GameGui(out, this);
                     out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
-                    gameGui.opponentUserNameLabel.setText(in.readLine());
+                    opponentUserName = in.readLine();
+                    gameGui.opponentUserNameLabel.setText(opponentUserName);
                     gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
                     gameGui.questionLabel.setText(in.readLine());
                     gameGui.button1.setText(in.readLine());
@@ -143,23 +138,42 @@ public class Client extends Thread {
                 out.println(roundScore);
 
                 out.println("GET CURRENT CATEGORY");
-                categoriesPlayed.add(in.readLine());
-                System.out.println(categoriesPlayed.get(categoriesPlayed.size()-1));
+                String currentCategory = in.readLine();
+
 
                 out.println("GET SCORES");
                 String myScoreForThisRound = in.readLine();
                 String opponentScoreForThisRound = in.readLine();
-                scorePerRound.add(myScoreForThisRound);
-                totalScore = totalScore + roundScore;
-                System.out.println("Egen poäng: " + myScoreForThisRound);
-                System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
-                System.out.println("Min total: " + totalScore);
-                System.out.println("Motståndarens total: " + totalScoreOpponent);
+                playerTotalScore = playerTotalScore + roundScore;
 
-                // Rita ut i GUI:t här
+                if (roundCounter == 0) {
+                    resultsGUI = new ResultsGUI(out, this);
+                    resultsGUI.usernamePlayerLabel.setText(userName);
+                    resultsGUI.usernameOpponentLabel.setText(opponentUserName);
+                    resultsGUI.setTitle(userName);
+                    resultsGUI.categoryLabel1.setText(currentCategory);
+                    resultsGUI.playerScoreRound1.setText(myScoreForThisRound);
+                    resultsGUI.opponentScoreRound1.setText(opponentScoreForThisRound);
+                }
 
-                resultsGUI = new ResultsGUI(out, this);
-                resultsGUI.setTitle(userName);
+                if (roundCounter == 1) {
+                    resultsGUI.setVisible(true);
+                    resultsGUI.categoryLabel2.setText(currentCategory);
+                    resultsGUI.playerScoreRound2.setText(myScoreForThisRound);
+                    resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
+                }
+                if (roundCounter == 2) {
+                    resultsGUI.setVisible(true);
+                    resultsGUI.categoryLabel3.setText(currentCategory);
+                    resultsGUI.playerScoreRound3.setText(myScoreForThisRound);
+                    resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
+                }
+                if (roundCounter == 3) {
+                    resultsGUI.setVisible(true);
+                    resultsGUI.categoryLabel4.setText(currentCategory);
+                    resultsGUI.playerScoreRound4.setText(myScoreForThisRound);
+                    resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
+                }
 
                 out.println("CHECK IF OPPONENT SCORE IS IN");
                 while(in.readLine().equals("NO")) {
@@ -171,20 +185,27 @@ public class Client extends Thread {
                 myScoreForThisRound = in.readLine();
                 opponentScoreForThisRound = in.readLine();
                 totalScoreOpponent = totalScoreOpponent + Integer.parseInt(opponentScoreForThisRound);
-                scorePerRoundOpponent.add(opponentScoreForThisRound);
-                System.out.println("Egen poäng: " + myScoreForThisRound);
-                System.out.println("Motståndarens poäng: "+ opponentScoreForThisRound);
-                System.out.println("Min total: " + totalScore);
-                System.out.println("Motståndarens total: " + totalScoreOpponent);
+                resultsGUI.playerTotalScore.setText(String.valueOf(playerTotalScore));
+                resultsGUI.opponentTotalScore.setText(String.valueOf(totalScoreOpponent));
 
-                // Rita ut i GUI:t här
+                if (roundCounter == 0) {
+                    resultsGUI.opponentScoreRound1.setText(opponentScoreForThisRound);
+                }
+                if (roundCounter == 1) {
+                    resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
+                }
+                if (roundCounter == 2) {
+                    resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
+                }
+                if (roundCounter == 3) {
+                    resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
+                }
 
                 resultsGUI.continueButton.setEnabled(true);
 
                 if(in.readLine().equals("CONTINUE"));
 
-
-                resultsGUI.dispose();
+                resultsGUI.setVisible(false);
 
                 roundScore = 0;
                 playerTurn = !playerTurn; // Byte av spelare
@@ -192,7 +213,16 @@ public class Client extends Thread {
 
                 roundCounter++;
             }
+            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
 
+            if(totalScoreOpponent > playerTotalScore){
+                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorar!");
+            } else if (totalScoreOpponent < playerTotalScore) {
+                winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!");
+            } else {
+                winnerLooserGUI.winnerOrLooserLabel.setText("oavgjort!");
+            }
+                
 
             /*
 

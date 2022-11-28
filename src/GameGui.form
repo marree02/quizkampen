@@ -128,27 +128,6 @@
           <text value="USERNAME"/>
         </properties>
       </component>
-      <component id="42ed5" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <font name="Comic Sans MS" size="10"/>
-          <foreground color="-723724"/>
-          <text value="POÄNG"/>
-        </properties>
-      </component>
-      <component id="52921" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font name="Comic Sans MS" size="11"/>
-          <foreground color="-1"/>
-          <text value="POÄNG"/>
-        </properties>
-      </component>
       <component id="efa3b" class="javax.swing.JLabel" binding="opponentUserNameLabel">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>

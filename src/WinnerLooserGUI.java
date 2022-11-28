@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 public class WinnerLooserGUI extends JFrame {
     private JPanel panel1;
-    private JLabel winnerOrLooserLabel;
+    protected JLabel winnerOrLooserLabel;
     private JButton button1;
 
 
