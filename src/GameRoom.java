@@ -73,4 +73,5 @@ public class GameRoom {
         roundScorePlayer1 = "Väntar...";
         roundScorePlayer2 = "Väntar...";
     }
+
 }

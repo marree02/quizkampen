@@ -45,7 +45,6 @@ public class ServerPlayer extends Thread {
 
         try {
 
-
             while(true) {
 
                 fromClient = in.readLine();
