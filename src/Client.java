@@ -157,7 +157,8 @@ public class Client extends Thread {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         Client c = new Client();
 
     }
