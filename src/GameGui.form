@@ -36,6 +36,8 @@
                 </constraints>
                 <properties>
                   <foreground color="-11686923"/>
+                  <indeterminate value="false"/>
+                  <maximum value="100"/>
                 </properties>
               </component>
             </children>

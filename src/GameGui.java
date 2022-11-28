@@ -121,6 +121,9 @@ public class GameGui extends JFrame implements ActionListener {
             disableButtons();
         } else {
             progressBar1.setValue(progressBar1.getValue()+1);
+            if (progressBar1.getValue() > 80) {
+                progressBar1.setBackground(Color.red);
+            }
         }
 
     }
