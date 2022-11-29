@@ -14,7 +14,6 @@ public class Client extends Thread {
 
     CategoryUI categoryGui;
 
-
     GameGui gameGui;
 
     ResultsGUI resultsGUI;
@@ -66,8 +65,8 @@ public class Client extends Thread {
             //TODO: handle
         }
 
-
         Properties p = new Properties();
+
        try{
            p.load(new FileInputStream("src/Settings.properties"));
        }catch(Exception e){
@@ -151,7 +150,6 @@ public class Client extends Thread {
                     if(in.readLine().equals("QUESTION ANSWERED"));
                     gameGui.dispose();
                     questionCounter++;
-
                 }
 
                 out.println("SEND SCORE FOR ROUND");
@@ -177,7 +175,6 @@ public class Client extends Thread {
                 }
 
                 if (roundCounter == 1) {
-
                     resultsGUI.setVisible(true);
                     resultsGUI.categoryLabel2.setText(currentCategory);
                     resultsGUI.playerScoreRound2.setText(myScoreForThisRound);
@@ -189,14 +186,13 @@ public class Client extends Thread {
                     resultsGUI.categoryLabel3.setText(currentCategory);
                     resultsGUI.playerScoreRound3.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
-
                 }
+
                 if (roundCounter == 3) {
                     resultsGUI.setVisible(true);
                     resultsGUI.categoryLabel4.setText(currentCategory);
                     resultsGUI.playerScoreRound4.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
-
                 }
 
                 out.println("CHECK IF OPPONENT SCORE IS IN");
@@ -222,6 +218,7 @@ public class Client extends Thread {
                         resultsGUI.opponentScoreRound1.setForeground(Color.green);
                     }
                 }
+
                 if (roundCounter == 1) {
                     resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
                     if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
@@ -232,16 +229,18 @@ public class Client extends Thread {
                         resultsGUI.opponentScoreRound2.setForeground(Color.green);
                     }
                 }
+
                 if (roundCounter == 2) {
                     resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
                     if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
                         resultsGUI.playerScoreRound3.setForeground(Color.green);
                         resultsGUI.opponentScoreRound3.setForeground(Color.red);
-                    }else{
+                    } else {
                         resultsGUI.playerScoreRound3.setForeground(Color.red);
                         resultsGUI.opponentScoreRound3.setForeground(Color.green);
                     }
                 }
+
                 if (roundCounter == 3) {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
                     if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
@@ -279,12 +278,6 @@ public class Client extends Thread {
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
             printWriter.println(userName + " -" + playerTotalScore);
             printWriter.close();
-
-
-
-
-
-
 
             /*
 
