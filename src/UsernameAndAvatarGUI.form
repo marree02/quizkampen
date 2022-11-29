@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UsernameAndAvatarGUI">
+  <grid id="27dc6" binding="Panel1" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="30" left="50" bottom="40" right="50"/>
+    <constraints>
+      <xy x="-3" y="-12" width="594" height="664"/>
+    </constraints>
+    <properties>
+      <background color="-11686923"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="6a0e6" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+          <enabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="fa82a" class="javax.swing.JButton" binding="b4">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="AvatarPic/sköldpadda.png"/>
+              <label value=""/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="b4149" class="javax.swing.JButton" binding="b3">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="AvatarPic/lila_monster.png"/>
+              <label value=""/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="8af4c" class="javax.swing.JButton" binding="b5">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="AvatarPic/blå_fisk.png"/>
+              <label value=""/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="113ec" class="javax.swing.JButton" binding="b6">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <icon value="AvatarPic/rosa_rund.png"/>
+              <label value=""/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="2a861" class="javax.swing.JButton" binding="b1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13935483"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <enabled value="true"/>
+              <foreground color="-13935483"/>
+              <icon value="AvatarPic/gul_gris.png"/>
+              <requestFocusEnabled value="true"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="6d055" class="javax.swing.JButton" binding="b2">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13935483"/>
+              <borderPainted value="false"/>
+              <contentAreaFilled value="false"/>
+              <doubleBuffered value="true"/>
+              <focusCycleRoot value="false"/>
+              <foreground color="-13935483"/>
+              <icon value="AvatarPic/dino.png"/>
+              <opaque value="false"/>
+              <selected value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="35dc0" class="javax.swing.JTextField" binding="userNameInput">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+        </properties>
+      </component>
+      <component id="27af0" class="javax.swing.JLabel" binding="usernameHeadLable">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <text value="Användarnamn: "/>
+        </properties>
+      </component>
+      <component id="ccf19" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <text value="Välj avatar:"/>
+        </properties>
+      </component>
+      <hspacer id="834a0">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="65ca1" class="javax.swing.JButton" binding="quizlogoHeadLable">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11686923"/>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <enabled value="true"/>
+          <foreground color="-11686923"/>
+          <hideActionText value="false"/>
+          <icon value="Pictures/pngegg (4).png"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <hspacer id="8efc2">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="326bd" class="javax.swing.JButton" binding="continueButton">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+          <font name="Comic Sans MS" size="14"/>
+          <foreground color="-1"/>
+          <label value="Fortsätt"/>
+          <text value="Fortsätt"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

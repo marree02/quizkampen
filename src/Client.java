@@ -9,6 +9,7 @@ import java.util.Properties;
 
 public class Client extends Thread {
 
+    UsernameAndAvatarGUI usernameAndAvatarGUI;
     WelcomeUI welcomeGui;
 
     CategoryUI categoryGui;
@@ -20,6 +21,8 @@ public class Client extends Thread {
     ResultsGUI resultsGUI;
 
     String userName;
+
+    JButton selectedAvatar;
 
     String opponentUserName;
 
@@ -33,19 +36,37 @@ public class Client extends Thread {
 
     boolean windowCentered;
 
+    boolean proceed;
+
     int numberOfQuestionsPerRound;
     int roundCounter = 0;
     int questionCounter = 0;
     int numberOfRounds;
 
+    public synchronized boolean isProceed() {
+        return proceed;
+    }
 
+    public synchronized void setProceed(){
+        proceed = true;
+
+
+    }
 
     public Client() {
 
-        userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
+        //userName = JOptionPane.showInputDialog(null, "Ange ditt namn: "); // Få in inputen i textfield
+        usernameAndAvatarGUI = new UsernameAndAvatarGUI(this);
+
+        while (isProceed() == false){
+
+        }
+        usernameAndAvatarGUI.dispose();
+
         welcomeGui = new WelcomeUI(this);
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+
 
 
         Properties p = new Properties();
@@ -65,7 +86,7 @@ public class Client extends Thread {
 
 
         try (
-                Socket socket = new Socket("127.0.0.1", 1234);
+                Socket socket = new Socket("127.0.0.1", 7676);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
 
@@ -82,7 +103,7 @@ public class Client extends Thread {
             }
 
             out.println("SENDING USERNAME");
-            out.println(userName);
+            out.println(userName); // UserInput
 
             welcomeGui.dispose();
 
