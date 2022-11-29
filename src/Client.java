@@ -157,6 +157,7 @@ public class Client extends Thread {
                 }
 
                 if (roundCounter == 1) {
+
                     resultsGUI.setVisible(true);
                     resultsGUI.categoryLabel2.setText(currentCategory);
                     resultsGUI.playerScoreRound2.setText(myScoreForThisRound);
@@ -205,6 +206,7 @@ public class Client extends Thread {
 
                 if(in.readLine().equals("CONTINUE"));
 
+                resultsGUI.continueButton.setEnabled(false);
                 resultsGUI.setVisible(false);
 
                 roundScore = 0;
