@@ -13,5 +13,6 @@ public class WaitingOnPlayerGUI extends JFrame {
         setSize(300,300);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
     }
 }

@@ -15,6 +15,7 @@ public class WelcomeUI extends JFrame {
         setSize(400,500);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
 
     }
 

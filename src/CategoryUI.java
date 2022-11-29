@@ -25,6 +25,7 @@ public class CategoryUI extends JFrame implements ActionListener {
         setSize(450, 500);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
 
         category1.addActionListener(this);
         category2.addActionListener(this);

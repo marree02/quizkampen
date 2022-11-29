@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +14,6 @@ public class Client extends Thread {
 
     CategoryUI categoryGui;
 
-    WaitingOnPlayerGUI waitingOnPlayerGUI;
 
     GameGui gameGui;
 
@@ -40,12 +40,31 @@ public class Client extends Thread {
 
 
 
+
     public Client() {
 
         userName = JOptionPane.showInputDialog(null, "Ange ditt namn: ");
         welcomeGui = new WelcomeUI(this);
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
+
+        // Öppnar upp användarstatistik. Bör kanske vara en knapp man kan öppna upp på någon av de existerande GUIs vi har?
+        // Vart vet jag inte ännu. Förslagsvis VälkomstGUI och WinnerLooserGUI
+
+        UserStatistics userStatistics = new UserStatistics();
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
+            while (true){
+                String line = bufferedReader.readLine();
+                if (line == null){
+                    break;
+                }
+                    userStatistics.textArea.append(line + "\n");
+
+            }
+        }catch (Exception e){
+            //TODO: handle
+        }
 
 
         Properties p = new Properties();
@@ -108,6 +127,7 @@ public class Client extends Thread {
                         out.println("REQUEST NEW ROUND");
                     }
                     welcomeGui.dispose();
+
                 }
 
                 out.println("GENERATE QUESTIONS FOR NEXT ROUND");
@@ -122,10 +142,10 @@ public class Client extends Thread {
                     gameGui.opponentUserNameLabel.setText(opponentUserName);
                     gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
                     gameGui.questionLabel.setText(in.readLine());
-                    gameGui.button1.setText(in.readLine());
-                    gameGui.button2.setText(in.readLine());
                     gameGui.button3.setText(in.readLine());
+                    gameGui.button1.setText(in.readLine());
                     gameGui.button4.setText(in.readLine());
+                    gameGui.button2.setText(in.readLine());
                     gameGui.correctAnswer = in.readLine();
 
                     if(in.readLine().equals("QUESTION ANSWERED"));
@@ -162,18 +182,21 @@ public class Client extends Thread {
                     resultsGUI.categoryLabel2.setText(currentCategory);
                     resultsGUI.playerScoreRound2.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
+
                 }
                 if (roundCounter == 2) {
                     resultsGUI.setVisible(true);
                     resultsGUI.categoryLabel3.setText(currentCategory);
                     resultsGUI.playerScoreRound3.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
+
                 }
                 if (roundCounter == 3) {
                     resultsGUI.setVisible(true);
                     resultsGUI.categoryLabel4.setText(currentCategory);
                     resultsGUI.playerScoreRound4.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
+
                 }
 
                 out.println("CHECK IF OPPONENT SCORE IS IN");
@@ -191,15 +214,43 @@ public class Client extends Thread {
 
                 if (roundCounter == 0) {
                     resultsGUI.opponentScoreRound1.setText(opponentScoreForThisRound);
+                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
+                        resultsGUI.playerScoreRound1.setForeground(Color.green);
+                        resultsGUI.opponentScoreRound1.setForeground(Color.red);
+                    }else{
+                        resultsGUI.playerScoreRound1.setForeground(Color.red);
+                        resultsGUI.opponentScoreRound1.setForeground(Color.green);
+                    }
                 }
                 if (roundCounter == 1) {
                     resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
+                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
+                        resultsGUI.playerScoreRound2.setForeground(Color.green);
+                        resultsGUI.opponentScoreRound2.setForeground(Color.red);
+                    }else{
+                        resultsGUI.playerScoreRound2.setForeground(Color.red);
+                        resultsGUI.opponentScoreRound2.setForeground(Color.green);
+                    }
                 }
                 if (roundCounter == 2) {
                     resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
+                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
+                        resultsGUI.playerScoreRound3.setForeground(Color.green);
+                        resultsGUI.opponentScoreRound3.setForeground(Color.red);
+                    }else{
+                        resultsGUI.playerScoreRound3.setForeground(Color.red);
+                        resultsGUI.opponentScoreRound3.setForeground(Color.green);
+                    }
                 }
                 if (roundCounter == 3) {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
+                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
+                        resultsGUI.playerScoreRound4.setForeground(Color.green);
+                        resultsGUI.opponentScoreRound4.setForeground(Color.red);
+                    }else{
+                        resultsGUI.playerScoreRound4.setForeground(Color.red);
+                        resultsGUI.opponentScoreRound4.setForeground(Color.green);
+                    }
                 }
 
                 resultsGUI.continueButton.setEnabled(true);
@@ -224,7 +275,16 @@ public class Client extends Thread {
             } else {
                 winnerLooserGUI.winnerOrLooserLabel.setText("oavgjort!");
             }
-                
+
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
+            printWriter.println(userName + " -" + playerTotalScore);
+            printWriter.close();
+
+
+
+
+
+
 
             /*
 
