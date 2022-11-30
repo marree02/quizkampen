@@ -119,7 +119,7 @@ public class Client extends Thread {
 
 
         try (
-                Socket socket = new Socket("127.0.0.1", 7676);
+                Socket socket = new Socket("3.65.85.164 ", 7676);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
 
