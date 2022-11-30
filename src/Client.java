@@ -164,7 +164,7 @@ public class Client extends Thread {
                         out.println("CHECK IF OPPONENT GAVE UP");
                         if (in.readLine().equals("YES")) {
                             welcomeGui.setVisible(false);
-                            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
+                            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
                             winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
                             winnerLooserGUI.winOrLoseField.setBackground(Color.green);
                             winnerLooserGUI.p1.setBackground(Color.green);
@@ -256,7 +256,7 @@ public class Client extends Thread {
                 out.println("CHECK IF OPPONENT GAVE UP");
                 if (in.readLine().equals("YES")) {
                     resultsGUI.setVisible(false);
-                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
+                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
                     winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!\n Motståndaren gav upp");
                     winnerLooserGUI.winOrLoseField.setBackground(Color.green);
                     winnerLooserGUI.p1.setBackground(Color.green);
