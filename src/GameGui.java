@@ -19,6 +19,7 @@ public class GameGui extends JFrame {
     protected JButton selectedAvatarToGameGUI; // ska plocka och skicka vidare
     protected JButton avatarImageButton1; // spelare "1"
     protected JButton avatarImageButton2;// spelare "2"
+    private JProgressBar progressBar1;
     PrintWriter out;
     Client client;
 
@@ -34,14 +35,6 @@ public class GameGui extends JFrame {
         setVisible(true);
         continueButton.setVisible(false);
         setResizable(false);
-
-        avatarImageButton1.addActionListener(e -> {
-            // 1
-        });
-
-        avatarImageButton2.addActionListener(e ->{
-            // 2
-        });
 
         button1.addActionListener(e -> {
             if(button1.getText().equals(correctAnswer)) {
