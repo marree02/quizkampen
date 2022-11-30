@@ -31,6 +31,7 @@ public class UsernameAndAvatarGUI extends JFrame {
         setSize(550, 600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
+        selectedAvatar = b1;
 
 
         continueButton.addActionListener(new ActionListener() {
