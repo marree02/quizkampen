@@ -47,6 +47,7 @@ public class UsernameAndAvatarGUI extends JFrame {
             if (b1 == e.getSource()) {
                 selectedAvatar = b1;
                 b1.setBorderPainted(true);
+                client.selectedAvatarNumber = "1";
             }
         });
 
@@ -54,30 +55,39 @@ public class UsernameAndAvatarGUI extends JFrame {
             if (b2 == e.getSource()) {
                 selectedAvatar = b2;
                 b2.setBorderPainted(true);
+                client.selectedAvatarNumber = "2";
             }
         });
 
         b3.addActionListener(e -> {
             if (b3 == e.getSource()) {
                 selectedAvatar = b3;
+                b3.setBorderPainted(true);
+                client.selectedAvatarNumber = "3";
             }
         });
 
         b4.addActionListener(e -> {
             if (b4 == e.getSource()) {
                 selectedAvatar = b4;
+                b4.setBorderPainted(true);
+                client.selectedAvatarNumber = "4";
             }
         });
 
         b5.addActionListener(e -> {
             if (b5 == e.getSource()) {
                 selectedAvatar = b5;
+                b5.setBorderPainted(true);
+                client.selectedAvatarNumber = "5";
             }
         });
 
         b6.addActionListener(e -> {
             if (b6 == e.getSource()) {
                 selectedAvatar = b6;
+                b6.setBorderPainted(true);
+                client.selectedAvatarNumber = "6";
             }
         });
 

@@ -6,3 +6,5 @@ Thomas2 -5
 Thomas1 -5
 Sigrun -6
 Thomas -7
+1 -4
+2 -2

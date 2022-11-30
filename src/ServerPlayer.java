@@ -16,6 +16,7 @@ public class ServerPlayer extends Thread {
     String userName;
     String playerOneOrTwo;
     String fromClient;
+    String avatar;
 
     List<Question> questionsForNextRound = new ArrayList<>();
 
@@ -56,9 +57,13 @@ public class ServerPlayer extends Thread {
 
                 else if (fromClient.equals("SENDING USERNAME")) {
                     userName = in.readLine();
-                }
 
-                else if (fromClient.equals("GET CATEGORIES")) {
+
+                } else if (fromClient.equals("SENDING AVATAR")) {
+                    avatar = in.readLine();
+
+
+                } else if (fromClient.equals("GET CATEGORIES")) {
                     game.questionGenerator.shuffleCategories();
                     String[] categories = game.questionGenerator.getCategoriesAsArray(3);
                     out.println(categories[0]);
@@ -93,6 +98,7 @@ public class ServerPlayer extends Thread {
                     Question question = this.questionsForNextRound.remove(0);
 
                     out.println(opponent.userName);
+                    out.println(opponent.avatar); // skickar avatar
                     out.println(game.questionGenerator.getCurrentCategory());
                     out.println(question.getQuestion());
 

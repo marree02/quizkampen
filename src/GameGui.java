@@ -94,11 +94,6 @@ public class GameGui extends JFrame {
             out.println("QUESTION ANSWERED");
         });
 
-
-
-
-
-
     }
 
     public void setCorrectButton(){

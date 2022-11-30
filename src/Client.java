@@ -24,8 +24,11 @@ public class Client extends Thread {
 
     JButton selectedAvatar;
 
-    JButton selectedAvatarToGameGUI;
+    String selectedAvatarNumber;
 
+    String opponentSelectedAvatarNumber;
+
+    List<JButton> avatarButtons = new ArrayList<>();
 
     int roundScore = 0;
 
@@ -124,6 +127,9 @@ public class Client extends Thread {
             out.println("SENDING USERNAME");
             out.println(userName); // UserInput
 
+            out.println("SENDING AVATAR");
+            out.println(selectedAvatarNumber); // Avatar
+
             welcomeGui.dispose();
 
             while (roundCounter < numberOfRounds) {
@@ -166,6 +172,11 @@ public class Client extends Thread {
 
                     opponentUserName = in.readLine();
                     gameGui.opponentUserNameLabel.setText(opponentUserName);
+
+                    opponentSelectedAvatarNumber = in.readLine();
+                    gameGui.avatarImageButton2.setIcon(avatarButtons.get(Integer.parseInt(opponentSelectedAvatarNumber)-1).getIcon());
+
+
                     gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
                     gameGui.questionLabel.setText(in.readLine());
                     gameGui.button3.setText(in.readLine());
@@ -195,6 +206,7 @@ public class Client extends Thread {
                     resultsGUI = new ResultsGUI(out, this);
                     resultsGUI.usernamePlayerLabel.setText(userName);
                     resultsGUI.avatarImageButtonResult1.setIcon(selectedAvatar.getIcon());
+                    resultsGUI.avatarImageButtonResult2.setIcon(avatarButtons.get(Integer.parseInt(opponentSelectedAvatarNumber)-1).getIcon());
                     resultsGUI.usernameOpponentLabel.setText(opponentUserName);
                     resultsGUI.setTitle(userName);
                     resultsGUI.categoryLabel1.setText(currentCategory);
