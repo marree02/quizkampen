@@ -161,6 +161,16 @@ public class Client extends Thread {
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
                     while (in.readLine().equals("NO")) {
+                        out.println("CHECK IF OPPONENT GAVE UP");
+                        if (in.readLine().equals("YES")) {
+                            welcomeGui.setVisible(false);
+                            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+                            winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+                            winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                            winnerLooserGUI.p1.setBackground(Color.green);
+                            Thread.sleep(3000);
+                            System.exit(0);
+                        }
                         out.println("REQUEST NEW ROUND");
                     }
                     welcomeGui.dispose();
@@ -243,11 +253,23 @@ public class Client extends Thread {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
                 }
 
+                out.println("CHECK IF OPPONENT GAVE UP");
+                if (in.readLine().equals("YES")) {
+                    resultsGUI.setVisible(false);
+                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!\n Motståndaren gav upp");
+                    winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                    winnerLooserGUI.p1.setBackground(Color.green);
+                }
+
+
                 out.println("CHECK IF OPPONENT SCORE IS IN");
                 while(in.readLine().equals("NO")) {
                     Thread.sleep(500);
                     out.println("CHECK IF OPPONENT SCORE IS IN");
                 }
+
+                resultsGUI.giveUpButton.setEnabled(true);
 
                 out.println("GET SCORES");
                 myScoreForThisRound = in.readLine();
@@ -302,7 +324,16 @@ public class Client extends Thread {
 
                 resultsGUI.continueButton.setEnabled(true);
 
-                if(in.readLine().equals("CONTINUE"));
+                if (in.readLine().equals("GAVE UP")) {
+                    resultsGUI.giveUpButton.setText("Du ger upp");
+                    resultsGUI.giveUpButton.setBackground(Color.red);
+                    resultsGUI.panel1.setBackground(Color.RED);
+                    resultsGUI.p1.setBackground(Color.red);
+                    resultsGUI.p2.setBackground(Color.red);
+                    resultsGUI.p3.setBackground(Color.red);
+                    Client.sleep(3000);
+                    System.exit(0);
+                }
 
                 resultsGUI.continueButton.setEnabled(false);
                 resultsGUI.setVisible(false);
@@ -312,15 +343,20 @@ public class Client extends Thread {
                 questionCounter = 0;
 
                 roundCounter++;
+
             }
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
 
             if(totalScoreOpponent > playerTotalScore){
-                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorar!");
+                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorade!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.red);
+                winnerLooserGUI.p1.setBackground(Color.red);
             } else if (totalScoreOpponent < playerTotalScore) {
                 winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                winnerLooserGUI.p1.setBackground(Color.green);
             } else {
-                winnerLooserGUI.winnerOrLooserLabel.setText("oavgjort!");
+                winnerLooserGUI.winnerOrLooserLabel.setText("Oavgjort!");
             }
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
@@ -341,8 +377,6 @@ public class Client extends Thread {
 
         */
 
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
