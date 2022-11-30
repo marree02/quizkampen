@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GameGui">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="7" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="415" height="368"/>
+      <xy x="20" y="20" width="454" height="430"/>
     </constraints>
     <properties>
       <background color="-11686923"/>
@@ -13,7 +13,7 @@
       <grid id="528c6" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="10" left="0" bottom="10" right="0"/>
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13935483"/>
@@ -22,34 +22,14 @@
         </properties>
         <border type="bevel-raised"/>
         <children>
-          <grid id="d2fb5" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="13801" class="javax.swing.JProgressBar" binding="progressBar1" default-binding="true">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <foreground color="-11686923"/>
-                  <indeterminate value="false"/>
-                  <maximum value="100"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <component id="d431d" class="javax.swing.JLabel" binding="questionLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="16" style="1"/>
+              <font name="Comic Sans MS" size="18" style="1"/>
               <foreground color="-1"/>
-              <text value=" "/>
+              <text value="HÄR KOMMER FRÅGAN"/>
             </properties>
           </component>
           <component id="d5ae9" class="javax.swing.JProgressBar" binding="progressBar1" default-binding="true">
@@ -60,9 +40,52 @@
           </component>
         </children>
       </grid>
+      <component id="d8346" class="javax.swing.JButton" binding="button4" default-binding="true">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Button"/>
+        </properties>
+      </component>
+      <component id="a2f1a" class="javax.swing.JButton" binding="button2" default-binding="true">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Button"/>
+        </properties>
+      </component>
+      <component id="9a37b" class="javax.swing.JButton" binding="button3" default-binding="true">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13935483"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
+          <enabled value="true"/>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Button"/>
+        </properties>
+      </component>
       <component id="53879" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <icon value="Pictures/pngwing.com.png"/>
@@ -71,26 +94,30 @@
       </component>
       <component id="94604" class="javax.swing.JLabel" binding="categorylabel">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Comic Sans MS" size="16"/>
           <foreground color="-3026479"/>
-          <text value="KATEGORI HÄR"/>
+          <text value="KATEGORI:"/>
         </properties>
       </component>
-      <component id="44c51" class="javax.swing.JLabel">
+      <component id="95b79" class="javax.swing.JButton" binding="continueButton">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <icon value="Pictures/monster.png"/>
-          <text value=""/>
+          <background color="-13935483"/>
+          <enabled value="true"/>
+          <font name="Comic Sans MS" size="18"/>
+          <foreground color="-1"/>
+          <hideActionText value="false"/>
+          <text value="FORTSÄTT"/>
         </properties>
       </component>
       <component id="15623" class="javax.swing.JLabel" binding="thisPLayerUserNameLabel">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Comic Sans MS" size="11"/>
@@ -100,7 +127,7 @@
       </component>
       <component id="efa3b" class="javax.swing.JLabel" binding="opponentUserNameLabel">
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Comic Sans MS" size="11"/>
@@ -108,82 +135,41 @@
           <text value="USERNAME"/>
         </properties>
       </component>
-      <component id="26d46" class="javax.swing.JLabel">
+      <component id="dd8c" class="javax.swing.JButton" binding="button1" default-binding="true">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <icon value="Pictures/pngwing.com (1).png"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <grid id="db0f8" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-11686923"/>
-          <enabled value="true"/>
-          <foreground color="-1"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="d30f7" class="javax.swing.JButton" binding="button3">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13935483"/>
-              <font name="Comic Sans MS" size="18"/>
-              <foreground color="-1"/>
-              <text value=" "/>
-            </properties>
-          </component>
-          <component id="26ea8" class="javax.swing.JButton" binding="button1">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13935483"/>
-              <font name="Comic Sans MS" size="18"/>
-              <foreground color="-1"/>
-              <text value=" "/>
-            </properties>
-          </component>
-          <component id="e9fe7" class="javax.swing.JButton" binding="button4">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13935483"/>
-              <font name="Comic Sans MS" size="18"/>
-              <foreground color="-1"/>
-              <text value=" "/>
-            </properties>
-          </component>
-          <component id="d4290" class="javax.swing.JButton" binding="button2">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13935483"/>
-              <font name="Comic Sans MS" size="18"/>
-              <foreground color="-1"/>
-              <text value=" "/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <component id="8cfe4" class="javax.swing.JButton" binding="continueButton">
-        <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-13935483"/>
+          <borderPainted value="true"/>
+          <contentAreaFilled value="true"/>
           <font name="Comic Sans MS" size="18"/>
           <foreground color="-1"/>
-          <text value="FORTSÄTT"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Button"/>
+        </properties>
+      </component>
+      <component id="9c831" class="javax.swing.JButton" binding="avatarImageButton1">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-11686923"/>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <label value=""/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="49bd2" class="javax.swing.JButton" binding="avatarImageButton2">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <label value=""/>
+          <text value=""/>
         </properties>
       </component>
     </children>
