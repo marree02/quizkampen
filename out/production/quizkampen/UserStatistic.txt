@@ -1,0 +1,12 @@
+vivvi -5
+kalle -5
+Thonas1 -7
+Thomas2 -9
+Thomas2 -5
+Thomas1 -5
+Sigrun -6
+Thomas -7
+1 -4
+2 -2
+Lasse -3
+Thomas -2
