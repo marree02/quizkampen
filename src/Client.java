@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.*;
 import java.io.BufferedReader;
@@ -6,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class Client extends Thread {
@@ -61,6 +64,13 @@ public class Client extends Thread {
     public Client() {
 
         usernameAndAvatarGUI = new UsernameAndAvatarGUI(this);
+
+        avatarButtons.add(usernameAndAvatarGUI.b1);
+        avatarButtons.add(usernameAndAvatarGUI.b2);
+        avatarButtons.add(usernameAndAvatarGUI.b3);
+        avatarButtons.add(usernameAndAvatarGUI.b4);
+        avatarButtons.add(usernameAndAvatarGUI.b5);
+        avatarButtons.add(usernameAndAvatarGUI.b6);
 
         while (isProceed() == false){
 
@@ -166,9 +176,6 @@ public class Client extends Thread {
                     out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
                     gameGui.avatarImageButton1.setIcon(selectedAvatar.getIcon());
-
-
-
 
                     opponentUserName = in.readLine();
                     gameGui.opponentUserNameLabel.setText(opponentUserName);

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsernameAndAvatarGUI extends JFrame {
     protected JPanel Panel1;
@@ -19,6 +21,7 @@ public class UsernameAndAvatarGUI extends JFrame {
 
     PrintWriter out;
     Client client;
+
 
     public UsernameAndAvatarGUI(Client client) {
         this.client = client;
