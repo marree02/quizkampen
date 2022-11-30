@@ -12,7 +12,15 @@ public class GameRoom {
     String roundScorePlayer1 = "Väntar...";
     String roundScorePlayer2 = "Väntar...";
 
+    private boolean opponentGaveUp = false;
 
+    public synchronized boolean isOpponentGaveUp() {
+        return opponentGaveUp;
+    }
+
+    public synchronized void setOpponentGaveUp(boolean opponentGaveUp) {
+        this.opponentGaveUp = opponentGaveUp;
+    }
 
     public GameRoom(){
 
@@ -73,4 +81,5 @@ public class GameRoom {
         roundScorePlayer1 = "Väntar...";
         roundScorePlayer2 = "Väntar...";
     }
+
 }
