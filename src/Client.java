@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -98,11 +97,9 @@ public class Client extends Thread {
                 userStatistics.textArea.append(list.get(i) + "\n");
             }
 
-
         }catch (Exception e){
 
         }
-
 
 
         Properties p = new Properties();
