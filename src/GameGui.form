@@ -49,7 +49,7 @@
             <properties>
               <font name="Comic Sans MS" size="16" style="1"/>
               <foreground color="-1"/>
-              <text value="HÄR KOMMER FRÅGAN"/>
+              <text value=" "/>
             </properties>
           </component>
         </children>
@@ -131,7 +131,7 @@
               <background color="-13935483"/>
               <font name="Comic Sans MS" size="18"/>
               <foreground color="-1"/>
-              <text value="BUTTON"/>
+              <text value=" "/>
             </properties>
           </component>
           <component id="26ea8" class="javax.swing.JButton" binding="button1">
@@ -142,7 +142,7 @@
               <background color="-13935483"/>
               <font name="Comic Sans MS" size="18"/>
               <foreground color="-1"/>
-              <text value="BUTTON"/>
+              <text value=" "/>
             </properties>
           </component>
           <component id="e9fe7" class="javax.swing.JButton" binding="button4">
@@ -153,7 +153,7 @@
               <background color="-13935483"/>
               <font name="Comic Sans MS" size="18"/>
               <foreground color="-1"/>
-              <text value="BUTTON"/>
+              <text value=" "/>
             </properties>
           </component>
           <component id="d4290" class="javax.swing.JButton" binding="button2">
@@ -164,7 +164,7 @@
               <background color="-13935483"/>
               <font name="Comic Sans MS" size="18"/>
               <foreground color="-1"/>
-              <text value="BUTTON"/>
+              <text value=" "/>
             </properties>
           </component>
         </children>
