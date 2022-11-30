@@ -12,8 +12,6 @@ public class ResultsGUI extends JFrame {
     protected JLabel categoryLabel4;
     protected JLabel usernamePlayerLabel;
     protected JLabel usernameOpponentLabel;
-    private JLabel player1Icon;
-    private JLabel player2Icon;
     protected JLabel playerScoreRound1;
     protected JLabel playerScoreRound2;
     protected JLabel playerScoreRound3;
