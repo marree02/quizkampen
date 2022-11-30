@@ -38,7 +38,7 @@ public class GameGui extends JFrame implements ActionListener {
 
         setContentPane(panel1);
 
-        setSize(550,600);
+        setSize(600,600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
         continueButton.setEnabled(false);
