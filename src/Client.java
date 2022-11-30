@@ -175,6 +175,7 @@ public class Client extends Thread {
                     gameGui = new GameGui(out, this);
                     out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
+
                     gameGui.avatarImageButton1.setIcon(selectedAvatar.getIcon());
 
                     opponentUserName = in.readLine();
