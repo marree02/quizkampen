@@ -22,12 +22,12 @@ public class Client extends Thread {
 
     ResultsGUI resultsGUI;
 
-    String userName = "John Doe";
+    String userName;
     String opponentUserName;
 
     JButton selectedAvatar;
 
-    String selectedAvatarNumber;
+    String selectedAvatarNumber = "1";
 
     String opponentSelectedAvatarNumber;
 
