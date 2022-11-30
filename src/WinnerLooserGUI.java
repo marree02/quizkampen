@@ -13,7 +13,7 @@ public class WinnerLooserGUI extends JFrame {
     public WinnerLooserGUI(Client client){
         setContentPane(panel1);
         setVisible(true);
-        setSize(300,300);
+        setSize(700,300);
         if (client.windowCentered) setLocationRelativeTo(null);
         setResizable(false);
 

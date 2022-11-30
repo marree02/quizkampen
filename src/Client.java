@@ -256,7 +256,7 @@ public class Client extends Thread {
                 if (in.readLine().equals("YES")) {
                     resultsGUI.setVisible(false);
                     WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
-                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!\n Motståndaren gav upp");
+                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
                     winnerLooserGUI.winOrLoseField.setBackground(Color.green);
                     winnerLooserGUI.p1.setBackground(Color.green);
                 }
@@ -324,7 +324,7 @@ public class Client extends Thread {
                 resultsGUI.continueButton.setEnabled(true);
 
                 if (in.readLine().equals("GAVE UP")) {
-                    resultsGUI.giveUpButton.setText("Du ger upp");
+                    resultsGUI.giveUpButton.setText("Du gav upp");
                     resultsGUI.giveUpButton.setBackground(Color.red);
                     resultsGUI.panel1.setBackground(Color.RED);
                     resultsGUI.p1.setBackground(Color.red);
@@ -356,6 +356,8 @@ public class Client extends Thread {
                 winnerLooserGUI.p1.setBackground(Color.green);
             } else {
                 winnerLooserGUI.winnerOrLooserLabel.setText("Oavgjort!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.YELLOW);
+                winnerLooserGUI.p1.setBackground(Color.YELLOW);
             }
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
