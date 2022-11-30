@@ -34,6 +34,7 @@ public class ResultsGUI extends JFrame {
         setSize(400,600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
 
 
 
