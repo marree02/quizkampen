@@ -126,6 +126,7 @@ public class ServerPlayer extends Thread {
                     }
                 }
                 else if (fromClient.equals("OPPONENT GAVE UP")) {
+                    game.setOpponentGaveUp(true);
                     out.println("GAVE UP");
                 }
 
