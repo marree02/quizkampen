@@ -106,6 +106,16 @@ public class Client extends Thread {
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
                     while (in.readLine().equals("NO")) {
+                        out.println("CHECK IF OPPONENT GAVE UP");
+                        if (in.readLine().equals("YES")) {
+                            welcomeGui.setVisible(false);
+                            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
+                            winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+                            winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                            winnerLooserGUI.p1.setBackground(Color.green);
+                            Thread.sleep(3000);
+                            System.exit(0);
+                        }
                         out.println("REQUEST NEW ROUND");
                     }
                     welcomeGui.dispose();
@@ -176,11 +186,23 @@ public class Client extends Thread {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
                 }
 
+                out.println("CHECK IF OPPONENT GAVE UP");
+                if (in.readLine().equals("YES")) {
+                    resultsGUI.setVisible(false);
+                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
+                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!\n Motståndaren gav upp");
+                    winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                    winnerLooserGUI.p1.setBackground(Color.green);
+                }
+
+
                 out.println("CHECK IF OPPONENT SCORE IS IN");
                 while(in.readLine().equals("NO")) {
                     Thread.sleep(500);
                     out.println("CHECK IF OPPONENT SCORE IS IN");
                 }
+
+                resultsGUI.giveUpButton.setEnabled(true);
 
                 out.println("GET SCORES");
                 myScoreForThisRound = in.readLine();

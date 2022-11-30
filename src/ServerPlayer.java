@@ -130,6 +130,15 @@ public class ServerPlayer extends Thread {
                     out.println("GAVE UP");
                 }
 
+                else if (fromClient.equals("CHECK IF OPPONENT GAVE UP")) {
+                    if (game.isOpponentGaveUp()) {
+                        out.println("YES");
+                    } else {
+                        out.println("NO");
+                    }
+
+                }
+
                 else if (fromClient.equals("GET CURRENT CATEGORY")) {
                     out.println(game.questionGenerator.getCurrentCategory());
                 }
