@@ -34,7 +34,7 @@ public class GameGui extends JFrame implements ActionListener {
         setSize(550,600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
-        continueButton.setVisible(false);
+        continueButton.setEnabled(false);
         setResizable(false);
 
         button3.addActionListener(e -> {
@@ -108,7 +108,7 @@ public class GameGui extends JFrame implements ActionListener {
         button1.setEnabled(false);
         button4.setEnabled(false);
         button2.setEnabled(false);
-        continueButton.setVisible(true);
+        continueButton.setEnabled(true);
         timer.stop();
     }
 
