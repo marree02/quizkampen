@@ -17,7 +17,9 @@ public class GameGui extends JFrame implements ActionListener {
     protected JLabel opponentUserNameLabel;
     private JButton continueButton;
     private JProgressBar progressBar1;
-    private Timer timer = new Timer(50, this);
+
+    private Timer timer = new Timer(45, this);
+
     protected String correctAnswer;
     PrintWriter out;
     Client client;
@@ -109,21 +111,25 @@ public class GameGui extends JFrame implements ActionListener {
         button4.setEnabled(false);
         button2.setEnabled(false);
         continueButton.setEnabled(true);
+
         timer.stop();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
         if (progressBar1.getValue() == 100) {
+
             setCorrectButton();
             disableButtons();
+
         } else {
+
             progressBar1.setValue(progressBar1.getValue()+1);
             if (progressBar1.getValue() > 80) {
                 progressBar1.setBackground(Color.red);
             }
+
         }
 
     }
