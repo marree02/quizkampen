@@ -1,12 +1,8 @@
-vivvi -5
-kalle -5
-Thonas1 -7
-Thomas2 -9
-Thomas2 -5
-Thomas1 -5
-Sigrun -6
-Thomas -7
-1 -4
-2 -2
-Lasse -3
-Thomas -2
+3 - Marica
+4 - Ida
+7 - Robin
+0 - Sigrun
+2 - Marcel
+6 - Dennis
+1 poäng | användarnamn: ida
+1 poäng | användarnamn: Marica
