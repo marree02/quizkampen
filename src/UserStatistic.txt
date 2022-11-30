@@ -4,3 +4,5 @@ Thonas1 -7
 Thomas2 -9
 Thomas2 -5
 Thomas1 -5
+Sigrun -6
+Thomas -7
