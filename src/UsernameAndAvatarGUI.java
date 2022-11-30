@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.PrintWriter;
 
 public class UsernameAndAvatarGUI extends JFrame {
@@ -25,78 +25,63 @@ public class UsernameAndAvatarGUI extends JFrame {
         this.out = out;
 
         setContentPane(Panel1);
-        setSize(400, 500);
+        setSize(550, 600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
 
 
-
-            userNameInput.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String text = userNameInput.getText();
-                    System.out.println(text);
-
-                }
-
-
-            });
-
-            continueButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (continueButton == e.getSource()){
-                        client.userName= userNameInput.getText(); // plockar texten
-                        client.selectedAvatar= selectedAvatar; // plockar avatar
-                        client.setProceed();
-
-                    }
-                    //out.println("SENDING USERNAME");?
-                }
-
-
-            });
-        b1.addActionListener(new ActionListener() {
+        continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (b1 == e.getSource()){
-                    selectedAvatar = b1;
+                if (continueButton == e.getSource()) {
+                    client.userName = userNameInput.getText(); // plockar texten
+                    client.selectedAvatar = selectedAvatar; // plockar avatar
+                    client.setProceed();
 
-                }
-                if (b2 == e.getSource()){
-                    b2.setSelected(true);
-                    b2.getIcon();
-                }
-                if (b3 == e.getSource()){
-                    b3.setSelected(true);
-                    b3.getIcon();
-                }
-                if (b4 == e.getSource()){
-                    b4.setSelected(true);
-                    b4.getIcon();
-                }
-                if (b5 == e.getSource()){
-                    b5.setSelected(true);
-                    b5.getIcon();
-                }
-                if (b6 == e.getSource()){
-                    b6.setSelected(true);
-                    b6.getIcon();
                 }
             }
 
 
         });
+        b1.addActionListener(e -> {
+            if (b1 == e.getSource()) {
+                selectedAvatar = b1;
+                b1.setBorderPainted(true);
+            }
+        });
 
-    }
+        b2.addActionListener(e -> {
+            if (b2 == e.getSource()) {
+                selectedAvatar = b2;
+                b2.setBorderPainted(true);
+            }
+        });
 
-    public void disableAvatarButtons(){
-        b1.setEnabled(false);
-        b2.setEnabled(false);
-        b3.setEnabled(false);
-        b4.setEnabled(false);
-        b5.setEnabled(false);
-        b6.setEnabled(false);
+        b3.addActionListener(e -> {
+            if (b3 == e.getSource()) {
+                selectedAvatar = b3;
+            }
+        });
+
+        b4.addActionListener(e -> {
+            if (b4 == e.getSource()) {
+                selectedAvatar = b4;
+            }
+        });
+
+        b5.addActionListener(e -> {
+            if (b5 == e.getSource()) {
+                selectedAvatar = b5;
+            }
+        });
+
+        b6.addActionListener(e -> {
+            if (b6 == e.getSource()) {
+                selectedAvatar = b6;
+            }
+        });
+
+
     }
 
     public JTextField getUserNameInput(String userName) {
@@ -107,12 +92,14 @@ public class UsernameAndAvatarGUI extends JFrame {
         this.userNameInput = userNameInput;
     }
 
-
-
-
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+    public void disableAvatarButtons() {
+        b1.setEnabled(false);
+        b2.setEnabled(false);
+        b3.setEnabled(false);
+        b4.setEnabled(false);
+        b5.setEnabled(false);
+        b6.setEnabled(false);
     }
+
 }
+

@@ -21,10 +21,12 @@ public class Client extends Thread {
     ResultsGUI resultsGUI;
 
     String userName;
+    String opponentUserName;
 
     JButton selectedAvatar;
 
-    String opponentUserName;
+    JButton selectedAvatarToGameGUI;
+
 
     int roundScore = 0;
 
@@ -55,7 +57,6 @@ public class Client extends Thread {
 
     public Client() {
 
-        //userName = JOptionPane.showInputDialog(null, "Ange ditt namn: "); // Få in inputen i textfield
         usernameAndAvatarGUI = new UsernameAndAvatarGUI(this);
 
         while (isProceed() == false){
@@ -139,6 +140,11 @@ public class Client extends Thread {
                     gameGui = new GameGui(out, this);
                     out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
+                    gameGui.avatarImageButton1.setIcon(selectedAvatar.getIcon());
+
+
+
+
                     opponentUserName = in.readLine();
                     gameGui.opponentUserNameLabel.setText(opponentUserName);
                     gameGui.categorylabel.setText("KATEGORI: " + in.readLine());
@@ -170,6 +176,7 @@ public class Client extends Thread {
                 if (roundCounter == 0) {
                     resultsGUI = new ResultsGUI(out, this);
                     resultsGUI.usernamePlayerLabel.setText(userName);
+                    resultsGUI.avatarImageButtonResult1.setIcon(selectedAvatar.getIcon());
                     resultsGUI.usernameOpponentLabel.setText(opponentUserName);
                     resultsGUI.setTitle(userName);
                     resultsGUI.categoryLabel1.setText(currentCategory);

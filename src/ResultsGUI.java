@@ -12,8 +12,6 @@ public class ResultsGUI extends JFrame {
     protected JLabel categoryLabel4;
     protected JLabel usernamePlayerLabel;
     protected JLabel usernameOpponentLabel;
-    private JLabel player1Icon;
-    private JLabel player2Icon;
     protected JLabel playerScoreRound1;
     protected JLabel playerScoreRound2;
     protected JLabel playerScoreRound3;
@@ -24,6 +22,8 @@ public class ResultsGUI extends JFrame {
     protected JLabel opponentScoreRound4;
     protected JLabel playerTotalScore;
     protected JLabel opponentTotalScore;
+    protected JButton avatarImageButtonResult1;
+    protected JButton avatarImageButtonResult2;
     Client client;
     PrintWriter out;
 

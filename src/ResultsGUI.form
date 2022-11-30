@@ -10,24 +10,6 @@
     </properties>
     <border type="bevel-raised"/>
     <children>
-      <component id="b82ae" class="javax.swing.JLabel" binding="player1Icon">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <icon value="Pictures/monster.png"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="135b0" class="javax.swing.JLabel" binding="player2Icon">
-        <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <icon value="Pictures/pngwing.com (1).png"/>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="50e3f" class="javax.swing.JLabel" binding="usernameOpponentLabel">
         <constraints>
           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
@@ -244,6 +226,27 @@
           <font name="Comic Sans MS" size="22" style="1"/>
           <foreground color="-1"/>
           <text value="-"/>
+        </properties>
+      </component>
+      <component id="b52f2" class="javax.swing.JButton" binding="avatarImageButtonResult1">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="6c7ca" class="javax.swing.JButton" binding="avatarImageButtonResult2">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <label value=""/>
+          <text value=""/>
         </properties>
       </component>
     </children>

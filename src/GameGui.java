@@ -15,6 +15,10 @@ public class GameGui extends JFrame {
     protected JLabel opponentUserNameLabel;
     private JButton continueButton;
     protected String correctAnswer;
+
+    protected JButton selectedAvatarToGameGUI; // ska plocka och skicka vidare
+    protected JButton avatarImageButton1; // spelare "1"
+    protected JButton avatarImageButton2;// spelare "2"
     PrintWriter out;
     Client client;
 
@@ -23,12 +27,21 @@ public class GameGui extends JFrame {
         this.out = out;
         this.client = client;
 
+
         setContentPane(panel1);
         setSize(550,600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
         continueButton.setVisible(false);
         setResizable(false);
+
+        avatarImageButton1.addActionListener(e -> {
+            // 1
+        });
+
+        avatarImageButton2.addActionListener(e ->{
+            // 2
+        });
 
         button1.addActionListener(e -> {
             if(button1.getText().equals(correctAnswer)) {
@@ -80,6 +93,12 @@ public class GameGui extends JFrame {
         continueButton.addActionListener(e -> {
             out.println("QUESTION ANSWERED");
         });
+
+
+
+
+
+
     }
 
     public void setCorrectButton(){
