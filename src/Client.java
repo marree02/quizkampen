@@ -76,7 +76,6 @@ public class Client extends Thread {
 
         this.numberOfQuestionsPerRound = Integer.parseInt(p.getProperty("questions"));
         this.numberOfRounds = Integer.parseInt(p.getProperty("rounds"));
-
         this.start();
     }
 
