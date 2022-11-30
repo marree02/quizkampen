@@ -36,13 +36,13 @@ Private
 Protected
 Public
 ---
-Vilken metod anropas för att starta exekveringen av en tråd?
+Vilken metod anropar man för att starta en tråd?
 *start()
 run()
 execute()
 init()
 ---
-Vilken metod kommer att köras när man anropar start() på en tråd?
+Vilken metod körs när man anropat start()?
 *run()
 start()
 execute()

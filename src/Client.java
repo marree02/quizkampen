@@ -50,7 +50,7 @@ public class Client extends Thread {
         // Öppnar upp användarstatistik. Bör kanske vara en knapp man kan öppna upp på någon av de existerande GUIs vi har?
         // Vart vet jag inte ännu. Förslagsvis VälkomstGUI och WinnerLooserGUI
 
-        UserStatistics userStatistics = new UserStatistics();
+        /*UserStatistics userStatistics = new UserStatistics();
         try{
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
             while (true){
@@ -64,6 +64,7 @@ public class Client extends Thread {
         }catch (Exception e){
             //TODO: handle
         }
+        */
 
         Properties p = new Properties();
 
@@ -265,7 +266,7 @@ public class Client extends Thread {
 
                 roundCounter++;
             }
-            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
+            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
 
             if(totalScoreOpponent > playerTotalScore){
                 winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorar!");

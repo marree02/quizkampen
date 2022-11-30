@@ -1,2 +1,6 @@
 vivvi -5
 kalle -5
+Thonas1 -7
+Thomas2 -9
+Thomas2 -5
+Thomas1 -5
