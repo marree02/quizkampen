@@ -8,3 +8,5 @@ Sigrun -6
 Thomas -7
 1 -4
 2 -2
+Lasse -3
+Thomas -2

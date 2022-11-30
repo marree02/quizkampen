@@ -18,14 +18,14 @@ public class GameGui extends JFrame implements ActionListener {
     private JButton continueButton;
     private JProgressBar progressBar1;
 
-    private Timer timer = new Timer(45, this);
+    private Timer timer = new Timer(60, this);
 
     protected String correctAnswer;
 
     protected JButton selectedAvatarToGameGUI; // ska plocka och skicka vidare
     protected JButton avatarImageButton1; // spelare "1"
     protected JButton avatarImageButton2;// spelare "2"
-    private JProgressBar progressBar1;
+
     PrintWriter out;
     Client client;
 
@@ -41,7 +41,7 @@ public class GameGui extends JFrame implements ActionListener {
         setSize(550,600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
-        continueButton.setVisible(false);
+        continueButton.setEnabled(false);
         setResizable(false);
 
         button1.addActionListener(e -> {
