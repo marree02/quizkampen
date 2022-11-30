@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -80,24 +81,28 @@ public class Client extends Thread {
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
-        // Öppnar upp användarstatistik. Bör kanske vara en knapp man kan öppna upp på någon av de existerande GUIs vi har?
-        // Vart vet jag inte ännu. Förslagsvis VälkomstGUI och WinnerLooserGUI
 
-        /*UserStatistics userStatistics = new UserStatistics();
+        UserStatistics userStatistics = new UserStatistics();
         try{
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
-            while (true){
-                String line = bufferedReader.readLine();
-                if (line == null){
-                    break;
-                }
-                    userStatistics.textArea.append(line + "\n");
+            String line = null;
+            List<String> list = new ArrayList<>();
+
+            while ((line = bufferedReader.readLine()) != null){
+              list.add(line);
 
             }
+            Collections.sort(list,Collections.reverseOrder());
+
+            for (int i = 0; i < list.size(); i++) {
+                userStatistics.textArea.append(list.get(i) + "\n");
+            }
+
+
         }catch (Exception e){
-            //TODO: handle
+
         }
-        */
+
 
 
         Properties p = new Properties();
@@ -359,7 +364,7 @@ public class Client extends Thread {
             }
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
-            printWriter.println(userName + " -" + playerTotalScore);
+            printWriter.println(playerTotalScore + " poäng | " + "Användarnamn: " + userName);
             printWriter.close();
 
             /*
