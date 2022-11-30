@@ -76,7 +76,7 @@
         <properties>
           <font name="Comic Sans MS" size="16"/>
           <foreground color="-3026479"/>
-          <text value="KATEGORI:"/>
+          <text value="KATEGORI HÄR"/>
         </properties>
       </component>
       <component id="44c51" class="javax.swing.JLabel">
