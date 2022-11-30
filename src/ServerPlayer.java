@@ -125,6 +125,9 @@ public class ServerPlayer extends Thread {
                         out.println("NO");
                     }
                 }
+                else if (fromClient.equals("OPPONENT GAVE UP")) {
+                    out.println("GAVE UP");
+                }
 
                 else if (fromClient.equals("GET CURRENT CATEGORY")) {
                     out.println(game.questionGenerator.getCurrentCategory());
@@ -134,10 +137,8 @@ public class ServerPlayer extends Thread {
 
                     out.println(game.getScoresPerRound(playerOneOrTwo));
                     out.println(game.getScoresPerRound(opponent.playerOneOrTwo));
-
-                }else if(fromClient.equals("MOTSTÅNDAREN GAV UPP")){
-                    out.println("MOTSTÅNDAREN");
                 }
+
 
                 else {
                     System.out.println("Felaktig input från client");

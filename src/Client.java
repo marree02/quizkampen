@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -203,7 +204,16 @@ public class Client extends Thread {
 
                 resultsGUI.continueButton.setEnabled(true);
 
-                if(in.readLine().equals("CONTINUE"));
+                if (in.readLine().equals("GAVE UP")) {
+                    resultsGUI.giveUpButton.setText("Du ger upp");
+                    resultsGUI.giveUpButton.setBackground(Color.red);
+                    resultsGUI.panel1.setBackground(Color.RED);
+                    resultsGUI.p1.setBackground(Color.red);
+                    resultsGUI.p2.setBackground(Color.red);
+                    resultsGUI.p3.setBackground(Color.red);
+                    Client.sleep(3000);
+                    System.exit(0);
+                }
 
                 resultsGUI.setVisible(false);
 
@@ -213,23 +223,21 @@ public class Client extends Thread {
 
                 roundCounter++;
 
-                if(in.readLine().equals("MOTSTÅNDAREN")) {
-                        resultsGUI.giveUpButton.setText(opponentUserName + " gav upp. Spelet avslutas");
-                     //   Thread.sleep(5000);
-                //        interrupt();
-
-                }
             }
 
 
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
 
             if(totalScoreOpponent > playerTotalScore){
-                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorar!");
+                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorade!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.red);
+                winnerLooserGUI.p1.setBackground(Color.red);
             } else if (totalScoreOpponent < playerTotalScore) {
                 winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                winnerLooserGUI.p1.setBackground(Color.green);
             } else {
-                winnerLooserGUI.winnerOrLooserLabel.setText("oavgjort!");
+                winnerLooserGUI.winnerOrLooserLabel.setText("Oavgjort!");
             }
                 
 
