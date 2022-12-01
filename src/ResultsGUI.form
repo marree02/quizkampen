@@ -55,7 +55,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <text value=""/>
             </properties>
@@ -65,7 +65,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <text value=""/>
             </properties>
@@ -75,7 +75,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <text value=""/>
             </properties>
@@ -85,7 +85,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <text value=""/>
             </properties>
@@ -107,7 +107,8 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <enabled value="true"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <text value=""/>
             </properties>
@@ -117,7 +118,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1181185"/>
               <text value=""/>
             </properties>
@@ -127,7 +128,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <text value=""/>
             </properties>
@@ -137,7 +138,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Comic Sans MS" size="14"/>
+              <font name="Comic Sans MS" size="16"/>
               <foreground color="-1"/>
               <requestFocusEnabled value="true"/>
               <text value=""/>
@@ -203,7 +204,7 @@
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Comic Sans MS" size="16" style="1"/>
+          <font name="Comic Sans MS" size="18" style="1"/>
           <foreground color="-1"/>
           <text value=""/>
         </properties>
@@ -213,7 +214,7 @@
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Comic Sans MS" size="14" style="1"/>
+          <font name="Comic Sans MS" size="18" style="1"/>
           <foreground color="-1"/>
           <text value=""/>
         </properties>
