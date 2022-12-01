@@ -326,7 +326,11 @@ public class Client extends Thread {
                     resultsGUI.p1.setBackground(Color.red);
                     resultsGUI.p2.setBackground(Color.red);
                     resultsGUI.p3.setBackground(Color.red);
+                    out.println(m.QUIT);
                     Client.sleep(3000);
+                    out.close();
+                    in.close();
+                    socket.close();
                     System.exit(0);
                 }
 
