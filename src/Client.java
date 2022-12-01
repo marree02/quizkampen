@@ -6,10 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
 public class Client extends Thread {
+
+    Messages m = new Messages();
 
     UsernameAndAvatarGUI usernameAndAvatarGUI;
     WelcomeUI welcomeGui;
@@ -81,6 +84,27 @@ public class Client extends Thread {
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
 
+        UserStatistics userStatistics = new UserStatistics();
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
+            String line = null;
+            List<String> list = new ArrayList<>();
+
+            while ((line = bufferedReader.readLine()) != null){
+              list.add(line);
+
+            }
+            Collections.sort(list,Collections.reverseOrder());
+
+            for (int i = 0; i < list.size(); i++) {
+                userStatistics.textArea.append(list.get(i) + "\n");
+            }
+
+        }catch (Exception e){
+
+        }
+
+
         Properties p = new Properties();
 
        try{
@@ -89,8 +113,20 @@ public class Client extends Thread {
            System.out.println("filen kunde ej hittas");
        }
 
-        this.numberOfQuestionsPerRound = Integer.parseInt(p.getProperty("questions"));
-        this.numberOfRounds = Integer.parseInt(p.getProperty("rounds"));
+       try {
+           this.numberOfQuestionsPerRound = Integer.parseInt(p.getProperty("questions"));
+           this.numberOfRounds = Integer.parseInt(p.getProperty("rounds"));
+       } catch (Exception e) {
+           numberOfQuestionsPerRound = 3;
+           numberOfRounds = 4;
+       }
+
+        if (numberOfRounds > 4) numberOfRounds = 4;
+        if (numberOfRounds < 1) numberOfRounds = 4;
+        if (numberOfQuestionsPerRound < 1) numberOfQuestionsPerRound = 3;
+        if (numberOfQuestionsPerRound > 10) numberOfQuestionsPerRound = 10;
+
+
         this.start();
     }
 
@@ -104,7 +140,7 @@ public class Client extends Thread {
 
         ) {
 
-            out.println("GET PLAYER 1 OR 2");
+            out.println(m.GET_PLAYER_1_OR_2);
 
             if (in.readLine().equals("1")) {
                 playerTurn = true;
@@ -114,11 +150,11 @@ public class Client extends Thread {
                 windowCentered = true;
             }
 
-            out.println("SENDING USERNAME");
-            out.println(userName);
+            out.println(m.SENDING_USERNAME);
+            out.println(userName); // UserInput
 
-            out.println("SENDING AVATAR");
-            out.println(selectedAvatarNumber);
+            out.println(m.SENDING_AVATAR);
+            out.println(selectedAvatarNumber); // Avatar
 
             welcomeGui.dispose();
 
@@ -127,11 +163,11 @@ public class Client extends Thread {
                 if (playerTurn) {
                     categoryGui = new CategoryUI(out, this);
                     categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
-                    out.println("GET CATEGORIES");
+                    out.println(m.GET_CATEGORIES);
                     categoryGui.category1.setText(in.readLine());
                     categoryGui.category2.setText(in.readLine());
                     categoryGui.category3.setText(in.readLine());
-                    if(in.readLine().equals("CONTINUE"));
+                    if(in.readLine().equals(m.CONTINUE));
                     categoryGui.dispose();
                 }
 
@@ -139,10 +175,13 @@ public class Client extends Thread {
                     welcomeGui = new WelcomeUI(this);
                     welcomeGui.setWelcomeLabel("");
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
-                    out.println("REQUEST NEW ROUND");
-                    while (in.readLine().equals("NO")) {
-                        out.println("CHECK IF OPPONENT GAVE UP");
-                        if (in.readLine().equals("YES")) {
+
+                    out.println(m.REQUEST_NEW_ROUND);
+
+                    while (in.readLine().equals(m.NO)) {
+
+                        out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
+                        if (in.readLine().equals(m.YES)) {
                             welcomeGui.setVisible(false);
                             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
                             winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
@@ -151,19 +190,21 @@ public class Client extends Thread {
                             Thread.sleep(3000);
                             System.exit(0);
                         }
-                        out.println("REQUEST NEW ROUND");
+
+                        out.println(m.REQUEST_NEW_ROUND);
                     }
+
                     welcomeGui.dispose();
 
                 }
 
-                out.println("GENERATE QUESTIONS FOR NEXT ROUND");
+                out.println(m.GENERATE_QUESTIONS_FOR_NEXT_ROUND);
 
 
                 while (questionCounter < numberOfQuestionsPerRound) {
 
                     gameGui = new GameGui(out, this);
-                    out.println("GET QUESTION");
+                    out.println(m.GET_QUESTION);
                     gameGui.thisPLayerUserNameLabel.setText(userName);
 
                     gameGui.avatarImageButton1.setIcon(selectedAvatar.getIcon());
@@ -183,18 +224,19 @@ public class Client extends Thread {
                     gameGui.button2.setText(in.readLine());
                     gameGui.correctAnswer = in.readLine();
 
-                    if(in.readLine().equals("QUESTION ANSWERED"));
+                    if(in.readLine().equals(m.QUESTION_ANSWERED));
                     gameGui.dispose();
                     questionCounter++;
                 }
 
-                out.println("SEND SCORE FOR ROUND");
+                out.println(m.SEND_SCORE_FOR_ROUND);
                 out.println(roundScore);
 
-                out.println("GET CURRENT CATEGORY");
+                out.println(m.GET_CURRENT_CATEGORY);
                 String currentCategory = in.readLine();
 
-                out.println("GET SCORES");
+
+                out.println(m.GET_SCORES);
                 String myScoreForThisRound = in.readLine();
                 String opponentScoreForThisRound = in.readLine();
                 playerTotalScore = playerTotalScore + roundScore;
@@ -232,25 +274,32 @@ public class Client extends Thread {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
                 }
 
-                out.println("CHECK IF OPPONENT GAVE UP");
-                if (in.readLine().equals("YES")) {
-                    resultsGUI.setVisible(false);
-                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
-                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
-                    winnerLooserGUI.winOrLoseField.setBackground(Color.green);
-                    winnerLooserGUI.p1.setBackground(Color.green);
-                }
 
 
-                out.println("CHECK IF OPPONENT SCORE IS IN");
-                while(in.readLine().equals("NO")) {
+
+                out.println(m.CHECK_IF_OPPONENT_SCORE_IS_IN);
+
+                while(in.readLine().equals(m.NO)) {
+
+                    out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
+                    if (in.readLine().equals(m.YES)) {
+                        resultsGUI.setVisible(false);
+                        WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+                        winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+                        winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                        winnerLooserGUI.p1.setBackground(Color.green);
+                        Thread.sleep(3000);
+                        System.exit(0);
+                    }
+
+
                     Thread.sleep(500);
-                    out.println("CHECK IF OPPONENT SCORE IS IN");
+                    out.println(m.CHECK_IF_OPPONENT_SCORE_IS_IN);
                 }
 
                 resultsGUI.giveUpButton.setEnabled(true);
 
-                out.println("GET SCORES");
+                out.println(m.GET_SCORES);
                 myScoreForThisRound = in.readLine();
                 opponentScoreForThisRound = in.readLine();
                 totalScoreOpponent = totalScoreOpponent + Integer.parseInt(opponentScoreForThisRound);
@@ -303,7 +352,7 @@ public class Client extends Thread {
 
                 resultsGUI.continueButton.setEnabled(true);
 
-                if (in.readLine().equals("GAVE UP")) {
+                if (in.readLine().equals(m.GAVE_UP)) {
                     resultsGUI.giveUpButton.setText("Du gav upp");
                     resultsGUI.giveUpButton.setBackground(Color.red);
                     resultsGUI.panel1.setBackground(Color.RED);
