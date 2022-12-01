@@ -27,6 +27,7 @@ public class UserStatistics extends JFrame {
             while ((line = bufferedReader.readLine()) != null){
                 list.add(line);
 
+
             }
 
             Collections.sort(list,Collections.reverseOrder());
