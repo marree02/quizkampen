@@ -18,11 +18,6 @@ public class WinnerLooserGUI extends JFrame {
         setResizable(false);
 
 
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        exitButton.addActionListener(e -> System.exit(0));
     }
 }

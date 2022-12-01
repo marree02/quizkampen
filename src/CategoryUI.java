@@ -9,6 +9,8 @@ import java.util.Properties;
 
 public class CategoryUI extends JFrame implements ActionListener {
 
+    Messages m;
+
     protected JButton category1;
     private JPanel panel1;
     protected JButton category2;
@@ -39,7 +41,7 @@ public class CategoryUI extends JFrame implements ActionListener {
         JButton button = (JButton) e.getSource();
 
         // Steg 4: klienten skickar texten på den knapp som valdes
-        out.println("SET CATEGORY");
+        out.println(m.SET_CATEGORY);
         out.println(button.getText());
     }
 }

@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 
 
 public class GameGui extends JFrame implements ActionListener {
+
+    Messages m;
+
     private JPanel panel1;
     protected JButton button1;
     protected JButton button2;
@@ -92,7 +95,7 @@ public class GameGui extends JFrame implements ActionListener {
         });
 
         continueButton.addActionListener(e -> {
-            out.println("QUESTION ANSWERED");
+            out.println(m.QUESTION_ANSWERED);
         });
 
     }

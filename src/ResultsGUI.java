@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
 public class ResultsGUI extends JFrame {
+    Messages m;
     protected JPanel panel1;
     protected JButton continueButton;
     protected JLabel categoryLabel1;
@@ -43,13 +44,8 @@ public class ResultsGUI extends JFrame {
 
 
 
-        giveUpButton.addActionListener(e -> out.println("OPPONENT GAVE UP"));
-        continueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                out.println("CONTINUE FROM RESULTS");
-            }
-        });
+        giveUpButton.addActionListener(e -> out.println(m.OPPONENT_GAVE_UP));
+        continueButton.addActionListener(e -> out.println(m.CONTINUE_FROM_RESULTS));
 
     }
 }
