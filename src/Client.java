@@ -118,6 +118,9 @@ public class Client extends Thread {
             winnerLooserGUI.winOrLoseField.setBackground(Color.green);
             winnerLooserGUI.p1.setBackground(Color.green);
             Thread.sleep(3000);
+            out.println(m.QUIT);
+            out.close();
+            in.close();
             System.exit(0);
         }
 
@@ -338,8 +341,6 @@ public class Client extends Thread {
 
             }
 
-
-
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
 
             if(totalScoreOpponent > playerTotalScore){
@@ -355,6 +356,10 @@ public class Client extends Thread {
                 winnerLooserGUI.winOrLoseField.setBackground(Color.YELLOW);
                 winnerLooserGUI.p1.setBackground(Color.YELLOW);
             }
+
+            out.println(m.QUIT);
+            out.close();
+            in.close();
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
             printWriter.println(playerTotalScore + " poäng | " + "Användarnamn: " + userName);

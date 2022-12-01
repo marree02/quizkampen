@@ -46,9 +46,7 @@ public class ServerPlayer extends Thread {
 
         try {
 
-            while(true) {
-
-                fromClient = in.readLine();
+            while((fromClient = in.readLine()) != null) {
 
                 if (fromClient.equals(m.GET_PLAYER_1_OR_2)) {
                     out.println(playerOneOrTwo);
@@ -132,6 +130,11 @@ public class ServerPlayer extends Thread {
                 else if (fromClient.equals(m.OPPONENT_GAVE_UP)) {
                     game.setOpponentGaveUp(true);
                     out.println(m.GAVE_UP);
+                    break;
+                }
+
+                else if (fromClient.equals(m.QUIT)) {
+                    break;
                 }
 
                 else if (fromClient.equals(m.CHECK_IF_OPPONENT_GAVE_UP)) {
@@ -159,6 +162,10 @@ public class ServerPlayer extends Thread {
                 }
 
             }
+
+            out.close();
+            in.close();
+            socket.close();
 
 
         } catch (Exception e) {

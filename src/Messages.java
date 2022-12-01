@@ -14,6 +14,8 @@ public class Messages {
 
     public final String REQUEST_NEW_ROUND = "REQUEST NEW ROUND";
 
+    public final String QUIT = "QUIT";
+
     public final String NO = "NO";
 
     public final String YES = "YES";
