@@ -123,6 +123,19 @@ public class Client extends Thread {
 
     }
 
+    private void changeScoreColors(String myScoreForThisRound, String opponentScoreForThisRound, JLabel playerScore, JLabel opponentScore) {
+        if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
+            playerScore.setForeground(Color.green);
+            opponentScore.setForeground(Color.red);
+        } else if (Integer.parseInt(myScoreForThisRound) < Integer.parseInt(opponentScoreForThisRound)) {
+            playerScore.setForeground(Color.red);
+            opponentScore.setForeground(Color.green);
+        } else {
+            playerScore.setForeground(Color.yellow);
+            opponentScore.setForeground(Color.yellow);
+        }
+    }
+
     public void run() {
 
 
@@ -283,46 +296,22 @@ public class Client extends Thread {
 
                 if (roundCounter == 0) {
                     resultsGUI.opponentScoreRound1.setText(opponentScoreForThisRound);
-                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
-                        resultsGUI.playerScoreRound1.setForeground(Color.green);
-                        resultsGUI.opponentScoreRound1.setForeground(Color.red);
-                    }else{
-                        resultsGUI.playerScoreRound1.setForeground(Color.red);
-                        resultsGUI.opponentScoreRound1.setForeground(Color.green);
-                    }
+                    changeScoreColors(myScoreForThisRound, opponentScoreForThisRound, resultsGUI.playerScoreRound1, resultsGUI.opponentScoreRound1);
                 }
 
                 if (roundCounter == 1) {
                     resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
-                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
-                        resultsGUI.playerScoreRound2.setForeground(Color.green);
-                        resultsGUI.opponentScoreRound2.setForeground(Color.red);
-                    }else{
-                        resultsGUI.playerScoreRound2.setForeground(Color.red);
-                        resultsGUI.opponentScoreRound2.setForeground(Color.green);
-                    }
+                    changeScoreColors(myScoreForThisRound, opponentScoreForThisRound, resultsGUI.playerScoreRound2, resultsGUI.opponentScoreRound2);
                 }
 
                 if (roundCounter == 2) {
                     resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
-                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
-                        resultsGUI.playerScoreRound3.setForeground(Color.green);
-                        resultsGUI.opponentScoreRound3.setForeground(Color.red);
-                    } else {
-                        resultsGUI.playerScoreRound3.setForeground(Color.red);
-                        resultsGUI.opponentScoreRound3.setForeground(Color.green);
-                    }
+                    changeScoreColors(myScoreForThisRound, opponentScoreForThisRound, resultsGUI.playerScoreRound3, resultsGUI.opponentScoreRound3);
                 }
 
                 if (roundCounter == 3) {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
-                    if(Integer.parseInt(myScoreForThisRound) > Integer.parseInt(opponentScoreForThisRound)){
-                        resultsGUI.playerScoreRound4.setForeground(Color.green);
-                        resultsGUI.opponentScoreRound4.setForeground(Color.red);
-                    }else{
-                        resultsGUI.playerScoreRound4.setForeground(Color.red);
-                        resultsGUI.opponentScoreRound4.setForeground(Color.green);
-                    }
+                    changeScoreColors(myScoreForThisRound, opponentScoreForThisRound, resultsGUI.playerScoreRound4, resultsGUI.opponentScoreRound4);
                 }
 
                 resultsGUI.continueButton.setEnabled(true);
@@ -375,6 +364,8 @@ public class Client extends Thread {
             throw new RuntimeException(e);
         }
     }
+
+
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
