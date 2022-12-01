@@ -6,7 +6,7 @@ public class UserStatistics extends JFrame {
 
     public UserStatistics(){
         setContentPane(panel1);
-        setSize(550,600);
+        setSize(300,500);
         setVisible(true);
         setResizable(false);
 

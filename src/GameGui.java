@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
 
-public class GameGui extends JFrame {
+public class GameGui extends JFrame implements ActionListener {
     private JPanel panel1;
     protected JButton button1;
     protected JButton button2;
@@ -14,11 +16,16 @@ public class GameGui extends JFrame {
     protected JLabel thisPLayerUserNameLabel;
     protected JLabel opponentUserNameLabel;
     private JButton continueButton;
+    private JProgressBar progressBar1;
+
+    private Timer timer = new Timer(60, this);
+
     protected String correctAnswer;
 
-    protected JButton selectedAvatarToGameGUI;
-    protected JButton avatarImageButton1;
-    protected JButton avatarImageButton2;
+    protected JButton selectedAvatarToGameGUI; // ska plocka och skicka vidare
+    protected JButton avatarImageButton1; // spelare "1"
+    protected JButton avatarImageButton2;// spelare "2"
+
     PrintWriter out;
     Client client;
 
@@ -27,21 +34,15 @@ public class GameGui extends JFrame {
         this.out = out;
         this.client = client;
 
+        timer.start();
 
         setContentPane(panel1);
-        setSize(550,600);
+
+        setSize(600,600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
-        continueButton.setVisible(false);
+        continueButton.setEnabled(false);
         setResizable(false);
-
-        avatarImageButton1.addActionListener(e -> {
-            // 1
-        });
-
-        avatarImageButton2.addActionListener(e ->{
-            // 2
-        });
 
         button1.addActionListener(e -> {
             if(button1.getText().equals(correctAnswer)) {
@@ -115,6 +116,28 @@ public class GameGui extends JFrame {
         button2.setEnabled(false);
         button3.setEnabled(false);
         button4.setEnabled(false);
-        continueButton.setVisible(true);
+        button2.setEnabled(false);
+        continueButton.setEnabled(true);
+
+        timer.stop();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (progressBar1.getValue() == 100) {
+
+            setCorrectButton();
+            disableButtons();
+
+        } else {
+
+            progressBar1.setValue(progressBar1.getValue()+1);
+            if (progressBar1.getValue() > 80) {
+                progressBar1.setBackground(Color.red);
+            }
+
+        }
+
     }
 }

@@ -1,13 +1,12 @@
 import javax.swing.*;
-
 import java.awt.*;
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -27,7 +26,7 @@ public class Client extends Thread {
 
     JButton selectedAvatar;
 
-    String selectedAvatarNumber;
+    String selectedAvatarNumber = "1";
 
     String opponentSelectedAvatarNumber;
 
@@ -81,24 +80,26 @@ public class Client extends Thread {
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
-        // Öppnar upp användarstatistik. Bör kanske vara en knapp man kan öppna upp på någon av de existerande GUIs vi har?
-        // Vart vet jag inte ännu. Förslagsvis VälkomstGUI och WinnerLooserGUI
 
-        /*UserStatistics userStatistics = new UserStatistics();
+        UserStatistics userStatistics = new UserStatistics();
         try{
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
-            while (true){
-                String line = bufferedReader.readLine();
-                if (line == null){
-                    break;
-                }
-                    userStatistics.textArea.append(line + "\n");
+            String line = null;
+            List<String> list = new ArrayList<>();
+
+            while ((line = bufferedReader.readLine()) != null){
+              list.add(line);
 
             }
+            Collections.sort(list,Collections.reverseOrder());
+
+            for (int i = 0; i < list.size(); i++) {
+                userStatistics.textArea.append(list.get(i) + "\n");
+            }
+
         }catch (Exception e){
-            //TODO: handle
+
         }
-        */
 
 
         Properties p = new Properties();
@@ -161,6 +162,16 @@ public class Client extends Thread {
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
                     while (in.readLine().equals("NO")) {
+                        out.println("CHECK IF OPPONENT GAVE UP");
+                        if (in.readLine().equals("YES")) {
+                            welcomeGui.setVisible(false);
+                            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+                            winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+                            winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                            winnerLooserGUI.p1.setBackground(Color.green);
+                            Thread.sleep(3000);
+                            System.exit(0);
+                        }
                         out.println("REQUEST NEW ROUND");
                     }
                     welcomeGui.dispose();
@@ -175,6 +186,7 @@ public class Client extends Thread {
                     gameGui = new GameGui(out, this);
                     out.println("GET QUESTION");
                     gameGui.thisPLayerUserNameLabel.setText(userName);
+
                     gameGui.avatarImageButton1.setIcon(selectedAvatar.getIcon());
 
                     opponentUserName = in.readLine();
@@ -242,11 +254,23 @@ public class Client extends Thread {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
                 }
 
+                out.println("CHECK IF OPPONENT GAVE UP");
+                if (in.readLine().equals("YES")) {
+                    resultsGUI.setVisible(false);
+                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+                    winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                    winnerLooserGUI.p1.setBackground(Color.green);
+                }
+
+
                 out.println("CHECK IF OPPONENT SCORE IS IN");
                 while(in.readLine().equals("NO")) {
                     Thread.sleep(500);
                     out.println("CHECK IF OPPONENT SCORE IS IN");
                 }
+
+                resultsGUI.giveUpButton.setEnabled(true);
 
                 out.println("GET SCORES");
                 myScoreForThisRound = in.readLine();
@@ -301,7 +325,16 @@ public class Client extends Thread {
 
                 resultsGUI.continueButton.setEnabled(true);
 
-                if(in.readLine().equals("CONTINUE"));
+                if (in.readLine().equals("GAVE UP")) {
+                    resultsGUI.giveUpButton.setText("Du gav upp");
+                    resultsGUI.giveUpButton.setBackground(Color.red);
+                    resultsGUI.panel1.setBackground(Color.RED);
+                    resultsGUI.p1.setBackground(Color.red);
+                    resultsGUI.p2.setBackground(Color.red);
+                    resultsGUI.p3.setBackground(Color.red);
+                    Client.sleep(3000);
+                    System.exit(0);
+                }
 
                 resultsGUI.continueButton.setEnabled(false);
                 resultsGUI.setVisible(false);
@@ -311,19 +344,26 @@ public class Client extends Thread {
                 questionCounter = 0;
 
                 roundCounter++;
+
             }
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
 
             if(totalScoreOpponent > playerTotalScore){
-                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorar!");
+                winnerLooserGUI.winnerOrLooserLabel.setText("Du förlorade!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.red);
+                winnerLooserGUI.p1.setBackground(Color.red);
             } else if (totalScoreOpponent < playerTotalScore) {
                 winnerLooserGUI.winnerOrLooserLabel.setText("Du vann!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                winnerLooserGUI.p1.setBackground(Color.green);
             } else {
-                winnerLooserGUI.winnerOrLooserLabel.setText("oavgjort!");
+                winnerLooserGUI.winnerOrLooserLabel.setText("Oavgjort!");
+                winnerLooserGUI.winOrLoseField.setBackground(Color.YELLOW);
+                winnerLooserGUI.p1.setBackground(Color.YELLOW);
             }
 
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
-            printWriter.println(userName + " -" + playerTotalScore);
+            printWriter.println(playerTotalScore + " poäng | " + "Användarnamn: " + userName);
             printWriter.close();
 
             /*
@@ -340,8 +380,6 @@ public class Client extends Thread {
 
         */
 
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

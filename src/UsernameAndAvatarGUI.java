@@ -31,6 +31,7 @@ public class UsernameAndAvatarGUI extends JFrame {
         setSize(550, 600);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
+        selectedAvatar = b1;
 
 
         continueButton.addActionListener(new ActionListener() {
@@ -48,6 +49,7 @@ public class UsernameAndAvatarGUI extends JFrame {
         });
         b1.addActionListener(e -> {
             if (b1 == e.getSource()) {
+                disableAvatarButtons();
                 selectedAvatar = b1;
                 b1.setBorderPainted(true);
                 client.selectedAvatarNumber = "1";
@@ -56,6 +58,7 @@ public class UsernameAndAvatarGUI extends JFrame {
 
         b2.addActionListener(e -> {
             if (b2 == e.getSource()) {
+                disableAvatarButtons();
                 selectedAvatar = b2;
                 b2.setBorderPainted(true);
                 client.selectedAvatarNumber = "2";
@@ -64,6 +67,7 @@ public class UsernameAndAvatarGUI extends JFrame {
 
         b3.addActionListener(e -> {
             if (b3 == e.getSource()) {
+                disableAvatarButtons();
                 selectedAvatar = b3;
                 b3.setBorderPainted(true);
                 client.selectedAvatarNumber = "3";
@@ -72,6 +76,7 @@ public class UsernameAndAvatarGUI extends JFrame {
 
         b4.addActionListener(e -> {
             if (b4 == e.getSource()) {
+                disableAvatarButtons();
                 selectedAvatar = b4;
                 b4.setBorderPainted(true);
                 client.selectedAvatarNumber = "4";
@@ -80,6 +85,7 @@ public class UsernameAndAvatarGUI extends JFrame {
 
         b5.addActionListener(e -> {
             if (b5 == e.getSource()) {
+                disableAvatarButtons();
                 selectedAvatar = b5;
                 b5.setBorderPainted(true);
                 client.selectedAvatarNumber = "5";
@@ -88,6 +94,7 @@ public class UsernameAndAvatarGUI extends JFrame {
 
         b6.addActionListener(e -> {
             if (b6 == e.getSource()) {
+                disableAvatarButtons();
                 selectedAvatar = b6;
                 b6.setBorderPainted(true);
                 client.selectedAvatarNumber = "6";
@@ -106,12 +113,12 @@ public class UsernameAndAvatarGUI extends JFrame {
     }
 
     public void disableAvatarButtons() {
-        b1.setEnabled(false);
-        b2.setEnabled(false);
-        b3.setEnabled(false);
-        b4.setEnabled(false);
-        b5.setEnabled(false);
-        b6.setEnabled(false);
+        b1.setBorderPainted(false);
+        b2.setBorderPainted(false);
+        b3.setBorderPainted(false);
+        b4.setBorderPainted(false);
+        b5.setBorderPainted(false);
+        b6.setBorderPainted(false);
     }
 
 }

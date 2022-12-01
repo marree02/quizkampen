@@ -10,7 +10,7 @@ public class WaitingOnPlayerGUI extends JFrame {
     public WaitingOnPlayerGUI(Client client){
         this.client = client;
         setContentPane(panel1);
-        setSize(300,300);
+        setSize(400,300);
         if (client.windowCentered) setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);

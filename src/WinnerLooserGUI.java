@@ -5,21 +5,23 @@ import java.awt.event.ActionListener;
 public class WinnerLooserGUI extends JFrame {
     private JPanel panel1;
     protected JLabel winnerOrLooserLabel;
-    private JButton button1;
+    private JButton exitButton;
+    protected JPanel winOrLoseField;
+    protected JPanel p1;
 
 
     public WinnerLooserGUI(Client client){
         setContentPane(panel1);
         setVisible(true);
-        setSize(300,300);
+        setSize(700,300);
         if (client.windowCentered) setLocationRelativeTo(null);
         setResizable(false);
 
 
-        button1.addActionListener(new ActionListener() {
+        exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                System.exit(0);
             }
         });
     }
