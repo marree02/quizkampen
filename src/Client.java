@@ -83,28 +83,6 @@ public class Client extends Thread {
         welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
-
-        UserStatistics userStatistics = new UserStatistics();
-        try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
-            String line = null;
-            List<String> list = new ArrayList<>();
-
-            while ((line = bufferedReader.readLine()) != null){
-              list.add(line);
-
-            }
-            Collections.sort(list,Collections.reverseOrder());
-
-            for (int i = 0; i < list.size(); i++) {
-                userStatistics.textArea.append(list.get(i) + "\n");
-            }
-
-        }catch (Exception e){
-
-        }
-
-
         Properties p = new Properties();
 
        try{
@@ -128,6 +106,21 @@ public class Client extends Thread {
 
 
         this.start();
+    }
+
+    private void checkIfOpponentGaveUp(PrintWriter out, BufferedReader in) throws InterruptedException, IOException {
+
+        out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
+        if (in.readLine().equals(m.YES)) {
+            welcomeGui.setVisible(false);
+            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+            winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+            winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+            winnerLooserGUI.p1.setBackground(Color.green);
+            Thread.sleep(3000);
+            System.exit(0);
+        }
+
     }
 
     public void run() {
@@ -161,6 +154,7 @@ public class Client extends Thread {
             while (roundCounter < numberOfRounds) {
 
                 if (playerTurn) {
+                    checkIfOpponentGaveUp(out, in);
                     categoryGui = new CategoryUI(out, this);
                     categoryGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
                     out.println(m.GET_CATEGORIES);
@@ -179,18 +173,7 @@ public class Client extends Thread {
                     out.println(m.REQUEST_NEW_ROUND);
 
                     while (in.readLine().equals(m.NO)) {
-
-                        out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
-                        if (in.readLine().equals(m.YES)) {
-                            welcomeGui.setVisible(false);
-                            WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
-                            winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
-                            winnerLooserGUI.winOrLoseField.setBackground(Color.green);
-                            winnerLooserGUI.p1.setBackground(Color.green);
-                            Thread.sleep(3000);
-                            System.exit(0);
-                        }
-
+                        checkIfOpponentGaveUp(out, in);
                         out.println(m.REQUEST_NEW_ROUND);
                     }
 
@@ -243,6 +226,7 @@ public class Client extends Thread {
 
                 if (roundCounter == 0) {
                     resultsGUI = new ResultsGUI(out, this);
+                    resultsGUI.giveUpButton.setEnabled(false);
                     resultsGUI.usernamePlayerLabel.setText(userName);
                     resultsGUI.avatarImageButtonResult1.setIcon(selectedAvatar.getIcon());
                     resultsGUI.avatarImageButtonResult2.setIcon(avatarButtons.get(Integer.parseInt(opponentSelectedAvatarNumber)-1).getIcon());
@@ -255,6 +239,7 @@ public class Client extends Thread {
 
                 if (roundCounter == 1) {
                     resultsGUI.setVisible(true);
+                    resultsGUI.giveUpButton.setEnabled(false);
                     resultsGUI.categoryLabel2.setText(currentCategory);
                     resultsGUI.playerScoreRound2.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound2.setText(opponentScoreForThisRound);
@@ -262,6 +247,7 @@ public class Client extends Thread {
                 }
                 if (roundCounter == 2) {
                     resultsGUI.setVisible(true);
+                    resultsGUI.giveUpButton.setEnabled(false);
                     resultsGUI.categoryLabel3.setText(currentCategory);
                     resultsGUI.playerScoreRound3.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound3.setText(opponentScoreForThisRound);
@@ -269,6 +255,7 @@ public class Client extends Thread {
 
                 if (roundCounter == 3) {
                     resultsGUI.setVisible(true);
+                    resultsGUI.giveUpButton.setEnabled(false);
                     resultsGUI.categoryLabel4.setText(currentCategory);
                     resultsGUI.playerScoreRound4.setText(myScoreForThisRound);
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
@@ -280,19 +267,7 @@ public class Client extends Thread {
                 out.println(m.CHECK_IF_OPPONENT_SCORE_IS_IN);
 
                 while(in.readLine().equals(m.NO)) {
-
-                    out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
-                    if (in.readLine().equals(m.YES)) {
-                        resultsGUI.setVisible(false);
-                        WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
-                        winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
-                        winnerLooserGUI.winOrLoseField.setBackground(Color.green);
-                        winnerLooserGUI.p1.setBackground(Color.green);
-                        Thread.sleep(3000);
-                        System.exit(0);
-                    }
-
-
+                    checkIfOpponentGaveUp(out, in);
                     Thread.sleep(500);
                     out.println(m.CHECK_IF_OPPONENT_SCORE_IS_IN);
                 }
@@ -373,6 +348,9 @@ public class Client extends Thread {
                 roundCounter++;
 
             }
+
+
+
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
 
             if(totalScoreOpponent > playerTotalScore){
