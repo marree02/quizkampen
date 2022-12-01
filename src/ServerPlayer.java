@@ -155,6 +155,7 @@ public class ServerPlayer extends Thread {
 
                 else {
                     System.out.println("Felaktig input från client");
+                    System.out.println(fromClient);
                 }
 
             }
