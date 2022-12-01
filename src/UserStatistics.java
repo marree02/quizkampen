@@ -25,6 +25,11 @@ public class UserStatistics extends JFrame {
 
 
             while ((line = bufferedReader.readLine()) != null){
+
+                if (line.charAt(1) == ' ') {
+                    line = "0" + line;
+                }
+
                 list.add(line);
 
 
@@ -33,6 +38,11 @@ public class UserStatistics extends JFrame {
             Collections.sort(list,Collections.reverseOrder());
 
             for (int i = 0; i < 20; i++) {
+
+                if (list.get(i).startsWith("0")) {
+                    list.set(i, list.get(i).substring(1));
+                }
+
                 textArea.append(list.get(i) + "\n");
 
             }
