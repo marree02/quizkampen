@@ -49,6 +49,8 @@ public class Client extends Thread {
     int questionCounter = 0;
     int numberOfRounds;
 
+    UserStatistics userStatistics;
+
     public synchronized boolean isProceed() {
         return proceed;
     }
@@ -81,27 +83,6 @@ public class Client extends Thread {
         welcomeGui.setTitle("QUIZKAMPEN " + userName.toUpperCase());
 
 
-        UserStatistics userStatistics = new UserStatistics();
-        try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/UserStatistic.txt"));
-            String line = null;
-            List<String> list = new ArrayList<>();
-
-            while ((line = bufferedReader.readLine()) != null){
-              list.add(line);
-
-            }
-            Collections.sort(list,Collections.reverseOrder());
-
-            for (int i = 0; i < list.size(); i++) {
-                userStatistics.textArea.append(list.get(i) + "\n");
-            }
-
-        }catch (Exception e){
-
-        }
-
-
         Properties p = new Properties();
 
        try{
@@ -119,7 +100,7 @@ public class Client extends Thread {
 
 
         try (
-                Socket socket = new Socket("3.65.85.164 ", 7676);
+                Socket socket = new Socket("127.0.0.1", 7676);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
 
@@ -158,7 +139,7 @@ public class Client extends Thread {
 
                 if (!playerTurn) {
                     welcomeGui = new WelcomeUI(this);
-                    welcomeGui.setWelcomeLabel("VÄLKOMMEN " + userName.toUpperCase());
+                    welcomeGui.setWelcomeLabel("");
                     welcomeGui.setWaitingLabel("väntar på att motståndaren väljer kategori");
                     out.println("REQUEST NEW ROUND");
                     while (in.readLine().equals("NO")) {
@@ -365,6 +346,8 @@ public class Client extends Thread {
             PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("src/Userstatistic.txt", true)));
             printWriter.println(playerTotalScore + " poäng | " + "Användarnamn: " + userName);
             printWriter.close();
+
+
 
             /*
 

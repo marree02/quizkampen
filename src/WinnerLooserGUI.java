@@ -8,6 +8,7 @@ public class WinnerLooserGUI extends JFrame {
     private JButton exitButton;
     protected JPanel winOrLoseField;
     protected JPanel p1;
+    private JButton statisticButton;
 
 
     public WinnerLooserGUI(Client client){
@@ -22,6 +23,12 @@ public class WinnerLooserGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+        statisticButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserStatistics userStatistics = new UserStatistics();
             }
         });
     }
