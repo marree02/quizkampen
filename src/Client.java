@@ -345,22 +345,6 @@ public class Client extends Thread {
             printWriter.println(playerTotalScore + " poäng | " + "Användarnamn: " + userName);
             printWriter.close();
 
-
-
-            /*
-
-                if (!playerTurn && questionCounter<2 && roundCounter<2) {
-                    waitingOnPlayerGUI.setVisible(true);
-                }
-
-                // Få till så WinnerLooserGUI kommer upp efter sista rundan detta funkar inte just här men något liknande kanske fungerar
-                //if(roundCounter>=2 && questionCounter>=2){
-                //    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI();
-               // }
-            }
-
-        */
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
