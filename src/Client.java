@@ -135,10 +135,10 @@ public class Client extends Thread {
             }
 
             out.println("SENDING USERNAME");
-            out.println(userName); // UserInput
+            out.println(userName);
 
             out.println("SENDING AVATAR");
-            out.println(selectedAvatarNumber); // Avatar
+            out.println(selectedAvatarNumber);
 
             welcomeGui.dispose();
 
@@ -307,7 +307,7 @@ public class Client extends Thread {
                 resultsGUI.setVisible(false);
 
                 roundScore = 0;
-                playerTurn = !playerTurn; // Byte av spelare
+                playerTurn = !playerTurn;
                 questionCounter = 0;
 
                 roundCounter++;

@@ -15,8 +15,8 @@ public class GameGui extends JFrame {
     protected JLabel opponentUserNameLabel;
     private JButton continueButton;
     protected String correctAnswer;
-    protected JButton avatarImageButton1; // spelare "1"
-    protected JButton avatarImageButton2;// spelare "2"
+    protected JButton avatarImageButton1;
+    protected JButton avatarImageButton2;
     PrintWriter out;
     Client client;
 

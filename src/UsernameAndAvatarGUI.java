@@ -37,8 +37,8 @@ public class UsernameAndAvatarGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (continueButton == e.getSource()) {
-                    client.userName = userNameInput.getText(); // plockar texten
-                    client.selectedAvatar = selectedAvatar; // plockar avatar
+                    client.userName = userNameInput.getText();
+                    client.selectedAvatar = selectedAvatar;
                     client.setProceed();
 
                 }
@@ -105,14 +105,6 @@ public class UsernameAndAvatarGUI extends JFrame {
         this.userNameInput = userNameInput;
     }
 
-    public void disableAvatarButtons() {
-        b1.setEnabled(false);
-        b2.setEnabled(false);
-        b3.setEnabled(false);
-        b4.setEnabled(false);
-        b5.setEnabled(false);
-        b6.setEnabled(false);
-    }
 
 }
 
