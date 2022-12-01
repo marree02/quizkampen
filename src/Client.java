@@ -194,7 +194,6 @@ public class Client extends Thread {
                 out.println("GET CURRENT CATEGORY");
                 String currentCategory = in.readLine();
 
-
                 out.println("GET SCORES");
                 String myScoreForThisRound = in.readLine();
                 String opponentScoreForThisRound = in.readLine();
