@@ -1,9 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UsernameAndAvatarGUI extends JFrame {
     protected JPanel Panel1;
@@ -17,6 +14,7 @@ public class UsernameAndAvatarGUI extends JFrame {
     protected JButton b5;
     protected JButton b6;
     protected JButton continueButton;
+    private JButton button;
     protected JButton selectedAvatar;
 
     PrintWriter out;
@@ -102,6 +100,12 @@ public class UsernameAndAvatarGUI extends JFrame {
         });
 
 
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserStatistics userStatistics = new UserStatistics();
+            }
+        });
     }
 
     public JTextField getUserNameInput(String userName) {
