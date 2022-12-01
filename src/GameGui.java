@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 public class GameGui extends JFrame implements ActionListener {
 
-    Messages m;
+    Messages m = new Messages();
 
     private JPanel panel1;
     protected JButton button1;

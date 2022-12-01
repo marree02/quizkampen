@@ -16,7 +16,7 @@ public class ServerPlayer extends Thread {
     String playerOneOrTwo;
     String fromClient;
     String avatar;
-    Messages m;
+    Messages m = new Messages();
 
     List<Question> questionsForNextRound = new ArrayList<>();
 

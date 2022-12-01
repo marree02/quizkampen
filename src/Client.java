@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class Client extends Thread {
 
-    Messages m;
+    Messages m = new Messages();
 
     UsernameAndAvatarGUI usernameAndAvatarGUI;
     WelcomeUI welcomeGui;
@@ -273,18 +273,25 @@ public class Client extends Thread {
                     resultsGUI.opponentScoreRound4.setText(opponentScoreForThisRound);
                 }
 
-                out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
-                if (in.readLine().equals(m.YES)) {
-                    resultsGUI.setVisible(false);
-                    WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
-                    winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
-                    winnerLooserGUI.winOrLoseField.setBackground(Color.green);
-                    winnerLooserGUI.p1.setBackground(Color.green);
-                }
+
 
 
                 out.println(m.CHECK_IF_OPPONENT_SCORE_IS_IN);
+
                 while(in.readLine().equals(m.NO)) {
+
+                    out.println(m.CHECK_IF_OPPONENT_GAVE_UP);
+                    if (in.readLine().equals(m.YES)) {
+                        resultsGUI.setVisible(false);
+                        WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
+                        winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+                        winnerLooserGUI.winOrLoseField.setBackground(Color.green);
+                        winnerLooserGUI.p1.setBackground(Color.green);
+                        Thread.sleep(3000);
+                        System.exit(0);
+                    }
+
+
                     Thread.sleep(500);
                     out.println(m.CHECK_IF_OPPONENT_SCORE_IS_IN);
                 }

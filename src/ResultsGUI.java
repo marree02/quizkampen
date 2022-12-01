@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
 public class ResultsGUI extends JFrame {
-    Messages m;
+    Messages m = new Messages();
     protected JPanel panel1;
     protected JButton continueButton;
     protected JLabel categoryLabel1;

@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class CategoryUI extends JFrame implements ActionListener {
 
-    Messages m;
+    Messages m = new Messages();
 
     protected JButton category1;
     private JPanel panel1;
