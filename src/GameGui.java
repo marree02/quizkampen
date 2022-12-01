@@ -16,9 +16,9 @@ public class GameGui extends JFrame {
     private JButton continueButton;
     protected String correctAnswer;
 
-    protected JButton selectedAvatarToGameGUI; // ska plocka och skicka vidare
-    protected JButton avatarImageButton1; // spelare "1"
-    protected JButton avatarImageButton2;// spelare "2"
+    protected JButton selectedAvatarToGameGUI;
+    protected JButton avatarImageButton1;
+    protected JButton avatarImageButton2;
     PrintWriter out;
     Client client;
 
