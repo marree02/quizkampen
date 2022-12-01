@@ -1,9 +1,3 @@
-3 - Marica
-4 - Ida
-7 - Robin
-0 - Sigrun
-2 - Marcel
-6 - Dennis
 1 poäng | användarnamn: ida
 1 poäng | användarnamn: Marica
 3 poäng | Användarnamn: Marica
@@ -25,3 +19,7 @@
 9 poäng | Användarnamn: Thomas1
 9 poäng | Användarnamn: Thomas1
 1 poäng | Användarnamn: Thomas2
+9 poäng | Användarnamn: thomas2
+8 poäng | Användarnamn: thomas1
+5 poäng | Användarnamn: Thomas1
+9 poäng | Användarnamn: Lennarth
