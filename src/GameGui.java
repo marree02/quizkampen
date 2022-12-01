@@ -21,11 +21,8 @@ public class GameGui extends JFrame implements ActionListener {
     private Timer timer = new Timer(60, this);
 
     protected String correctAnswer;
-
-    protected JButton selectedAvatarToGameGUI; // ska plocka och skicka vidare
-    protected JButton avatarImageButton1; // spelare "1"
-    protected JButton avatarImageButton2;// spelare "2"
-
+    protected JButton avatarImageButton1;
+    protected JButton avatarImageButton2;
     PrintWriter out;
     Client client;
 
@@ -43,6 +40,7 @@ public class GameGui extends JFrame implements ActionListener {
         setVisible(true);
         continueButton.setEnabled(false);
         setResizable(false);
+
 
         button1.addActionListener(e -> {
             if(button1.getText().equals(correctAnswer)) {

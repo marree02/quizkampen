@@ -38,8 +38,8 @@ public class UsernameAndAvatarGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (continueButton == e.getSource()) {
-                    client.userName = userNameInput.getText(); // plockar texten
-                    client.selectedAvatar = selectedAvatar; // plockar avatar
+                    client.userName = userNameInput.getText();
+                    client.selectedAvatar = selectedAvatar;
                     client.setProceed();
 
                 }
