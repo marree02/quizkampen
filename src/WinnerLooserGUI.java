@@ -1,17 +1,21 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintWriter;
 
 public class WinnerLooserGUI extends JFrame {
     private JPanel panel1;
     protected JLabel winnerOrLooserLabel;
-    private JButton exitButton;
+    protected JButton exitButton;
     protected JPanel winOrLoseField;
     protected JPanel p1;
-    private JButton statisticButton;
+    protected JButton statisticButton;
+
+
 
 
     public WinnerLooserGUI(Client client){
+
         setContentPane(panel1);
         setVisible(true);
         setSize(700,300);
@@ -22,6 +26,8 @@ public class WinnerLooserGUI extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                setVisible(false);
                 System.exit(0);
             }
         });

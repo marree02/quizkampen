@@ -115,10 +115,11 @@ public class Client extends Thread {
             welcomeGui.setVisible(false);
             WinnerLooserGUI winnerLooserGUI = new WinnerLooserGUI(this);
             winnerLooserGUI.winnerOrLooserLabel.setText("Du vann! Motståndaren gav upp");
+            winnerLooserGUI.exitButton.setVisible(false);
+            winnerLooserGUI.statisticButton.setVisible(false);
             winnerLooserGUI.winOrLoseField.setBackground(Color.green);
             winnerLooserGUI.p1.setBackground(Color.green);
             Thread.sleep(3000);
-            out.println(m.QUIT);
             out.close();
             in.close();
             System.exit(0);
